@@ -6,7 +6,7 @@
 
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                <h1 class="h2">Data Barang</h1>
+                <h1 class="h2">Data Peminjaman</h1>
             </div>
             <div class="row">
                 <?php
@@ -23,12 +23,11 @@
                         <thead>
                             <tr>
                                 <th scope="col">No</th>
-                                <th scope="col">Kode Barang</th>
+                                <th scope="col">Nama Peminjam</th>
                                 <th scope="col">Nama Barang </th>
-                                <th scope="col">Maintener</th>
-                                <th scope="col">Total Barang</th>
-                                <th scope="col">Total Tersedia</th>
-                                <th scope="col">Status</th>
+                                <th scope="col">Jumlah</th>
+                                <th scope="col">Tanggal Pinjam</th>
+                                <th scope="col">Tanggal Pengembalian</th>
                                 <th scope="col">Keterangan</th>
                             </tr>
                         </thead>

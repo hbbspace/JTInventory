@@ -1,3 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Your head content here -->
+    <style>
+        /* CSS to enable scrolling inside modal */
+        .modal-dialog-scrollable {
+            display: flex;
+            flex-direction: column;
+        }
+        .modal-dialog-scrollable .modal-content {
+            flex: 1;
+            overflow-y: auto;
+        }
+        .modal-body {
+            flex: 1;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
 <div class="container-fluid">
     <div class="row">
         <?php
@@ -53,6 +74,13 @@
                             <?php } ?>
                         </tbody>
                     </table>
+                    <div class="position-relative d-flex align-items-end justify-content-center" style="height: 500px;">
+                    <div class="col-lg-2">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">
+                            <i class="fa fa-plus"></i>Tambah Barang
+                        </button>
+                    </div>
+                </div>
                 </div>
 
                 <div class="modal fade" id="exampleModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
@@ -97,16 +125,8 @@
                         </div>
                     </div>
                 </div>
-                <!--  -->
-                <div class="position-relative d-flex align-items-end justify-content-center" style="height: 500px;">
-                    <div class="col-lg-2">
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">
-                            <i class="fa fa-plus"></i>Tambah Barang
-                        </button>
-                    </div>
-                </div>
-
             </div>
         </main>
     </div>
 </div>
+</body>
