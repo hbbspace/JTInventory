@@ -55,17 +55,19 @@
                         <tbody>
                         <?php
                         $no = 1;
-                        $query = "SELECT * FROM anggota a, jabatan j, user u WHERE a.jabatan_id = j.id AND a.user_id = u.id order by a.id desc";
+                        $query = "SELECT t.nama_teknisi AS nama , t.nip AS nip, u.username AS username, u.email AS email FROM teknisi AS t INNER JOIN user AS u ON u.unicode = t.nip WHERE u.level = 'Teknisi' ORDER BY t.nama_teknisi desc;";
                         $reqult = mysqli_query($koneksi, $query);
                         while ($row = mysqli_fetch_assoc($reqult)) {
                         ?>
                                 <tr>
                                     <th scope="row"><?= $no++ ?></th>
-                                    <td><?= $row['jabatan'] ?></td>
-                                    <td><?= $row['keterangan'] ?></td>
+                                    <td><?= $row['nama'] ?></td>
+                                    <td><?= $row['nip'] ?></td>
+                                    <td><?= $row['username'] ?></td>
+                                    <td><?= $row['email'] ?></td>
                                     <td>
-                                        <a href="index.php?page=jabatan/edit&id=<?= $row['id'] ?>" class="btn btn-warning btn-xs"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit</a>
-                                        <a href="fungsi/hapus.php?jabatan=hapus&id=<?= $row['id'] ?>" onclick="javascript:return confirm('Hapus Data Jabatan ?');" class="btn btn-danger btn-xs"><i class="fa fa-trash-o" aria-hidden="true"></i>Hapus</a>
+                                        <a href="index.php?page=jabatan/edit&id=<?= $row['nama'] ?>" class="btn btn-warning btn-xs"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit</a>
+                                        <a href="fungsi/hapus.php?jabatan=hapus&id=<?= $row['nama'] ?>" onclick="javascript:return confirm('Hapus Data Jabatan ?');" class="btn btn-danger btn-xs"><i class="fa fa-trash-o" aria-hidden="true"></i>Hapus</a>
                                     </td>
                                 </tr>
                             <?php } ?>
@@ -87,15 +89,30 @@
                                 <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Admin</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <form action="fungsi/tambah.php?jabatan=tambah" method="post">
+                            <form action="fungsi/tambah.php?list_admin=tambah" method="post">
                                 <div class="modal-body">
                                     <div class="mb-3">
                                         <label for="recipient-name" class="col-form-label">Nama:</label>
-                                        <input type="text" name="jabatan" class="form-control" id="recipient-name">
+                                        <input type="text" name="nama" class="form-control" id="recipient-name">
                                     </div>
                                     <div class="mb-3">
                                         <label for="message-text" class="col-form-label">NIP:</label>
-                                        <textarea class="form-control" name="Kode Barang" id="message-text"></textarea>
+                                        <textarea class="form-control" name="nip" id="message-text"></textarea>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="recipient-name" class="col-form-label">Jenis Kelamin :</label>
+                                        <br>
+                                        <div class="form-check form-check-inline">
+                                            <input type="radio" class="form-check-input" name="jenis_kelamin" value="L">
+                                            <label class="form-check-label" for="inlineRadio1">Laki-laki:</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input type="radio" class="form-check-input" name="jenis_kelamin" value="P">
+                                            <label class="form-check-label" for="inlineRadio2">Perempuan</label>
+                                        </div>
+                                    <div class="mb-3">
+                                        <label for="message-text" class="col-form-label">Email:</label>
+                                        <textarea class="form-control" name="email" id="message-text"></textarea>
                                     </div>
                                     <div class="mb-3">
                                         <label for="recipient-name" class="col-form-label">Username:</label>
@@ -104,10 +121,6 @@
                                     <div class="mb-3">
                                         <label for="message-text" class="col-form-label">Password:</label>
                                         <textarea class="form-control" name="password" id="message-text"></textarea>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="message-text" class="col-form-label">Email:</label>
-                                        <textarea class="form-control" name="email" id="message-text"></textarea>
                                     </div>
                                 </div>
                                 <div class="modal-footer">

@@ -3,11 +3,11 @@
         <?php
         include "menu.php";
 
-        $query_anggota = "SELECT count(id) as jml FROM anggota";
+        $query_anggota = "SELECT count(id_barang) as jml FROM barang";
         $result_anggota = mysqli_query($koneksi, $query_anggota);
         $row_anggota = mysqli_fetch_assoc($result_anggota);
 
-        $query_jabatan = "SELECT count(id) as jml FROM jabatan";
+        $query_jabatan = "SELECT count(id_barang) as jml FROM barang";
         $result_jabatan = mysqli_query($koneksi, $query_jabatan);
         $row_jabatan = mysqli_fetch_assoc($result_jabatan);
         ?>

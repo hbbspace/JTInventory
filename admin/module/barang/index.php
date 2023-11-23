@@ -50,25 +50,27 @@
                                 <th scope="col">Nama Barang </th>
                                 <th scope="col">Maintener</th>
                                 <th scope="col">Total Barang</th>
-                                <th scope="col">Total Tersedia</th>
+                                <!-- <th scope="col">Total Tersedia</th>
                                 <th scope="col">Status</th>
-                                <th scope="col">Keterangan</th>
+                                <th scope="col">Keterangan</th> -->
                             </tr>
                         </thead>
                         <tbody>
                             <?php
                             $no = 1;
-                            $query = "SELECT * FROM jabatan order by id desc";
+                            $query = "SELECT * FROM barang order by id_barang asc";
                             $reqult = mysqli_query($koneksi, $query);
                             while ($row = mysqli_fetch_assoc($reqult)) {
                             ?>
                                 <tr>
                                     <th scope="row"><?= $no++ ?></th>
-                                    <td><?= $row['jabatan'] ?></td>
-                                    <td><?= $row['keterangan'] ?></td>
+                                    <td><?= $row['id_barang'] ?></td>
+                                    <td><?= $row['nama_barang'] ?></td>
+                                    <td><?= $row['maintener'] ?></td>
+                                    <td><?= $row['qty'] ?></td>
                                     <td>
-                                        <a href="index.php?page=jabatan/edit&id=<?= $row['id'] ?>" class="btn btn-warning btn-xs"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit</a>
-                                        <a href="fungsi/hapus.php?jabatan=hapus&id=<?= $row['id'] ?>" onclick="javascript:return confirm('Hapus Data Jabatan ?');" class="btn btn-danger btn-xs"><i class="fa fa-trash-o" aria-hidden="true"></i>Hapus</a>
+                                        <a href="index.php?page=jabatan/edit&id=<?= $row['id_barang'] ?>" class="btn btn-warning btn-xs"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit</a>
+                                        <a href="fungsi/hapus.php?jabatan=hapus&id=<?= $row['id_barang'] ?>" onclick="javascript:return confirm('Hapus Data Jabatan ?');" class="btn btn-danger btn-xs"><i class="fa fa-trash-o" aria-hidden="true"></i>Hapus</a>
                                     </td>
                                 </tr>
                             <?php } ?>

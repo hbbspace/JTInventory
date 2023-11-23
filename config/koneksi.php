@@ -1,6 +1,6 @@
 <?php
 date_default_timezone_set("Asia/Jakarta");
-$koneksi = mysqli_connect("localhost", "root", "", "prakwebdb");
+$koneksi = mysqli_connect("localhost", "root", "", "inventorydb");
 
 if(mysqli_connect_errno()){
     die("Koneksi database gagal: " . mysqli_connect_error());
