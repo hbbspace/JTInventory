@@ -222,7 +222,7 @@ include 'fungsi/pesan_kilat.php';
 
 
     <main class="form-register w-200 m-auto">
-        <form action="cek_login.php" method="post">
+        <form action="cek_register.php" method="post">
             <img class="mb-4 w-100" src="assets/img/favicons/jtinventaris.png" alt="" width="72" height="57">
 
             <?php
@@ -235,15 +235,15 @@ include 'fungsi/pesan_kilat.php';
             <div class="border-section">
             <h1 class="h3 mb-3 fw-normal">Register</h1>
             <div class="form-floating">
-                <input type="text" class="form-control rounded-4" id="floatingInput" name="username" placeholder="Nama">
+                <input type="text" class="form-control rounded-4" id="floatingInput" name="nama" placeholder="Nama">
                 <label for="floatingInput">Nama</label>
             </div>
             <div class="form-floating">
-                <input type="text" class="form-control rounded-4 w" id="floatingInput" name="username" placeholder="NIM?NIDN">
+                <input type="text" class="form-control rounded-4 w" id="floatingInput" name="nip" placeholder="NIM?NIDN">
                 <label for="floatingInput">NIM/NIDN</label>
             </div>
             <div class="form-floating">
-                <input type="text" class="form-control rounded-4" id="floatingInput" name="username" placeholder="Username">
+                <input type="text" class="form-control rounded-4" id="floatingInput" name="email" placeholder="Username">
                 <label for="floatingInput">Email</label>
             </div>
             <div class="form-floating">
@@ -254,16 +254,28 @@ include 'fungsi/pesan_kilat.php';
                 <input type="password" class="form-control rounded-4" id="floatingPassword" name="password" placeholder="Password">
                 <label for="floatingPassword">Password</label>
             </div>
+            <div class="mb-3">
+                <label for="recipient-name" class="col-form-label">Jenis Kelamin :</label>
+                <br>
+                <div class="form-check form-check-inline">
+                    <input type="radio" class="form-check-input" name="jenis_kelamin" value="L">
+                    <label class="form-check-label" for="inlineRadio1">Laki-laki:</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="radio" class="form-check-input" name="jenis_kelamin" value="P">
+                    <label class="form-check-label" for="inlineRadio2">Perempuan</label>
+                </div>
+            </div>
             <div class="dropdown">
             <label for="recipient-name" class="col-form-label rounded-4">Level :</label>
                 <select name="level" class="form-select rounded-4" aria-label="Default select example">
                     <option selected>Pilih Level</option>
-                    <option value="user">User</option>
-                    <option value="admin">Admin</option>
+                    <option value="mahasiswa">Mahasiswa</option>
+                    <option value="admin">Dosen</option>
                 </select>
             </div>
-                <button class="btn btn-primary w-100 py-2 rounded-4" type="submit">Rrgister</button>
-                <p class="login-inform">Sudah punya akun ? <a href="login.php" class="register">Login</a></p>
+                <button class="btn btn-primary w-100 py-2 rounded-4" type="submit" name="register">Rrgister</button>
+                <p class="login-inform">Sudah punya akun ? <a href="login.php" class="login">Login</a></p>
                 
                 <p class="mt-5 mb-3 text-body-secondary">&copy; 2023</p>
             </div>

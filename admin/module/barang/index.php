@@ -33,6 +33,7 @@
 
 
                 <?php
+                // Menampilkan pesan flash jika ada
                 if (isset($_SESSION['_flashdata'])) {
                     echo "<br>";
                     foreach ($_SESSION['_flashdata'] as $key => $val) {
@@ -42,6 +43,7 @@
                 ?>
 
                 <div class="table-responsive small">
+                    <!-- Menampilkan data admin dalam tabel -->
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -57,6 +59,7 @@
                         </thead>
                         <tbody>
                             <?php
+                            // Mengambil dan menampilkan data barang
                             $no = 1;
                             $query = "SELECT * FROM barang order by id_barang asc";
                             $reqult = mysqli_query($koneksi, $query);
@@ -69,6 +72,7 @@
                                     <td><?= $row['maintener'] ?></td>
                                     <td><?= $row['qty'] ?></td>
                                     <td>
+                                        <!-- Tombol untuk mengedit dan menghapus data barang -->
                                         <a href="index.php?page=jabatan/edit&id=<?= $row['id_barang'] ?>" class="btn btn-warning btn-xs"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit</a>
                                         <a href="fungsi/hapus.php?jabatan=hapus&id=<?= $row['id_barang'] ?>" onclick="javascript:return confirm('Hapus Data Jabatan ?');" class="btn btn-danger btn-xs"><i class="fa fa-trash-o" aria-hidden="true"></i>Hapus</a>
                                     </td>
@@ -78,13 +82,14 @@
                     </table>
                     <div class="position-relative d-flex align-items-end justify-content-center" style="height: 500px;">
                     <div class="col-lg-2">
+                        <!-- Tombol untuk membuka modal "Tambah Barang" -->
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">
                             <i class="fa fa-plus"></i>Tambah Barang
                         </button>
                     </div>
                 </div>
                 </div>
-
+                    <!-- Modal untuk menambahkan data barang -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-scrollable" role="document">
                         <div class="modal-content">

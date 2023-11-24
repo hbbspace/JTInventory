@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Your head content here -->
     <style>
         /* CSS to enable scrolling inside modal */
         .modal-dialog-scrollable {
@@ -22,6 +21,7 @@
 <div class="container-fluid">
     <div class="row">
         <?php
+        // Include template menu
         include "admin/template/menu.php";
         ?>
 
@@ -30,9 +30,8 @@
                 <h1 class="h2">Data Admin</h1>
             </div>
             <div class="row">
-
-
                 <?php
+                 // Menampilkan pesan flash jika ada
                 if (isset($_SESSION['_flashdata'])) {
                     echo "<br>";
                     foreach ($_SESSION['_flashdata'] as $key => $val) {
@@ -42,6 +41,7 @@
                 ?>
 
                 <div class="table-responsive small">
+                    <!-- Menampilkan data admin dalam tabel -->
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -54,6 +54,7 @@
                         </thead>
                         <tbody>
                         <?php
+                         // Mengambil dan menampilkan data admin
                         $no = 1;
                         $query = "SELECT t.nama_teknisi AS nama , t.nip AS nip, u.username AS username, u.email AS email FROM teknisi AS t INNER JOIN user AS u ON u.unicode = t.nip WHERE u.level = 'Teknisi' ORDER BY t.nama_teknisi desc;";
                         $reqult = mysqli_query($koneksi, $query);
@@ -66,6 +67,7 @@
                                     <td><?= $row['username'] ?></td>
                                     <td><?= $row['email'] ?></td>
                                     <td>
+                                        <!-- Tombol untuk mengedit dan menghapus data admin -->
                                         <a href="index.php?page=jabatan/edit&id=<?= $row['nama'] ?>" class="btn btn-warning btn-xs"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit</a>
                                         <a href="fungsi/hapus.php?jabatan=hapus&id=<?= $row['nama'] ?>" onclick="javascript:return confirm('Hapus Data Jabatan ?');" class="btn btn-danger btn-xs"><i class="fa fa-trash-o" aria-hidden="true"></i>Hapus</a>
                                     </td>
@@ -73,6 +75,7 @@
                             <?php } ?>
                         </tbody>
                     </table>
+                    <!-- Tombol untuk membuka modal "Tambah Admin" -->
                     <div class="position-relative d-flex align-items-end justify-content-center" style="height: 500px;">
                     <div class="col-lg-2">
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">
@@ -81,7 +84,7 @@
                     </div>
                 </div>
                 </div>
-
+                <!-- Modal untuk menambahkan admin -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-scrollable" role="document">
                         <div class="modal-content">
@@ -89,6 +92,7 @@
                                 <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Admin</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
+                            <!-- Form untuk menambahkan admin -->
                             <form action="fungsi/tambah.php?list_admin=tambah" method="post">
                                 <div class="modal-body">
                                     <div class="mb-3">
@@ -110,6 +114,7 @@
                                             <input type="radio" class="form-check-input" name="jenis_kelamin" value="P">
                                             <label class="form-check-label" for="inlineRadio2">Perempuan</label>
                                         </div>
+                                    </div>
                                     <div class="mb-3">
                                         <label for="message-text" class="col-form-label">Email:</label>
                                         <textarea class="form-control" name="email" id="message-text"></textarea>
@@ -131,8 +136,6 @@
                         </div>
                     </div>
                 </div>
-                <!--  -->
-
             </div>
         </main>
     </div>
