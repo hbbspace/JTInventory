@@ -16,8 +16,7 @@ session_start();
         $combined_password = $salt . $password;
         $hashed_password = password_hash($combined_password, PASSWORD_BCRYPT);
 
-        if(isset($nama) && isset($unicode) && isset($jenis_kelamin) && isset($email)
-        && isset($username) && isset($password) && isset($level)) {
+        if($nama != null && $unicode != null && $email != null && $username != null && $password != null && $jenis_kelamin != "null" && $level != "Pilih Level") {
             $last_id = mysqli_insert_id($koneksi);
             $query = "INSERT INTO user (user_id, unicode, email, username, password, salt, level) 
                 VALUES('$last_id', '$unicode', '$email', '$username', '$hashed_password', '$salt', '$level');";

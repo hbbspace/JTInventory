@@ -249,7 +249,7 @@ include 'fungsi/pesan_kilat.php';
                 <label for="floatingInput">NIM/NIDN</label>
             </div>
             <div class="form-floating">
-                <input type="text" class="form-control rounded-4" id="floatingInput" name="email" placeholder="Email" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+                <input type="email" class="form-control rounded-4" id="floatingInput" name="email" placeholder="Email" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
                 <label for="floatingInput">Email</label>
                 <span class="invalid-feedback">Please enter a valid email address.</span>
             </div>
@@ -281,7 +281,7 @@ include 'fungsi/pesan_kilat.php';
                     <option value='Dosen'>Dosen</option>
                 </select>
             </div>
-                <button class="btn btn-primary w-100 py-2 rounded-4" type="submit" name="register">Rrgister</button>
+                <button class="btn btn-primary w-100 py-2 rounded-4" type="submit" name="register">Register</button>
                 <p class="login-inform">Sudah punya akun ? <a href="login.php" class="login">Login</a></p>
                 
                 <p class="mt-5 mb-3 text-body-secondary">&copy; 2023</p>
