@@ -233,6 +233,10 @@ include 'fungsi/pesan_kilat.php';
                 <input type="password" class="form-control rounded-4" id="floatingPassword" name="password" placeholder="Password">
                 <label for="floatingPassword">Password</label>
             </div>
+            <div class="form-check mt-2">
+                <input class="form-check-input" type="checkbox" id="showPassword" onclick="togglePasswordVisibility()">
+                <label class="form-check-label" for="showPassword">Show Password</label>
+            </div>            
 
             <button class="btn btn-primary w-100 py-2 rounded-4" type="submit">Masuk</button>
             
@@ -243,6 +247,16 @@ include 'fungsi/pesan_kilat.php';
         </form>
     </main>
     <script src="assets/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function togglePasswordVisibility() {
+            var passwordInput = document.getElementById("floatingPassword");
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+            } else {
+                passwordInput.type = "password";
+            }
+        }
+    </script>
 
 </body>
 
