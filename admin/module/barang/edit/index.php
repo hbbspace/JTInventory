@@ -2,7 +2,7 @@
     <div class="row">
         <?php
         require 'admin/template/menu.php';
-        $id = $_GET['id'];
+        $id = antiinjection($koneksi, $_POST['user_id']);
         $query = "SELECT * FROM jabatan WHERE id = '$id'";
         $result = mysqli_query($koneksi, $query);
         $row = mysqli_fetch_assoc($result);

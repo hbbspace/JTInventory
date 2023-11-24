@@ -4,6 +4,7 @@ if (!empty($_SESSION['username'])) {
     require '../config/koneksi.php';
     require '../fungsi/pesan_kilat.php';
     require '../fungsi/anti_injection.php';
+    // Tambah Admin
     if (!empty($_GET['list_admin'])) {
             $nama = antiinjection($koneksi, $_POST['nama']);
             $nip = antiinjection($koneksi, $_POST['nip']);
@@ -39,6 +40,7 @@ if (!empty($_SESSION['username'])) {
             header("Location: ../index.php?page=list_admin");
         
         header("Location: ../index.php?page=list_admin");
+    // Tambah Barang niate    
     } elseif (!empty($_GET['anggota'])) {
         
         $username = antiinjection($koneksi, $_POST['username']);

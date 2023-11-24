@@ -4,15 +4,26 @@ if (!empty($_SESSION['username'])) {
     require '../config/koneksi.php';
     require '../fungsi/pesan_kilat.php';
     require '../fungsi/anti_injection.php';
-    if (!empty($_GET['jabatan'])) {
-        $id = antiinjection($koneksi, $_POST['id']);
-        $jabatan = antiinjection($koneksi, $_POST['jabatan']);
-        $keterangan = antiinjection($koneksi, $_POST['keterangan']);
-        $query = "UPDATE jabatan SET jabatan = '$jabatan' ,keterangan = '$keterangan' WHERE id = '$id'";
-        if (mysqli_query($koneksi, $query)) {
-            pesan('success', "Jabatan Telah Diubah.");
+    // Edit Akun
+    if (!empty($_GET['akun'])) {
+        $id = antiinjection($koneksi, $_POST['user_id']);
+        $nama = antiinjection($koneksi, $_POST['nama']);
+        $nip = antiinjection($koneksi, $_POST['nip']);
+        $jenis_kelamin = antiinjection($koneksi, $_POST['jenis_kelamin']);
+        $email = antiinjection($koneksi, $_POST['email']);
+        $username = antiinjection($koneksi, $_POST['username']);
+        $password = antiinjection($koneksi, $_POST['password']);
+
+        $salt = bin2hex(random_bytes(16));
+        $combined_password = $salt . $password;
+        $hashed_password = password_hash($combined_password, PASSWORD_BCRYPT);
+
+        $query = "UPDATE user SET email = '$email', username = '$username', password = '$hashed_password', salt = '$salt' WHERE id = '$id';";
+        $query2 = "UPDATE teknisi SET nama_teknisi = '$nama', jk = '$jenis_kelamin' WHERE nip = '$nip';";
+        if (mysqli_query($koneksi, $query) && mysqli_query($koneksi, $query2)) {
+            pesan('success', "Admin Telah Diubah.");
         } else {
-            pesan('danger', "Mengubah Jabatan Karena: " . mysqli_error($koneksi));
+            pesan('danger', "Gagal Mengubah Admin Karena: " . mysqli_error($koneksi));
         }
         header("Location: ../index.php?page=jabatan");
     } elseif (!empty($_GET['anggota'])) {
@@ -51,6 +62,8 @@ if (!empty($_SESSION['username'])) {
             pesan('danger', "Mengubah Anggota Karena: " . mysqli_error($koneksi));
         }
         header("Location: ../index.php?page=anggota");
+    } else if(!empty($_GET['anggota'])){
+        
     }
 }
 ?>
