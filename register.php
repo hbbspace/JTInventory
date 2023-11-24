@@ -239,7 +239,7 @@ include 'fungsi/pesan_kilat.php';
                 <label for="floatingInput">Nama</label>
             </div>
             <div class="form-floating">
-                <input type="text" class="form-control rounded-4 w" id="floatingInput" name="nip" placeholder="NIM?NIDN">
+                <input type="text" class="form-control rounded-4 w" id="floatingInput" name="unicode" placeholder="NIM?NIDN">
                 <label for="floatingInput">NIM/NIDN</label>
             </div>
             <div class="form-floating">
@@ -270,8 +270,8 @@ include 'fungsi/pesan_kilat.php';
             <label for="recipient-name" class="col-form-label rounded-4">Level :</label>
                 <select name="level" class="form-select rounded-4" aria-label="Default select example">
                     <option selected>Pilih Level</option>
-                    <option value="mahasiswa">Mahasiswa</option>
-                    <option value="admin">Dosen</option>
+                    <option value='Mahasiswa'>Mahasiswa</option>
+                    <option value='Dosen'>Dosen</option>
                 </select>
             </div>
                 <button class="btn btn-primary w-100 py-2 rounded-4" type="submit" name="register">Rrgister</button>
