@@ -152,6 +152,12 @@ include 'fungsi/pesan_kilat.php';
         .dropdown{
             margin-bottom: 30px;
         }
+
+        .invalid-feedback {
+            display: none;
+            color: #dc3545;
+            margin-top: 5px;
+        }
     </style>
 
 
@@ -243,8 +249,9 @@ include 'fungsi/pesan_kilat.php';
                 <label for="floatingInput">NIM/NIDN</label>
             </div>
             <div class="form-floating">
-                <input type="text" class="form-control rounded-4" id="floatingInput" name="email" placeholder="Username">
+                <input type="text" class="form-control rounded-4" id="floatingInput" name="email" placeholder="Email" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
                 <label for="floatingInput">Email</label>
+                <span class="invalid-feedback">Please enter a valid email address.</span>
             </div>
             <div class="form-floating">
                 <input type="text" class="form-control rounded-4" id="floatingInput" name="username" placeholder="Username">
@@ -282,6 +289,20 @@ include 'fungsi/pesan_kilat.php';
         </form>
     </main>
     <script src="assets/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var emailInput = document.getElementById('floatingInput');
+            var invalidFeedback = document.querySelector('.invalid-feedback');
+
+            emailInput.addEventListener('input', function () {
+                if (emailInput.checkValidity()) {
+                    invalidFeedback.style.display = 'none';
+                } else {
+                    invalidFeedback.style.display = 'block';
+                }
+            });
+        });
+    </script>
 
 </body>
 
