@@ -9,7 +9,7 @@ include 'fungsi/anti_injection.php';
 $username = antiinjection($koneksi, $_POST['username']);
 $password = antiinjection($koneksi, $_POST['password']);
 
-$query = "SELECT username, level, salt, password as hashed_password FROM user WHERE username = '$username'";
+$query = "SELECT user_id, username, level, salt, password as hashed_password FROM user WHERE username = '$username'";
 $result = mysqli_query($koneksi, $query);
 $row = mysqli_fetch_assoc($result);
 mysqli_close($koneksi);
@@ -22,6 +22,7 @@ if($salt !== null && $hashed_password !== null){
     if(password_verify($combined_password, $hashed_password)){
         $_SESSION['username'] = $row['username'];
         $_SESSION['level'] = $row['level'];
+        $_SESSION['user_id'] = $row['user_id'];
         header("Location: index.php");
     }else{
         pesan('danger', "Login gagal. Password Anda Salah.");

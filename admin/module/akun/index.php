@@ -1,3 +1,17 @@
+<head>
+    <style>
+strong{
+  font-size: large;
+  line-height: 12px; /* Mengatur text-align menjadi right untuk span kedua */
+  margin-right: 40px;
+}
+
+tr{
+    padding-top: 90px;
+}
+
+    </style>
+</head>
 <div class="container-fluid">
     <div class="row">
         <?php
@@ -19,33 +33,36 @@
                     }
                 }
                 ?>
-                <div class="table-responsive small">
-                    <!-- Menampilkan data admin dalam tabel -->
-                    <table class="table table-striped">
+                <div class="akun-section">
+                    <!-- Menampilkan data -->
                         <tbody>
-                        <?php
-                         // Mengambil dan menampilkan data admin
-                         $username = $_SESSION['username'];
-                         $id = "SELECT user_id FROM user where username='$username'";
-                         $id_result = mysqli_query($koneksi, $id);
-                         // Mengambil nilai user_id dari objek mysqli_result
-                         $id_row = mysqli_fetch_assoc($id_result);
-                         $id_session = $id_row['user_id'];
-                         $query = "SELECT t.nama_teknisi AS nama , t.nip, t.jk, u.username, u.email FROM user AS u 
-                                   INNER JOIN teknisi AS t ON t.nip = u.unicode WHERE u.level = 'Teknisi' AND u.user_id = $id_session;" ;
-                         $result = mysqli_query($koneksi, $query);
-                        while ($row = mysqli_fetch_assoc($result)) {
-                        ?>
-                                <strong>Nama: </strong><?= $row['nama'] ?><br>
-                                <strong>unicode: </strong><?= $row['nip'] ?><br>
-                                <strong>Username: </strong><?= $row['username'] ?><br>
-                                <strong>Email: </strong><?= $row['email'] ?><br>
-                                <strong>Jenis Kelamin: </strong><?= $row['jk'] ?><br>
-                                <button type="button" class="btn btn-warning btn-xs"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit</button>
-                                <button type="button" class="btn btn-danger btn-xs" onclick="javascript:return confirm('Hapus Data Jabatan ?');"><i class="fa fa-trash-o" aria-hidden="true"></i> Hapus</button>
-                            <?php } ?>
-                        </tbody>
-                    </table>
+                            <?php
+                            //mengambil id dengan mengguakan session user_id
+                            $id = $_SESSION['user_id'];
+                            $query = "SELECT t.nama_teknisi AS nama , t.nip, t.jk, u.username, u.email FROM user AS u 
+                                    INNER JOIN teknisi AS t ON t.nip = u.unicode WHERE u.level = 'Teknisi' AND u.user_id = '$id'"; 
+                            // Mengambil id dengan menggunakan session username
+                            // $username = $_SESSION['username'];
+                            // $id = "SELECT user_id FROM user where username='$username'";
+                            // $id_result = mysqli_query($koneksi, $id);
+                            // // Mengambil nilai user_id dari objek mysqli_result
+                            // $id_row = mysqli_fetch_assoc($id_result);
+                            // $id_session = $id_row['user_id'];
+                            // $query = "SELECT t.nama_teknisi AS nama , t.nip, t.jk, u.username, u.email FROM user AS u 
+                            //           INNER JOIN teknisi AS t ON t.nip = u.unicode WHERE u.level = 'Teknisi' AND u.user_id = $id_session;" ;
+                            $result = mysqli_query($koneksi, $query);
+                            while ($row = mysqli_fetch_assoc($result)) {
+                            ?>
+                                    <strong>Nama: </strong></tr><?= $row['nama'] ?><br><hr>
+                                    <strong>unicode: </strong><?= $row['nip'] ?><br><hr>
+                                    <strong>Username: </strong><?= $row['username'] ?><br><hr>
+                                    <strong>Email: </strong><?= $row['email'] ?><br><hr>
+                                    <strong>Jenis Kelamin: </strong><?= $row['jk'] ?><br><hr>
+                                    <div class="text-center">
+  <button type="button" class="btn btn-warning btn-xs"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit</button>
+</div>
+                                <?php } ?>
+                       </tbody>
                 </div>
             </main>
     </div>
