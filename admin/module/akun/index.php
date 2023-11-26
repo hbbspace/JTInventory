@@ -59,12 +59,21 @@ tr{
                                     <strong>Email: </strong><?= $row['email'] ?><br><hr>
                                     <strong>Jenis Kelamin: </strong><?= $row['jk'] ?><br><hr>
                                     <div class="text-center">
-  <button type="button" class="btn btn-warning btn-xs"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit</button>
-</div>
+                                    </div>
                                 <?php } ?>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="card">
+                                            <div class="card-body" style="text-align: center;">
+                                            <a href="index.php?page=akun/edit" class="btn btn-warning btn-xs"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit</a>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                               </div>
                        </tbody>
                 </div>
-            </main>
+        </main>
     </div>
 </div>
 
