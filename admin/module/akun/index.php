@@ -58,8 +58,7 @@ tr{
                                     <strong>Username: </strong><?= $row['username'] ?><br><hr>
                                     <strong>Email: </strong><?= $row['email'] ?><br><hr>
                                     <strong>Jenis Kelamin: </strong><?= $row['jk'] ?><br><hr>
-                                    <div class="text-center">
-                                    </div>
+
                                 <?php } ?>
                                 <div class="row">
                                     <div class="col-sm-12">

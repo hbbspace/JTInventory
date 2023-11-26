@@ -2,35 +2,56 @@
     <div class="row">
         <?php
         require 'admin/template/menu.php';
-        $id = antiinjection($koneksi, $_POST['user_id']);
-        $query = "SELECT * FROM jabatan WHERE id = '$id'";
+        $query = "SELECT * FROM barang order by id_barang asc";
         $result = mysqli_query($koneksi, $query);
         $row = mysqli_fetch_assoc($result);
         ?>
+        
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                <h1 class="h2">List Barang</h1>
-            </div>
-            <div class="card col-sm-6">
-                <div class="card-header">
-                    Form Edit Barang
-                </div>
-                <div class="card-body">
-                    <form action="fungsi/edit.php?jabatan=edit" method="post">
-                        <input type="hidden" name="id" value="<?= $row['id'] ?>">
-                        <div class="mb-3">
-                            <label for="jabatan" class="form-label">Nama Jabatan:</label>
-                            <input type="text" name="jabatan" class="form-control" id="jabatan" value="<?= $row['jabatan'] ?>">
+            <form action="fungsi/edit.php?barang=edit" method="post">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                                Form Edit Barang
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <label for="id_barang" class="form-label">id Barang :</label>
+                                    <input type="text" name="id_barang" class="form-control" id="id_barang" value="<?= $row['id_barang'] ?>">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="nama" class="form-label">Nama Barang :</label>
+                                    <input type="text" name="nama_barang" class="form-control" id="nama_barang" value="<?= $row['nama_barang'] ?>">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="maintener" class="form-label">Maintener</label>
+                                    <input type="text" name="maintener" class="form-control" value="<?= $row['maintener'] ?>" id="maintener">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="qty" class="form-label">qty</label>
+                                    <input type="text" name="qty" class="form-control" value="<?= $row['qty'] ?>" id="qty">
+                                </div>
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <label for="keterangan" class="form-label">Keterangan:</label>
-                            <textarea class="form-control" name="keterangan" id="keterangan"><?= $row['keterangan'] ?></textarea>
+                    </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-body" style="text-align: center;">
+                                <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i> Ubah</button>
+                                <a href="index.php?page=akun" class="btn btn-secondary"><i class="fa fa-times"></i> Batal</a>
+                            </div>
                         </div>
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i>Ubah</button>
-                    </form>
+                    </div>
                 </div>
-            </div>
-    </div>
-    </main>
+           </form>
+      </main>
+   </div>
 </div>
-</div>
+
+
+  
+
+
+        

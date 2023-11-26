@@ -6,64 +6,66 @@ if (!empty($_SESSION['username'])) {
     require '../fungsi/anti_injection.php';
     // Edit Akun
     if (!empty($_GET['akun'])) {
-        $id = antiinjection($koneksi, $_POST['user_id']);
         $nama = antiinjection($koneksi, $_POST['nama']);
-        $nip = antiinjection($koneksi, $_POST['nip']);
-        $jenis_kelamin = antiinjection($koneksi, $_POST['jenis_kelamin']);
+        $jenis_kelamin = antiinjection($koneksi, $_POST['jk']);
         $email = antiinjection($koneksi, $_POST['email']);
         $username = antiinjection($koneksi, $_POST['username']);
         $password = antiinjection($koneksi, $_POST['password']);
+        $id=$_SESSION['user_id'];
+        $unicode=$_SESSION['unicode'];
 
         $salt = bin2hex(random_bytes(16));
         $combined_password = $salt . $password;
         $hashed_password = password_hash($combined_password, PASSWORD_BCRYPT);
 
-        $query = "UPDATE user SET email = '$email', username = '$username', password = '$hashed_password', salt = '$salt' WHERE id = '$id';";
-        $query2 = "UPDATE teknisi SET nama_teknisi = '$nama', jk = '$jenis_kelamin' WHERE nip = '$nip';";
-        if (mysqli_query($koneksi, $query) && mysqli_query($koneksi, $query2)) {
-            pesan('success', "Admin Telah Diubah.");
+        $query = "UPDATE user SET email = '$email', username = '$username', password = '$hashed_password', salt = '$salt' WHERE user_id = '$id';";
+        mysqli_query($koneksi, $query);
+        $query2 = "UPDATE teknisi SET nama_teknisi = '$nama', jk = '$jenis_kelamin' WHERE nip = '$unicode';";
+
+        if (mysqli_query($koneksi, $query2)) {
+            pesan('success', "Data Telah Diubah.");
         } else {
-            pesan('danger', "Gagal Mengubah Admin Karena: " . mysqli_error($koneksi));
+            pesan('danger', "Gagal Mengubah Data Karena: " . mysqli_error($koneksi));
         }
-        header("Location: ../index.php?page=jabatan");
-    } elseif (!empty($_GET['anggota'])) {
-        $user_id = antiinjection($koneksi, $_POST['id']);
+        header("Location: ../index.php?page=akun");
+    //edit admin
+    } elseif (!empty($_GET['list_admin'])) {
         $nama = antiinjection($koneksi, $_POST['nama']);
-        $jabatan = antiinjection($koneksi, $_POST['jabatan']);
-        $jenis_kelamin = antiinjection($koneksi, $_POST['jenis_kelamin']);
-        $alamat = antiinjection($koneksi, $_POST['alamat']);
-        $no_telp = antiinjection($koneksi, $_POST['no_telp']);
+        $jenis_kelamin = antiinjection($koneksi, $_POST['jk']);
+        $email = antiinjection($koneksi, $_POST['email']);
         $username = antiinjection($koneksi, $_POST['username']);
+        $password = antiinjection($koneksi, $_POST['password']);
+        $user_id = antiinjection($koneksi, $_POST['id']);
 
-        $query_anggota = "UPDATE anggota SET nama = '$nama' ,jabatan_id = '$jabatan',jenis_kelamin = '$jenis_kelamin',alamat = '$alamat',no_telp = '$no_telp' WHERE user_id = '$user_id'";
-        if (mysqli_query($koneksi, $query_anggota)) {
-            if (!empty($_POST['password'])) {
-                $password = $_POST['password'];
-                $salt = bin2hex(random_bytes(16));
-                $combine_password = $salt . $password;
-                $hashed_password = password_hash($combine_password, PASSWORD_BCRYPT);
+        $salt = bin2hex(random_bytes(16));
+        $combined_password = $salt . $password;
+        $hashed_password = password_hash($combined_password, PASSWORD_BCRYPT);
 
-                $query_user = "UPDATE user SET username = '$username' ,password = '$hashed_password', salt = '$salt' WHERE id = '$user_id'";
+        $query = "UPDATE user SET email = '$email', username = '$username', password = '$hashed_password', salt = '$salt' WHERE user_id = '$user_id';";
+        mysqli_query($koneksi, $query);
+        $query2 = "UPDATE teknisi SET nama_teknisi = '$nama', jk = '$jenis_kelamin' WHERE nip = '$unicode';";
 
-                if (mysqli_query($koneksi, $query_user)) {
-                    pesan('success', "Anggota Telah Diubah.");
-                } else {
-                    pesan('warning', "Data Anggota Berhasil Diubah Tetapi Password Gagal Diubah Karena: " . mysqli_error($koneksi));
-                }
-            } else {
-                $query_user = "UPDATE user SET username = '$username' WHERE id = '$user_id'";
-                if (mysqli_query($koneksi, $query_user)) {
-                    pesan('success', "Anggota Telah Diubah.");
-                } else {
-                    pesan('warning', "Data Anggota Berhasil Diubah Tetapi Username Gagal Diubah Karena: " . mysqli_error($koneksi));
-                }
-            }
+        if (mysqli_query($koneksi, $query2)) {
+            pesan('success', "Data Telah Diubah.");
         } else {
-            pesan('danger', "Mengubah Anggota Karena: " . mysqli_error($koneksi));
+            pesan('danger', "Gagal Mengubah Data Karena: " . mysqli_error($koneksi));
         }
-        header("Location: ../index.php?page=anggota");
-    } else if(!empty($_GET['anggota'])){
+        header("Location: ../index.php?page=list_admin");
+    //edit barang
+    } else if(!empty($_GET['barang'])){
+        $id_barang = antiinjection($koneksi, $_POST['id_barang']);
+        $nama_barang = antiinjection($koneksi, $_POST['nama_barang']);
+        $maintener = antiinjection($koneksi, $_POST['maintener']);
+        $qty = antiinjection($koneksi, $_POST['qty']);
+        //belum bisa edit id_barang, karena id barang digunakan sebagai parameter.
         
+        $query = "UPDATE barang SET nama_barang = '$nama_barang', maintener = '$maintener', qty = '$qty' where id_barang=$id_barang";
+        if (mysqli_query($koneksi, $query)) {
+            pesan('success', "Data Barang Telah Diubah.");
+        } else {
+            pesan('danger', "Gagal Mengubah Data Barang Karena: " . mysqli_error($koneksi));
+        }
+        header("Location: ../index.php?page=barang");
     }
 }
 ?>

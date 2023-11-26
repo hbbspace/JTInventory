@@ -73,8 +73,8 @@
                                     <td><?= $row['qty'] ?></td>
                                     <td>
                                         <!-- Tombol untuk mengedit dan menghapus data barang -->
-                                        <a href="index.php?page=jabatan/edit&id=<?= $row['id_barang'] ?>" class="btn btn-warning btn-xs"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit</a>
-                                        <a href="fungsi/hapus.php?jabatan=hapus&id=<?= $row['id_barang'] ?>" onclick="javascript:return confirm('Hapus Data Jabatan ?');" class="btn btn-danger btn-xs"><i class="fa fa-trash-o" aria-hidden="true"></i>Hapus</a>
+                                        <a href="index.php?page=barang/edit&id=<?= $row['id_barang'] ?>" class="btn btn-warning btn-xs"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit</a>
+                                        <a href="fungsi/hapus.php?barang=hapus&id=<?= $row['id_barang'] ?>" onclick="javascript:return confirm('Hapus Data barang ?');" class="btn btn-danger btn-xs"><i class="fa fa-trash-o" aria-hidden="true"></i>Hapus</a>
                                     </td>
                                 </tr>
                             <?php } ?>
@@ -97,32 +97,32 @@
                                 <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Data Barang</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <form action="fungsi/tambah.php?jabatan=tambah" method="post">
+                            <form action="fungsi/tambah.php?barang=tambah" method="post">
                                 <div class="modal-body">
                                     <div class="mb-3">
                                         <label for="recipient-name" class="col-form-label">Nama Barang:</label>
-                                        <input type="text" name="jabatan" class="form-control" id="recipient-name">
+                                        <input type="text" name="nama_barang" class="form-control" id="recipient-name">
                                     </div>
-                                    <div class="mb-3">
+                                    <!-- <div class="mb-3">
                                         <label for="message-text" class="col-form-label">Kode Barang:</label>
                                         <textarea class="form-control" name="Kode Barang" id="message-text"></textarea>
-                                    </div>
+                                    </div> -->
                                     <div class="mb-3">
                                         <label for="recipient-name" class="col-form-label">Maintener:</label>
                                         <input type="text" name="maintener" class="form-control" id="recipient-name">
                                     </div>
                                     <div class="mb-3">
                                         <label for="message-text" class="col-form-label">Total Barang:</label>
-                                        <textarea class="form-control" name="total_barang" id="message-text"></textarea>
+                                        <input class="form-control" name="qty" id="message-text"></input>
                                     </div>
-                                    <div class="mb-3">
+                                    <!-- <div class="mb-3">
                                         <label for="message-text" class="col-form-label">Status:</label>
                                         <textarea class="form-control" name="keterangan" id="message-text"></textarea>
                                     </div>
                                     <div class="mb-3">
                                         <label for="message-text" class="col-form-label">Keterangan:</label>
                                         <textarea class="form-control" name="keterangan" id="message-text"></textarea>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i> Close</button>

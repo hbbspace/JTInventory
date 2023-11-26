@@ -68,7 +68,7 @@
                                     <td><?= $row['email'] ?></td>
                                     <td>
                                         <!-- Tombol untuk mengedit dan menghapus data admin -->
-                                        <a href="index.php?page=jabatan/edit&id=<?= $row['nama'] ?>" class="btn btn-warning btn-xs"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit</a>
+                                        <a href="index.php?page=list_admin/edit&id=<?= $row['nama'] ?>" class="btn btn-warning btn-xs"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit</a>
                                         <a href="fungsi/hapus.php?jabatan=hapus&id=<?= $row['nama'] ?>" onclick="javascript:return confirm('Hapus Data Jabatan ?');" class="btn btn-danger btn-xs"><i class="fa fa-trash-o" aria-hidden="true"></i>Hapus</a>
                                     </td>
                                 </tr>
