@@ -63,15 +63,41 @@ tr{
                             $result = mysqli_query($koneksi, $query);
                             while ($row = mysqli_fetch_assoc($result)) {
                             ?>
-                                <strong>Nama: </strong><?= $row['nama'] ?><br><hr>
-                                <?php if ($userLevel === 'Mahasiswa') : ?>
-                                    <strong>NIM: </strong><?= $row['nim'] ?><br><hr>
-                                <?php elseif ($userLevel === 'Dosen') : ?>
-                                    <strong>NIDN: </strong><?= $row['nidn'] ?><br><hr>
-                                <?php endif; ?>
-                                <strong>Username: </strong><?= $row['username'] ?><br><hr>
-                                <strong>Email: </strong><?= $row['email'] ?><br><hr>
-                                <strong>Jenis Kelamin: </strong><?= $row['jk'] ?><br><hr>
+                                <div class="container">
+                                    <table class="table">
+                                        <tr>
+                                            <td><strong>Nama:</strong></td>
+                                            <td><?= $row['nama'] ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Status:</strong></td>
+                                            <td><?= $userLevel ?></td>
+                                        </tr>
+                                        <?php if ($userLevel === 'Mahasiswa') : ?>
+                                            <tr>
+                                                <td><strong>NIM:</strong></td>
+                                                <td><?= $row['nim'] ?></td>
+                                            </tr>
+                                        <?php elseif ($userLevel === 'Dosen') : ?>
+                                            <tr>
+                                                <td><strong>NIDN:</strong></td>
+                                                <td><?= $row['nidn'] ?></td>
+                                            </tr>
+                                        <?php endif; ?>
+                                        <tr>
+                                            <td><strong>Username:</strong></td>
+                                            <td><?= $row['username'] ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Email:</strong></td>
+                                            <td><?= $row['email'] ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Jenis Kelamin:</strong></td>
+                                            <td><?= $row['jk'] ?></td>
+                                        </tr>
+                                    </table>
+                                </div>
 
                             <?php } ?>
                             <div class="row">

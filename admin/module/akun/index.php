@@ -39,8 +39,9 @@ tr{
                             <?php
                             //mengambil id dengan mengguakan session user_id
                             $id = $_SESSION['user_id'];
-                            $query = "SELECT t.nama_teknisi AS nama , t.nip, t.jk, u.username, u.email FROM user AS u 
-                                    INNER JOIN teknisi AS t ON t.nip = u.unicode WHERE u.level = 'Teknisi' AND u.user_id = '$id'"; 
+                            $query = "SELECT t.nama_teknisi AS nama , t.nip AS nip, t.jk AS jk, u.username AS username, u.email AS email FROM user AS u 
+                                    INNER JOIN teknisi AS t ON t.nip = u.unicode WHERE u.level = 'Teknisi' AND u.user_id = '$id'";
+                            $level = 'Teknisi';
                             // Mengambil id dengan menggunakan session username
                             // $username = $_SESSION['username'];
                             // $id = "SELECT user_id FROM user where username='$username'";
@@ -53,11 +54,34 @@ tr{
                             $result = mysqli_query($koneksi, $query);
                             while ($row = mysqli_fetch_assoc($result)) {
                             ?>
-                                    <strong>Nama: </strong><?= $row['nama'] ?><br><hr>
-                                    <strong>NIP: </strong><?= $row['nip'] ?><br><hr>
-                                    <strong>Username: </strong><?= $row['username'] ?><br><hr>
-                                    <strong>Email: </strong><?= $row['email'] ?><br><hr>
-                                    <strong>Jenis Kelamin: </strong><?= $row['jk'] ?><br><hr>
+                                    <div class="container">
+                                    <table class="table">
+                                        <tr>
+                                            <td><strong>Nama:</strong></td>
+                                            <td><?= $row['nama'] ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Status:</strong></td>
+                                            <td><?= $level ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>NIP:</strong></td>
+                                            <td><?= $row['nip'] ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Username:</strong></td>
+                                            <td><?= $row['username'] ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Email:</strong></td>
+                                            <td><?= $row['email'] ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Jenis Kelamin:</strong></td>
+                                            <td><?= $row['jk'] ?></td>
+                                        </tr>
+                                    </table>
+                                </div>
 
                                 <?php } ?>
                                 <div class="row">
