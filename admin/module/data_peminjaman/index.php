@@ -24,8 +24,7 @@
                             <tr>
                                 <th scope="col">No</th>
                                 <th scope="col">Nama Peminjam</th>
-                                <th scope="col">Nama Barang </th>
-                                <th scope="col">Jumlah</th>
+                                <th scope="col">Waktu</th>
                                 <th scope="col">Tanggal Pinjam</th>
                                 <th scope="col">Tanggal Pengembalian</th>
                                 <th scope="col">Status</th>
@@ -45,13 +44,8 @@
                             ?>
                                 <tr>
                                     <th scope="row"><?= $no++ ?></th>
-                                    <td><?= $row['nama'] ?></td>
-                                    <td><?= $row['id_barang'] ?></td>
-                                    <td><?= $row['nama_barang'] ?></td>
-                                    <td><?= $row['jumlah_peminjaman'] ?></td>
-                                    <td><?= $row['tgl_pinjam'] ?></td>
-                                    <td><?= $row['tgl_kembali'] ?></td>
-                                    <td><?= $row['status'] ?></td>
+                                    <td><?= $row['jabatan'] ?></td>
+                                    <td><?= $row['keterangan'] ?></td>
                                     <td>
                                     <!-- buutton untuk menampilkan data peminjaman -->
                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Lihat Detail Peminjaman</button>
