@@ -76,7 +76,7 @@
                         </tbody>
                     </table>
                     <!-- Tombol untuk membuka modal "Tambah Admin" -->
-                    <div class="position-relative d-flex align-items-end justify-content-center" style="height: 500px;">
+                    <div class="position-relative d-flex align-items-end justify-content-center" style="height: 50px;">
                     <div class="col-lg-2">
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">
                             <i class="fa fa-plus"></i>Tambah Admin

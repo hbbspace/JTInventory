@@ -24,7 +24,10 @@
                             <tr>
                                 <th scope="col">No</th>
                                 <th scope="col">Nama Peminjam</th>
+                                <th scope="col">Kode Peminjaman</th>
                                 <th scope="col">Waktu</th>
+                                <th scope="col">Nama Barang</th>
+                                <th scope="col">Jumlah Barang</th>
                                 <th scope="col">Tanggal Pinjam</th>
                                 <th scope="col">Tanggal Pengembalian</th>
                                 <th scope="col">Status</th>

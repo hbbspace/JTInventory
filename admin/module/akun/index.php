@@ -54,7 +54,7 @@ tr{
                             $result = mysqli_query($koneksi, $query);
                             while ($row = mysqli_fetch_assoc($result)) {
                             ?>
-                                    <div class="container">
+                                <div class="container">
                                     <table class="table">
                                         <tr>
                                             <td><strong>Nama:</strong></td>
