@@ -52,7 +52,7 @@ tr{
                             // $query = "SELECT t.nama_teknisi AS nama , t.nip, t.jk, u.username, u.email FROM user AS u 
                             //           INNER JOIN teknisi AS t ON t.nip = u.unicode WHERE u.level = 'Teknisi' AND u.user_id = $id_session;" ;
                             $result = mysqli_query($koneksi, $query);
-                            while ($row = mysqli_fetch_assoc($result)) {
+                            $row = mysqli_fetch_assoc($result);
                             ?>
                                 <div class="container">
                                     <table class="table">
@@ -82,8 +82,6 @@ tr{
                                         </tr>
                                     </table>
                                 </div>
-
-                                <?php } ?>
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <div class="card">

@@ -83,7 +83,6 @@
                         </button>
                     </div>
                 </div>
-                </div>
                 <!-- Modal untuk menambahkan admin -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-scrollable" role="document">
