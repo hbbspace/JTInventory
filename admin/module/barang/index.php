@@ -77,9 +77,6 @@
                                 <th scope="col">Nama Barang </th>
                                 <th scope="col">Maintener</th>
                                 <th scope="col">Total Barang</th>
-                                <!-- <th scope="col">Total Tersedia</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">Keterangan</th> -->
                             </tr>
                         </thead>
                         <tbody>

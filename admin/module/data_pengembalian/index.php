@@ -23,34 +23,33 @@
                             <tr>
                                 <th scope="col">No</th>
                                 <th scope="col">Nama Peminjam</th>
-                                <th scope="col">Nama Barang </th>
-                                <th scope="col">Jumlah</th>
+                                <th scope="col">Waktu</th>
                                 <th scope="col">Tanggal Pinjam</th>
                                 <th scope="col">Tanggal Pengembalian</th>
-                                <th scope="col">Status</th>
                                 <th scope="col">Keterangan</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
                             $no = 1;
-                            $query = "SELECT mhs.nama_mhs as nama,lb.id_barang as id_barang,b.nama_barang as nama_barang,lb.qty as jumlah_peminjaman, p.tgl_pinjam as tgl_pinjam, p.tgl_kembali as tgl_kembali, p.status as status FROM mahasiswa as mhs inner join user as u on mhs.nim=u.unicode
-                            inner join peminjaman as p on p.user_id=u.user_id
-                            inner join list_barang as lb on lb.id_peminjaman=p.id_peminjaman
-                            inner join barang as b on b.id_barang=lb.id_barang
-                            order by mhs.nama_mhs asc;";
+                            $query = "SELECT m.nama_mhs AS nama, p.time AS waktu, p.tgl_pinjam AS tgl_pinjam, p.tgl_kembali AS tgl_kembali FROM peminjaman AS p
+                                    INNER JOIN user AS u ON u.user_id = p.user_id
+                                    INNER JOIN mahasiswa AS m ON m.nim = u.unicode
+                                    WHERE p.status = 'progress'
+                                    UNION
+                                    SELECT d.nama_dosen AS nama, p.time AS waktu, p.tgl_pinjam AS tgl_pinjam, p.tgl_kembali AS tgl_kembali FROM peminjaman AS p
+                                    INNER JOIN user AS u ON u.user_id = p.user_id
+                                    INNER JOIN dosen AS d ON d.nidn = u.unicode
+                                    WHERE p.status = 'progress'";
                             $result = mysqli_query($koneksi, $query);
                             while ($row = mysqli_fetch_assoc($result)) {
                             ?>
                                 <tr>
                                     <th scope="row"><?= $no++ ?></th>
                                     <td><?= $row['nama'] ?></td>
-                                    <td><?= $row['id_barang'] ?></td>
-                                    <td><?= $row['nama_barang'] ?></td>
-                                    <td><?= $row['jumlah_peminjaman'] ?></td>
+                                    <td><?= $row['waktu'] ?></td>
                                     <td><?= $row['tgl_pinjam'] ?></td>
                                     <td><?= $row['tgl_kembali'] ?></td>
-                                    <td><?= $row['status'] ?></td>
                                     <td>
                                     <!-- buutton untuk menampilkan data peminjaman -->
                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Lihat Detail Peminjaman</button>
