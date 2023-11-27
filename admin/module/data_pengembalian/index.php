@@ -23,7 +23,8 @@
                             <tr>
                                 <th scope="col">No</th>
                                 <th scope="col">Nama Peminjam</th>
-                                <th scope="col">Waktu</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Waktu Transaksi</th>
                                 <th scope="col">Tanggal Pinjam</th>
                                 <th scope="col">Tanggal Pengembalian</th>
                                 <th scope="col">Keterangan</th>
@@ -32,12 +33,12 @@
                         <tbody>
                             <?php
                             $no = 1;
-                            $query = "SELECT m.nama_mhs AS nama, p.time AS waktu, p.tgl_pinjam AS tgl_pinjam, p.tgl_kembali AS tgl_kembali FROM peminjaman AS p
+                            $query = "SELECT m.nama_mhs AS nama, p.time AS waktu, u.level AS status, p.tgl_pinjam AS tgl_pinjam, p.tgl_kembali AS tgl_kembali FROM peminjaman AS p
                                     INNER JOIN user AS u ON u.user_id = p.user_id
                                     INNER JOIN mahasiswa AS m ON m.nim = u.unicode
                                     WHERE p.status = 'progress'
                                     UNION
-                                    SELECT d.nama_dosen AS nama, p.time AS waktu, p.tgl_pinjam AS tgl_pinjam, p.tgl_kembali AS tgl_kembali FROM peminjaman AS p
+                                    SELECT d.nama_dosen AS nama, p.time AS waktu, u.level AS status, p.tgl_pinjam AS tgl_pinjam, p.tgl_kembali AS tgl_kembali FROM peminjaman AS p
                                     INNER JOIN user AS u ON u.user_id = p.user_id
                                     INNER JOIN dosen AS d ON d.nidn = u.unicode
                                     WHERE p.status = 'progress'";
@@ -47,6 +48,7 @@
                                 <tr>
                                     <th scope="row"><?= $no++ ?></th>
                                     <td><?= $row['nama'] ?></td>
+                                    <td><?= $row['status'] ?></td>
                                     <td><?= $row['waktu'] ?></td>
                                     <td><?= $row['tgl_pinjam'] ?></td>
                                     <td><?= $row['tgl_kembali'] ?></td>
