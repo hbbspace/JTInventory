@@ -40,14 +40,14 @@ if (!empty($_SESSION['username'])) {
             header("Location: ../index.php?page=list_admin");
         
         header("Location: ../index.php?page=list_admin");
-    // Tambah Barang niate    
+    // Tambah Barang    
     } elseif (!empty($_GET['barang'])) {
-        
         $nama_barang = antiinjection($koneksi, $_POST['nama_barang']);
         $maintener = antiinjection($koneksi, $_POST['maintener']);
+        $id = antiinjection($koneksi, $_POST['id_barang']);
         $qty = antiinjection($koneksi, $_POST['qty']);        
 
-        $query = "INSERT INTO barang (nama_barang, maintener, qty) VALUES ('$nama_barang', '$maintener', '$qty');";
+        $query = "INSERT INTO barang (id_barang ,nama_barang, maintener, qty) VALUES ('$id','$nama_barang', '$maintener', '$qty');";
         if (mysqli_query($koneksi, $query)) {
             pesan('succes',"Data vBarang baru Berhasil ditambahkan");
 

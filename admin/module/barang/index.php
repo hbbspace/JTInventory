@@ -17,6 +17,30 @@
             overflow-y: auto;
         }
     </style>
+    <script>
+    // Fungsi untuk melakukan filtering pada tabel
+    function searchTable() {
+        // Mendapatkan nilai input pencarian
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("searchInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("dataTable");
+        tr = table.getElementsByTagName("tr");
+
+        // Loop melalui semua baris tabel, sembunyikan yang tidak sesuai dengan kriteria pencarian
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[2]; // Ganti angka 2 dengan indeks kolom yang ingin Anda cari
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
 </head>
 <body>
 <div class="container-fluid">
@@ -24,14 +48,15 @@
         <?php
         include "admin/template/menu.php";
         ?>
-
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        <div class="col-lg-10 pt-3">
+         <!-- Input untuk melakukan pencarian -->
+            <input type="text" id="searchInput" class="form-control" placeholder="Cari Nama Barang" onkeyup="searchTable()">
+        </div>
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <h1 class="h2">Data Barang</h1>
             </div>
             <div class="row">
-
-
                 <?php
                 // Menampilkan pesan flash jika ada
                 if (isset($_SESSION['_flashdata'])) {
@@ -42,7 +67,7 @@
                 }
                 ?>
 
-                <div class="table-responsive small">
+                <div class="table-responsive small" id="dataTable">
                     <!-- Menampilkan data admin dalam tabel -->
                     <table class="table table-striped">
                         <thead>
@@ -80,7 +105,7 @@
                             <?php } ?>
                         </tbody>
                     </table>
-                    <div class="position-relative d-flex align-items-end justify-content-center" style="height: 500px;">
+                    <div class="position-relative d-flex align-items-end justify-content-center" style="height: 90px;">
                     <div class="col-lg-2">
                         <!-- Tombol untuk membuka modal "Tambah Barang" -->
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">
@@ -103,10 +128,10 @@
                                         <label for="recipient-name" class="col-form-label">Nama Barang:</label>
                                         <input type="text" name="nama_barang" class="form-control" id="recipient-name">
                                     </div>
-                                    <!-- <div class="mb-3">
-                                        <label for="message-text" class="col-form-label">Kode Barang:</label>
-                                        <textarea class="form-control" name="Kode Barang" id="message-text"></textarea>
-                                    </div> -->
+                                    <div class="mb-3">
+                                        <label for="form-control" class="col-form-label">Kode Barang:</label>
+                                        <input class="form-control" name="id_barang" id="form-control"></input>
+                                    </div>
                                     <div class="mb-3">
                                         <label for="recipient-name" class="col-form-label">Maintener:</label>
                                         <input type="text" name="maintener" class="form-control" id="recipient-name">
