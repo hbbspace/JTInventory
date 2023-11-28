@@ -35,13 +35,14 @@ if (!empty($_SESSION['username'])) {
         $email = antiinjection($koneksi, $_POST['email']);
         $username = antiinjection($koneksi, $_POST['username']);
         $password = antiinjection($koneksi, $_POST['password']);
-        $user_id = antiinjection($koneksi, $_POST['id']);
+        $unicode = antiinjection($koneksi, $_POST['unicode']);
+        $id = $_GET['id'];
 
         $salt = bin2hex(random_bytes(16));
         $combined_password = $salt . $password;
         $hashed_password = password_hash($combined_password, PASSWORD_BCRYPT);
 
-        $query = "UPDATE user SET email = '$email', username = '$username', password = '$hashed_password', salt = '$salt' WHERE user_id = '$user_id';";
+        $query = "UPDATE user SET email = '$email', username = '$username', password = '$hashed_password', salt = '$salt' WHERE unicode = '$unicode';";
         mysqli_query($koneksi, $query);
         $query2 = "UPDATE teknisi SET nama_teknisi = '$nama', jk = '$jenis_kelamin' WHERE nip = '$unicode';";
 

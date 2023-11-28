@@ -2,9 +2,9 @@
     <div class="row">
         <?php
         require 'admin/template/menu.php';
-        $id = $_SESSION['user_id'];
+        $id = $_GET['id'];  
         $query = "SELECT t.nama_teknisi AS nama , t.nip as nip, t.jk, u.username, u.email FROM user AS u 
-        INNER JOIN teknisi AS t ON t.nip = u.unicode WHERE u.level = 'Teknisi' AND NOT u.user_id = '$id'"; 
+        INNER JOIN teknisi AS t ON t.nip = u.unicode WHERE u.level = 'Teknisi' AND u.unicode = '$id'"; 
         $result = mysqli_query($koneksi, $query);
         $row = mysqli_fetch_assoc($result);
         ?>
