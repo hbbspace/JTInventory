@@ -95,7 +95,8 @@
             display: block !important;
         }
 
-        .logo a{
+        .logo {
+           margin-left: auto;
            margin-right: 20px;
         }
 
