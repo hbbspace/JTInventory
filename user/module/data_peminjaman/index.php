@@ -16,6 +16,9 @@
             flex: 1;
             overflow-y: auto;
         }
+        btn{
+            margin-top: 50px;
+        }
     </style>
 </head>
 <body>
@@ -52,9 +55,7 @@
                                 <th scope="col">Nama Barang </th>
                                 <th scope="col">Maintener</th>
                                 <th scope="col">Total Barang</th>
-                                <!-- <th scope="col">Total Tersedia</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">Keterangan</th> -->
+
                             </tr>
                         </thead>
                         <tbody>
@@ -71,15 +72,18 @@
                                     <td><?= $row['nama_barang'] ?></td>
                                     <td><?= $row['maintener'] ?></td>
                                     <td><?= $row['qty'] ?></td>
+                                    <td>
+                                        <input type="checkbox" name="stok[]" value="<?= $row['id_barang'] ?>" <?php echo ($row['qty'] > 0) ? '' : 'checked'; ?>>
+                                    </td>
                                 </tr>
                             <?php } ?>
                         </tbody>
                     </table>
-                    <div class="position-relative d-flex align-items-end justify-content-center" style="height: 500px;">
+                    <div class="position-relative d-flex align-items-end justify-content-center" style="height: 50px;">
                     <div class="col-lg-2">
                         <!-- Tombol untuk membuka modal "Tambah Barang" -->
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">
-                            <i class="fa fa-plus"></i>Pinjam Barang
+                        <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">
+                            Pinjam Barang
                         </button>
                     </div>
                 </div>
@@ -94,30 +98,33 @@
                             </div>
                             <form action="fungsi/tambah.php?jabatan=tambah" method="post">
                                 <div class="modal-body">
-                                    <div class="mb-3">
-                                        <label for="recipient-name" class="col-form-label">Nama Barang:</label>
-                                        <input type="text" name="jabatan" class="form-control" id="recipient-name">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="message-text" class="col-form-label">Kode Barang:</label>
-                                        <textarea class="form-control" name="Kode Barang" id="message-text"></textarea>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="recipient-name" class="col-form-label">Maintener:</label>
-                                        <input type="text" name="maintener" class="form-control" id="recipient-name">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="message-text" class="col-form-label">Total Barang:</label>
-                                        <textarea class="form-control" name="total_barang" id="message-text"></textarea>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="message-text" class="col-form-label">Status:</label>
-                                        <textarea class="form-control" name="keterangan" id="message-text"></textarea>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="message-text" class="col-form-label">Keterangan:</label>
-                                        <textarea class="form-control" name="keterangan" id="message-text"></textarea>
-                                    </div>
+                                <div class="mb-3">
+                                    <label for="user-name" class="col-form-label">Nama Peminjam:</label>
+                                    <?php 
+                                    $id = $_SESSION['user_id'];
+                                    $query_nama = "SELECT m.nama_mhs AS nama FROM user AS u INNER JOIN mahasiswa AS m ON m.nim = u.unicode WHERE u.user_id = '$id'";
+                                    $level = 'Mahasiswa ';
+                                    $result_nama = mysqli_query($koneksi, $query_nama);
+                                    $ambil_nama = mysqli_fetch_assoc($result_nama);
+                                    ?>
+                                    <p> <?= $ambil_nama['nama'] ?></p>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="quantity" class="col-form-label">Jumlah Pinjam:</label>
+                                    <input type="number" name="quantity" class="form-control" id="quantity" min="1" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="date" class="col-form-label">Tanggal Pinjam:</label>
+                                    <input type="date" name="date" class="form-control" id="date" min="<?= date('Y-m-d') ?>" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="date" class="col-form-label">Tanggal Pengembalian:</label>
+                                    <input type="date" name="date" class="form-control" id="date" min="<?= date('Y-m-d') ?>" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="file" class="col-form-label">Upload Foto:</label>
+                                    <input type="file" name="file" class="form-control" id="file" accept="image/*" required>
+                                </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i> Close</button>

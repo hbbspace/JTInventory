@@ -233,14 +233,15 @@ include 'fungsi/pesan_kilat.php';
                 <input type="password" class="form-control rounded-4" id="floatingPassword" name="password" placeholder="Password">
                 <label for="floatingPassword">Password</label>
             </div>
+
             <div class="form-check mt-2">
                 <input class="form-check-input" type="checkbox" id="showPassword" onclick="togglePasswordVisibility()">
                 <label class="form-check-label" for="showPassword">Show Password</label>
             </div>            
 
-            <button class="btn btn-primary w-100 py-2 rounded-4" type="submit">Masuk</button>
+            <button class="btn btn-primary w-100 py-2 rounded-4 mt-2" type="submit">Masuk</button>
             
-            <a href="register.php" class="register">register</a>
+            <a href="register.php" class="register ">register</a>
 
             <p class="mt-5 mb-3 text-body-secondary">&copy; 2023</p>
             </div>

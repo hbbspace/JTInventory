@@ -2,7 +2,7 @@
     <style>
 strong{
   font-size: large;
-  line-height: 12px; /* Mengatur text-align menjadi right untuk span kedua */
+  line-height: 12px;
   margin-right: 40px;
 }
 
