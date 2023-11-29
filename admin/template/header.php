@@ -100,6 +100,11 @@
            margin-right: 20px;
         }
 
+        p{
+            display: inline-block;
+            margin: 10px;
+        }
+
     </style>
 
 
@@ -224,6 +229,13 @@
     <header class="navbar sticky-top bg-dark flex-md-nowrap p-0 shadow" data-bs-theme="dark">
         <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white" href="#">JTInventoris</a>
         <div class="logo">
+            <?php
+            $id = $_SESSION['user_id'];
+            $query_nama = "SELECT t.nama_teknisi AS nama FROM user AS u INNER JOIN teknisi AS t ON t.nip = u.unicode WHERE u.user_id = '$id'";
+            $result_nama = mysqli_query($koneksi, $query_nama);
+            $ambil_nama = mysqli_fetch_assoc($result_nama); ?>
+            <p><?=$ambil_nama['nama'] ?></p>
+
             <a href="index.php?page=akun" >
                 <img src="assets/img/profile.png" alt="Logo Profil" href="index.php?page=akun" class="col-lg-1" class="logo-profil" style="width: 30px;">
             </a>
