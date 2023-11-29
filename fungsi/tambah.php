@@ -62,6 +62,46 @@ if (!empty($_SESSION['username'])) {
             pesan('danger', "Gagal Menambahkan Anggota Karena: " . mysqli_error($koneksi));
         }
         header("Location: ../index.php?page=barang");
+    } else if (!empty($_GET['data_peminjaman'])) {
+        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['quantity'], $_POST['date'], $_POST['file'])) {
+            // Ambil data dari form
+            $quantity = antiinjection($koneksi, $_POST['quantity']);
+            $tgl_pinjam = antiinjection($koneksi, $_POST['date']);
+            $tgl_kembali = antiinjection($koneksi, $_POST['date']); // Sesuaikan dengan pengisian tanggal kembali dari form
+            // ...
+        
+            // Simpan informasi peminjaman ke dalam tabel peminjaman
+            $id_user = $_SESSION['user_id'];
+            $status = 'request'; // Set status menjadi 'request'
+        
+            $query_peminjaman = "INSERT INTO peminjaman (user_id, time, tgl_pinjam, tgl_kembali, status) VALUES ('$id_user', NOW(), '$tgl_pinjam', '$tgl_kembali', '$status')";
+        
+            if (mysqli_query($koneksi, $query_peminjaman)) {
+                // Dapatkan ID peminjaman yang baru saja dimasukkan
+                $id_peminjaman = mysqli_insert_id($koneksi);
+                
+        
+                // Simpan barang yang dipilih ke dalam tabel list_barang
+                if (isset($_POST['stok']) && is_array($_POST['stok'])) {
+                    foreach ($_POST['stok'] as $id_barang) {
+                        // Ambil qty dari masing-masing barang yang dipilih
+                        // Pastikan untuk mengatur nilai qty sesuai kebutuhan dari form atau sumber lainnya
+                        $qty_barang = 1; // Contoh: Set nilai qty sementara menjadi 1
+        
+                        // Masukkan setiap barang yang dipilih ke dalam tabel list_barang
+                        $query_list_barang = "INSERT INTO list_barang (id_peminjaman, id_barang, qty) VALUES ('$id_peminjaman', '$id_barang', '$qty_barang')";
+        
+                        mysqli_query($koneksi, $query_list_barang);
+                    }
+                }
+        
+                pesan('success', "Data Peminjaman Berhasil Ditambahkan");
+            } else {
+                pesan('danger', "Gagal Menambahkan Data Peminjaman: " . mysqli_error($koneksi));
+            }
+            echo $id_peminjaman;
+            header("Location: ../index.php?page=data_peminjaman");
+        }
     }
 } else {
     header("Location: ../index.php?page=login");

@@ -45,7 +45,6 @@
                 ?>
 
                 <div class="table-responsive small">
-                    <!-- Menampilkan data admin dalam tabel -->
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -79,13 +78,13 @@
                         </tbody>
                     </table>
                     <div class="position-relative d-flex align-items-end justify-content-center" style="height: 50px;">
-                    <div class="col-lg-2">
-                        <!-- Tombol untuk membuka modal "Tambah Barang" -->
-                        <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">
-                            Pinjam Barang
-                        </button>
+                        <div class="col-lg-2">
+                            <!-- Tombol untuk membuka modal "Tambah Barang" -->
+                            <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo" id="pinjamButton">
+                                Pinjam Barang
+                            </button>
+                        </div>
                     </div>
-                </div>
                 </div>
                     <!-- Modal untuk menambahkan data barang -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
@@ -95,35 +94,38 @@
                                 <h1 class="modal-title fs-5" id="exampleModalLabel">Pinjam Barang</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <form action="fungsi/tambah.php?jabatan=tambah" method="post">
+                            <form action="fungsi/tambah.php?data_peminjaman=tambah" method="post">
                                 <div class="modal-body">
-                                <div class="mb-3">
-                                    <label for="user-name" class="col-form-label">Nama Peminjam:</label>
-                                    <?php 
-                                    $id = $_SESSION['user_id'];
-                                    $query_nama = "SELECT m.nama_mhs AS nama FROM user AS u INNER JOIN mahasiswa AS m ON m.nim = u.unicode WHERE u.user_id = '$id'";
-                                    $level = 'Mahasiswa ';
-                                    $result_nama = mysqli_query($koneksi, $query_nama);
-                                    $ambil_nama = mysqli_fetch_assoc($result_nama);
-                                    ?>
-                                    <p> <?= $ambil_nama['nama'] ?></p>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="quantity" class="col-form-label">Jumlah Pinjam:</label>
-                                    <input type="number" name="quantity" class="form-control" id="quantity" min="1" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="date" class="col-form-label">Tanggal Pinjam:</label>
-                                    <input type="date" name="date" class="form-control" id="date" min="<?= date('Y-m-d') ?>" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="date" class="col-form-label">Tanggal Pengembalian:</label>
-                                    <input type="date" name="date" class="form-control" id="date" min="<?= date('Y-m-d') ?>" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="file" class="col-form-label">Upload Foto:</label>
-                                    <input type="file" name="file" class="form-control" id="file" accept="image/*" required>
-                                </div>
+                                    <div class="mb-3">
+                                        <label for="user-name" class="col-form-label">Nama Peminjam:</label>
+                                        <?php 
+                                        $id = $_SESSION['user_id'];
+                                        $query_nama = "SELECT m.nama_mhs AS nama FROM user AS u INNER JOIN mahasiswa AS m ON m.nim = u.unicode WHERE u.user_id = '$id'";
+                                        $level = 'Mahasiswa ';
+                                        $result_nama = mysqli_query($koneksi, $query_nama);
+                                        $ambil_nama = mysqli_fetch_assoc($result_nama);
+                                        ?>
+                                        <p> <?= $ambil_nama['nama'] ?></p>
+                                    </div>
+                                    <div class="mb-3" id="barangPilihan">
+                                        <label for="pil-bar">Barang Pilihan</label>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="quantity" class="col-form-label">Jumlah Pinjam:</label>
+                                        <input type="number" name="quantity" class="form-control" id="quantity" min="1" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="date" class="col-form-label">Tanggal Pinjam:</label>
+                                        <input type="date" name="date" class="form-control" id="date" min="<?= date('Y-m-d') ?>" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="date" class="col-form-label">Tanggal Pengembalian:</label>
+                                        <input type="date" name="date" class="form-control" id="date" min="<?= date('Y-m-d') ?>" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="file" class="col-form-label">Upload Foto:</label>
+                                        <input type="file" name="file" class="form-control" id="file" accept="image/*" required>
+                                    </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i> Close</button>
@@ -137,4 +139,37 @@
         </main>
     </div>
 </div>
+<script>
+    document.getElementById('pinjamButton').addEventListener('click', function() {
+        // Menyiapkan tempat untuk menampilkan barang yang dipilih di dalam modal
+        let barangPilihan = document.getElementById('barangPilihan');
+        barangPilihan.innerHTML = ''; // Bersihkan isi sebelum menambahkan data baru
+
+        // Mendapatkan daftar checkbox yang dipilih
+        let checkboxes = document.querySelectorAll('input[name="stok[]"]:checked');
+
+        // Periksa apakah ada checkbox yang dipilih
+        if (checkboxes.length === 0) {
+            alert('Pilih barang terlebih dahulu');
+            return;
+        }
+
+        checkboxes.forEach(function(checkbox) {
+            // Membuat elemen untuk setiap barang yang dipilih
+            let id_barang = checkbox.value;
+            let nama_barang = checkbox.parentNode.nextElementSibling.textContent;
+
+            // Menambahkan informasi barang ke dalam modal
+            let divBarang = document.createElement('div');
+            divBarang.innerHTML = `
+                <div class="mb-3">
+                    <label for="qty_${id_barang}" class="col-form-label">${nama_barang}:</label>
+                    <input type="number" name="qty_${id_barang}" class="form-control" id="qty_${id_barang}" min="1" required>
+                    <input type="hidden" name="barang_pilihan[]" value="${id_barang}">
+                </div>
+            `;
+            barangPilihan.appendChild(divBarang);
+        });
+    });
+</script>
 </body>
