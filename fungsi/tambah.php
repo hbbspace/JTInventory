@@ -17,26 +17,33 @@ if (!empty($_SESSION['username'])) {
             $combined_password = $salt . $password;
             $hashed_password = password_hash($combined_password, PASSWORD_BCRYPT);
 
-            if($nama != null && $nip != null && $jenis_kelamin != "null" && $email != "null" 
-            && $username != null && $password != null) {
-                $last_id = mysqli_insert_id($koneksi);
-                $query = "INSERT INTO user (user_id, unicode, email, username, password, salt, level) 
-                    VALUES('$last_id', '$nip', '$email', '$username', '$hashed_password', '$salt', 'Teknisi');";
+            $querycek = "SELECT unicode FROM user WHERE unicode = '$nip'";
+            if(mysqli_query($koneksi, $querycek) == null) {
+                if($nama != null && $nip != null && $jenis_kelamin != "null" && $email != "null" 
+                    && $username != null && $password != null) {
+                    $last_id = mysqli_insert_id($koneksi);
+                    $query = "INSERT INTO user (user_id, unicode, email, username, password, salt, level) 
+                        VALUES('$last_id', '$nip', '$email', '$username', '$hashed_password', '$salt', 'Teknisi');";
                 
-                if(mysqli_query($koneksi, $query)) {
-                    $query2 = "INSERT INTO teknisi (nip, nama_teknisi, jk) VALUES('$nip', '$nama', '$jenis_kelamin');";
+                    if(mysqli_query($koneksi, $query)) {
+                        $query2 = "INSERT INTO teknisi (nip, nama_teknisi, jk) VALUES('$nip', '$nama', '$jenis_kelamin');";
 
-                    if (mysqli_query($koneksi, $query2)) {
-                        pesan('success', "Admin Baru Ditambahkan.");
+                        if (mysqli_query($koneksi, $query2)) {
+                            pesan('success', "Admin Baru Ditambahkan.");
+                        } else {
+                            pesan('warning', "Gagal Menabahkan Admin Tetapi Data Login Tersimpan Karena: " . mysqli_error($koneksi));
+                        }
                     } else {
                         pesan('warning', "Gagal Menabahkan Admin Tetapi Data Login Tersimpan Karena: " . mysqli_error($koneksi));
                     }
                 } else {
-                    pesan('warning', "Gagal Menabahkan Admin Tetapi Data Login Tersimpan Karena: " . mysqli_error($koneksi));
+                    pesan('danger', "Gagal Menambahkan Admin Karena data tidak valid.");
                 }
             } else {
-                pesan('danger', "Gagal Menambahkan Admin Karena data tidak valid.");
+                pesan('warning', "Gagal Menambahkan Admin Karena nip sudah ada.");
             }
+
+            
             header("Location: ../index.php?page=list_admin");
         
         header("Location: ../index.php?page=list_admin");

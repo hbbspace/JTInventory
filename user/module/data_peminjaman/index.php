@@ -34,7 +34,6 @@
             </div>
             <div class="row">
 
-
                 <?php
                 // Menampilkan pesan flash jika ada
                 if (isset($_SESSION['_flashdata'])) {
