@@ -6,7 +6,6 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.118.2">
     <title>JTInventoris</title>
@@ -94,6 +93,18 @@
         .bd-mode-toggle .dropdown-menu .active .bi {
             display: block !important;
         }
+
+        .icon-user {
+           margin-left: auto;
+           margin-right: 20px;
+        }
+
+        p{
+            display: inline-block;
+            margin: 10px;
+            color: white;
+        }
+
     </style>
 
 
@@ -215,17 +226,32 @@
         </symbol>
     </svg>
 
-    <header class="navbar sticky-top bg-dark flex-md-nowrap p-0 shadow" data-bs-theme="dark">
-        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white" href="#">JTInventoris</a>
+    <header class="navbar sticky-top bg-primary flex-md-nowrap p-0" data-bs-theme="dark">
+        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-4" href="#"><img src="assets/img/favicons/Logo.png" alt="" style="width: 90px; height:auto"></a>
+        <div class="icon-user">
+        <?php
+            $id = $_SESSION['user_id'];
+            $userLevel = $_SESSION['level'];
+            if ($userLevel === 'Mahasiswa') {
+                $query = "SELECT m.nama_mhs AS nama , m.nim, m.jk, u.username, u.email 
+                            FROM user AS u 
+                            INNER JOIN mahasiswa AS m ON m.nim = u.unicode 
+                            WHERE u.level = 'Mahasiswa' AND u.user_id = '$id'";
+            } elseif ($userLevel === 'Dosen') {
+                $query = "SELECT d.nama_dosen AS nama, d.nidn, d.jk, u.username, u.email 
+                            FROM user AS u 
+                            INNER JOIN dosen AS d ON d.nidn = u.unicode 
+                            WHERE u.level = 'Dosen' AND u.user_id = '$id'";
+            }
+            $result_nama = mysqli_query($koneksi, $query);
+            $ambil_nama = mysqli_fetch_assoc($result_nama);?>
+            <p><?=$ambil_nama['nama'] ?></p>
 
+            <a href="index.php?page=akun" >
+                <img src="assets/img/profile.png" alt="Logo Profil" href="index.php?page=akun" class="col-lg-1" class="logo-profil" style="width: 30px;">
+            </a>
+        </div>
         <ul class="navbar-nav flex-row d-md-none">
-            <li class="nav-item text-nowrap">
-                <button class="nav-link px-3 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSearch" aria-controls="navbarSearch" aria-expanded="false" aria-label="Toggle search">
-                    <svg class="bi">
-                        <use xlink:href="#search" />
-                    </svg>
-                </button>
-            </li>
             <li class="nav-item text-nowrap">
                 <button class="nav-link px-3 text-white" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
                     <svg class="bi">
@@ -234,8 +260,6 @@
                 </button>
             </li>
         </ul>
-
-        <div id="navbarSearch" class="navbar-search w-100 collapse">
-            <input class="form-control w-100 rounded-0 border-0" type="text" placeholder="Search" aria-label="Search">
-        </div>
     </header>
+
+    

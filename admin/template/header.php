@@ -6,7 +6,6 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.118.2">
     <title>JTInventoris</title>
@@ -95,7 +94,7 @@
             display: block !important;
         }
 
-        .logo {
+        .icon-user {
            margin-left: auto;
            margin-right: 20px;
         }
@@ -103,6 +102,7 @@
         p{
             display: inline-block;
             margin: 10px;
+            color: white;
         }
 
     </style>
@@ -226,9 +226,9 @@
         </symbol>
     </svg>
 
-    <header class="navbar sticky-top bg-dark flex-md-nowrap p-0 shadow" data-bs-theme="dark">
-        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white" href="#">JTInventoris</a>
-        <div class="logo">
+    <header class="navbar sticky-top bg-primary flex-md-nowrap p-0" data-bs-theme="dark">
+        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-4" href="#"><img src="assets/img/favicons/Logo.png" alt="" style="width: 90px; height:auto"></a>
+        <div class="icon-user">
             <?php
             $id = $_SESSION['user_id'];
             $query_nama = "SELECT t.nama_teknisi AS nama FROM user AS u INNER JOIN teknisi AS t ON t.nip = u.unicode WHERE u.user_id = '$id'";

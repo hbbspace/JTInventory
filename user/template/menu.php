@@ -1,50 +1,41 @@
+<style>
+    ul li:hover{
+        color: black;
+        border-right: 5px solid blue;
+    }
+</style>
 <link rel="stylesheet" href="assets/custom/dashboard.css">
 <div class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary">
     <div class="offcanvas-md offcanvas-end bg-body-tertiary" tabindex="-1" id="sidebarMenu" aria-labelledby="sidebarMenuLabel">
         <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="sidebarMenuLabel">JTInventaris</h5>
+            <h5 class="offcanvas-title" id="sidebarMenuLabel">SLH.CO</h5>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
             <ul class="nav flex-column">
                 <li class="nav-item">
                     <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="index.php">
-                        <svg class="bi">
-                            <use xlink:href="#house-fill" />
-                        </svg>
-                        Dashboard
+                                                    Dashboard
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link d-flex align-items-center gap-2" href="index.php?page=data_peminjaman">
-                        <svg class="bi">
-                            <use xlink:href="#puzzle" />
-                        </svg>
-                        Data Peminjaman
+                                                    Data Peminjaman
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link d-flex align-items-center gap-2" href="index.php?page=data_pengembalian">
-                        <svg class="bi">
-                            <use xlink:href="#puzzle" />
-                        </svg>
-                        Data Pengembalian
+                                                    Data Pengembalian
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link d-flex align-items-center gap-2" href="index.php?page=history">
-                        <svg class="bi">
-                            <use xlink:href="#puzzle" />
-                        </svg>
-                        History
+                                                 History
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link d-flex align-items-center gap-2" href="index.php?page=akun">
-                        <svg class="bi">
-                            <use xlink:href="#puzzle" />
-                        </svg>
-                        Akun
+                                                    Akun
                     </a>
                 </li>
             </ul>
@@ -54,9 +45,8 @@
             <ul class="nav flex-column mb-auto">
                 <li class="nav-item">
                     <a class="nav-link d-flex align-items-center gap-2" href="logout.php">
-                        <svg class="bi">
-                            <use xlink:href="#door-closed" />
-                        </svg>
+
+                            
                         Log out
                     </a>
                 </li>
@@ -64,3 +54,4 @@
         </div>
     </div>
 </div>
+

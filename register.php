@@ -43,7 +43,7 @@ include 'fungsi/pesan_kilat.php';
         }
 
         .form-register {
-            max-width: 330px;
+            max-width: 300px;
             padding: 1rem;
         }
 
@@ -227,10 +227,9 @@ include 'fungsi/pesan_kilat.php';
     </div>
 
 
-    <main class="form-register w-200 m-auto">
+    <main class="form-register  m-auto">
         <form action="cek_register.php" method="post">
-            <img class="mb-4 w-100" src="assets/img/favicons/jtinventaris.png" alt="" width="72" height="57">
-
+            <img class="mb-4" src="assets/img/favicons/Logo.png" alt="" height="73" style="margin-left: 30%;" >
             <?php
             if (isset($_SESSION['_flashdata'])) {
                 foreach ($_SESSION['_flashdata'] as $key => $val) {

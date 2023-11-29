@@ -214,7 +214,7 @@ include 'fungsi/pesan_kilat.php';
 
     <main class="form-signin w-100 m-auto">
         <form action="cek_login.php" method="post">
-            <img class="mb-4 w-100" src="assets/img/favicons/jtinventaris.png" alt="" width="72" height="57">
+            <img class="mb-4" src="assets/img/favicons/Logo.png" alt="" height="73" style="margin-left: 18%;">
 
             <?php
             if (isset($_SESSION['_flashdata'])) {

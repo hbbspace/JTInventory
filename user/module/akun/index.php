@@ -100,16 +100,12 @@ tr{
                                 </div>
 
                             <?php } ?>
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="card">
+
                                         <div class="card-body" style="text-align: center;">
                                         <a href="index.php?page=akun/edit" class="btn btn-warning btn-xs"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit</a>
 
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
+                                   
                        </tbody>
                 </div>
         </main>
