@@ -8,17 +8,25 @@
             display: flex;
             flex-direction: column;
         }
+
         .modal-dialog-scrollable .modal-content {
             flex: 1;
             overflow-y: auto;
         }
+
         .modal-body {
             flex: 1;
             overflow-y: auto;
         }
+
         btn{
             margin-top: 50px;
         }
+
+        p {
+            color: gray;
+        }
+
     </style>
 </head>
 <body>
@@ -100,9 +108,19 @@
                                         <label for="user-name" class="col-form-label">Nama Peminjam:</label>
                                         <?php 
                                         $id = $_SESSION['user_id'];
-                                        $query_nama = "SELECT m.nama_mhs AS nama FROM user AS u INNER JOIN mahasiswa AS m ON m.nim = u.unicode WHERE u.user_id = '$id'";
-                                        $level = 'Mahasiswa ';
-                                        $result_nama = mysqli_query($koneksi, $query_nama);
+                                        $userLevel = $_SESSION['level'];
+                                        if ($userLevel === 'Mahasiswa') {
+                                            $query = "SELECT m.nama_mhs AS nama , m.nim, m.jk, u.username, u.email 
+                                                    FROM user AS u 
+                                                    INNER JOIN mahasiswa AS m ON m.nim = u.unicode 
+                                                    WHERE u.level = 'Mahasiswa' AND u.user_id = '$id'";
+                                        } elseif ($userLevel === 'Dosen') {
+                                            $query = "SELECT d.nama_dosen AS nama, d.nidn, d.jk, u.username, u.email 
+                                                    FROM user AS u 
+                                                    INNER JOIN dosen AS d ON d.nidn = u.unicode 
+                                                    WHERE u.level = 'Dosen' AND u.user_id = '$id'";
+                                        }
+                                        $result_nama = mysqli_query($koneksi, $query);
                                         $ambil_nama = mysqli_fetch_assoc($result_nama);
                                         ?>
                                         <p> <?= $ambil_nama['nama'] ?></p>
