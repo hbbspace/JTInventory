@@ -26,7 +26,7 @@
                     <div class="col-sm-12">
                         <div class="card">
                             <div class="card-header">
-                                Form Edit Anggota
+                                Form Edit Akun
                             </div>
                             <div class="card-body">
                                 <div class="mb-3">

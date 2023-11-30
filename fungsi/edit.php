@@ -11,6 +11,7 @@ if (!empty($_SESSION['username'])) {
         $email = antiinjection($koneksi, $_POST['email']);
         $username = antiinjection($koneksi, $_POST['username']);
         $password = antiinjection($koneksi, $_POST['password']);
+        // $level = antiinjection($koneksi, $_POST['level']);
         $id=$_SESSION['user_id'];
         $unicode=$_SESSION['unicode'];
 
@@ -20,7 +21,13 @@ if (!empty($_SESSION['username'])) {
 
         $query = "UPDATE user SET email = '$email', username = '$username', password = '$hashed_password', salt = '$salt' WHERE user_id = '$id';";
         mysqli_query($koneksi, $query);
-        $query2 = "UPDATE teknisi SET nama_teknisi = '$nama', jk = '$jenis_kelamin' WHERE nip = '$unicode';";
+        if ($_SESSION['level'] === 'Teknisi') {
+            $query2 = "UPDATE teknisi SET nama_teknisi = '$nama', jk = '$jenis_kelamin' WHERE nip = '$unicode';";
+        } else if ($_SESSION['level'] === 'Mahasiswa') {
+            $query2 = "UPDATE mahasiswa SET nama_mhs = '$nama', jk = '$jenis_kelamin' WHERE nim = '$unicode';";
+        } else if ($_SESSION['level'] === 'Dosen') {
+            $query2 = "UPDATE dosen SET nama_dosen = '$nama', jk = '$jenis_kelamin' WHERE nidn = '$unicode';";
+        }
 
         if (mysqli_query($koneksi, $query2)) {
             pesan('success', "Data Telah Diubah.");
