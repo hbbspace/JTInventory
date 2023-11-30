@@ -11,7 +11,6 @@ if (!empty($_SESSION['username'])) {
         $email = antiinjection($koneksi, $_POST['email']);
         $username = antiinjection($koneksi, $_POST['username']);
         $password = antiinjection($koneksi, $_POST['password']);
-        // $level = antiinjection($koneksi, $_POST['level']);
         $id=$_SESSION['user_id'];
         $unicode=$_SESSION['unicode'];
 
