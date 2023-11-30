@@ -227,7 +227,7 @@
         </symbol>
     </svg>
 
-    <header class="navbar sticky-top bg-primary flex-md-nowrap p-0" data-bs-theme="dark">
+    <header class="navbar sticky-top flex-md-nowrap p-0" data-bs-theme="dark" style="background-color: #39A7FF;">
         <a class="navbar-brand col-md-3 col-lg-2 me-0 px-4" href="#"><img src="assets/img/favicons/Logo.png" alt="" style="width: 90px; height:auto"></a>
         <div class="icon-user">
             <?php
