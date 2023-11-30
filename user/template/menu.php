@@ -14,39 +14,34 @@
         <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="index.php">
-                                                    Dashboard
+                    <a class="nav-link d-flex align-items-center gap-2" aria-current="page" href="index.php">
+                        Dashboard
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link d-flex align-items-center gap-2" href="index.php?page=data_peminjaman">
-                                                    Data Peminjaman
+                        Data Peminjaman
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link d-flex align-items-center gap-2" href="index.php?page=data_pengembalian">
-                                                    Data Pengembalian
+                        Data Pengembalian
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link d-flex align-items-center gap-2" href="index.php?page=history">
-                                                 History
+                        History
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link d-flex align-items-center gap-2" href="index.php?page=akun">
-                                                    Akun
+                        Akun
                     </a>
                 </li>
             </ul>
-
-            <hr class="my-3">
-
             <ul class="nav flex-column mb-auto">
                 <li class="nav-item">
                     <a class="nav-link d-flex align-items-center gap-2" href="logout.php">
-
-                            
                         Log out
                     </a>
                 </li>

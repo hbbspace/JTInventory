@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="row">
         <?php
-        require 'admin/template/menu.php';
+        require 'user/template/menu.php';
         $id = $_SESSION['user_id'];
 
             $userLevel = $_SESSION['level'];

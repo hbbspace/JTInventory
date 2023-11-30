@@ -15,57 +15,36 @@
             <ul class="nav flex-column">
                 <li class="nav-item">
                     <a class="nav-link d-flex align-items-center gap-3" aria-current="page" href="index.php">
-                        <svg class="bi">
-                            <use xlink:href="#house-fill" />
-                        </svg>
                         Dashboard
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link d-flex align-items-center gap-3 " href="index.php?page=list_admin">
-                        <svg class="bi">
-                            <use xlink:href="#people" />
-                        </svg>
                         Admin
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link d-flex align-items-center gap-3 " href="index.php?page=barang">
-                        <svg class="bi">
-                            <use xlink:href="#puzzle" />
-                        </svg>
                         Data Barang
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link d-flex align-items-center gap-3 " href="index.php?page=data_peminjaman">
-                        <svg class="bi">
-                            <use xlink:href="#puzzle" />
-                        </svg>
                         Data Peminjaman
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link d-flex align-items-center gap-3 " href="index.php?page=data_pengembalian">
-                        <svg class="bi">
-                            <use xlink:href="#puzzle" />
-                        </svg>
                         Data Pengembalian
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link d-flex align-items-center gap-3 " href="index.php?page=history">
-                        <svg class="bi">
-                            <use xlink:href="#puzzle" />
-                        </svg>
                         History
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link d-flex align-items-center gap-3 " href="index.php?page=akun">
-                        <svg class="bi">
-                            <use xlink:href="#puzzle" />
-                        </svg>
                         Akun
                     </a>
                 </li>
@@ -73,9 +52,6 @@
             <ul class="nav flex-column mb-auto">
                 <li class="nav-item">
                     <a class="nav-link d-flex align-items-center gap-3 " href="logout.php">
-                        <svg class="bi">
-                            <use xlink:href="#door-closed" />
-                        </svg>
                         Log out
                     </a>
                 </li>
