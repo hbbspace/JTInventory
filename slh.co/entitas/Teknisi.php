@@ -1,3 +1,4 @@
+<?php
 class Teknisi {
     private $nip;
     private $namaTeknisi;
@@ -38,3 +39,4 @@ class Teknisi {
         return "Teknisi { nip='" . $this->nip . "', nama_teknisi='" . $this->namaTeknisi . "', jk=" . $this->jenisKelamin . " }";
     }
 }
+?>
