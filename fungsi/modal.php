@@ -9,7 +9,7 @@
             <div class="modal-body">
                 <?php
                 // Query the database to get the details of the peminjaman
-                $id_peminjaman = $_GET['id'];
+                $id_peminjaman = 1;
                 $query = "SELECT mhs.nama_mhs as nama,lb.id_barang as id_barang,b.nama_barang as nama_barang,b.maintener as maintener,
                                         sum(lb.qty) as jumlah_peminjaman, p.tgl_pinjam as tgl_pinjam, p.tgl_kembali as tgl_kembali, p.status as status FROM mahasiswa as mhs inner join user as u on mhs.nim=u.unicode
                                         inner join peminjaman as p on p.user_id=u.user_id
