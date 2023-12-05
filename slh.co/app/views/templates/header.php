@@ -8,16 +8,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.118.2">
-    <title>JTInventoris</title>
+    <title>SLH.CO</title>
     <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.css" rel="stylesheet">
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/dashboard/">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
     <link href="assets/img/favicons/Icon.png" rel="shortcut icon">
 
-
     <link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/dist/css/dashboard.css" rel="stylesheet">
-
 
     <style>
         .bd-placeholder-img {
@@ -229,27 +227,9 @@
         </symbol>
     </svg>
 
-    <!-- <header class="navbar sticky-top bg-primary flex-md-nowrap p-0" data-bs-theme="dark">
+    <header class="navbar sticky-top flex-md-nowrap p-0" data-bs-theme="dark" style="background-color: #39A7FF;">
         <a class="navbar-brand col-md-3 col-lg-2 me-0 px-4" href="#"><img src="assets/img/favicons/Logo.png" alt="" style="width: 90px; height:auto"></a>
         <div class="icon-user">
-        <?php
-            // $id = $_SESSION['user_id'];
-            // $userLevel = $_SESSION['level'];
-            // if ($userLevel === 'Mahasiswa') {
-            //     $query = "SELECT m.nama_mhs AS nama , m.nim, m.jk, u.username, u.email 
-            //                 FROM user AS u 
-            //                 INNER JOIN mahasiswa AS m ON m.nim = u.unicode 
-            //                 WHERE u.level = 'Mahasiswa' AND u.user_id = '$id'";
-            // } elseif ($userLevel === 'Dosen') {
-            //     $query = "SELECT d.nama_dosen AS nama, d.nidn, d.jk, u.username, u.email 
-            //                 FROM user AS u 
-            //                 INNER JOIN dosen AS d ON d.nidn = u.unicode 
-            //                 WHERE u.level = 'Dosen' AND u.user_id = '$id'";
-            // }
-            // $result_nama = mysqli_query($koneksi, $query);
-            // $ambil_nama = mysqli_fetch_assoc($result_nama);?>
-            <p><?//= $ambil_nama['nama'] ?></p>
-
             <a href="index.php?page=akun" >
                 <img src="assets/img/profile.png" alt="Logo Profil" href="index.php?page=akun" class="col-lg-1" class="logo-profil" style="width: 30px;">
             </a>
@@ -263,6 +243,6 @@
                 </button>
             </li>
         </ul>
-    </header> -->
+    </header>
 
     

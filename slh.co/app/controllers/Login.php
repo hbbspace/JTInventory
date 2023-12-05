@@ -4,7 +4,7 @@ class Login extends Controller {
     public function index() {
         $data['title'] = 'Halaman Login';
 
-		$this->view('login/login', $data);
+		$this->view('login/index');
     }
 
     public function prosesLogin() {
