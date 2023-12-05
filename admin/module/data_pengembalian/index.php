@@ -64,13 +64,14 @@
                         <div class="modal-dialog modal-dialog-scrollable" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Rincian Data Peminjaman</h1>
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Rincian Data Pengembalian</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <!-- Form to add admin -->
                                 <form action="" method="">
                                     <div class="modal-body">
                                         <?php
+                                        $id_peminjaman = 1;
                                         // Query the database to get the details of the peminjaman
                                         $query = "SELECT mhs.nama_mhs as nama,lb.id_barang as id_barang,b.nama_barang as nama_barang,b.maintener as maintener,
                                         sum(lb.qty) as jumlah_peminjaman, p.tgl_pinjam as tgl_pinjam, p.tgl_kembali as tgl_kembali, p.status as status FROM mahasiswa as mhs inner join user as u on mhs.nim=u.unicode
@@ -78,7 +79,7 @@
                                         inner join list_barang as lb on lb.id_peminjaman=p.id_peminjaman
                                         inner join barang as b on b.id_barang=lb.id_barang
                                         WHERE p.id_peminjaman = '$id_peminjaman'
-                                        order by mhs.nama_mhs asc;";
+                                        order by mhs.nama_mhs asc";
                                         $result = mysqli_query($koneksi, $query);
                                         $row = mysqli_fetch_assoc($result);
                                         ?>
