@@ -1,8 +1,5 @@
 <div class="container-fluid">
     <div class="row">
-        <?php
-        include "admin/template/menu.php";
-        ?>
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <h1 class="h2">History</h1>
@@ -17,7 +14,7 @@
                 }
                 ?>
 
-<div class="table-responsive small">
+                <div class="table-responsive small">
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -32,9 +29,10 @@
                         <tbody>
                             <?php
                             $no = 1;
-                            foreach($data['history'] as $row)
-
-                            while ($row = mysqli_fetch_assoc($result)) {
+                            foreach($data['history'] as $row) :
+                                if($row['keterangan'] == null) {
+                                    $row['keterangan'] = "-";
+                                }
                             ?>
                                 <tr>
                                     <th scope="row"><?= $no++ ?></th>
@@ -49,7 +47,7 @@
                                    </button>                                   
                                    </td>
                                 </tr>
-                            <?php } ?>
+                            <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>

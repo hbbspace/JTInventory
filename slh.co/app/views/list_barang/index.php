@@ -21,9 +21,6 @@
 <body>
 <div class="container-fluid">
     <div class="row">
-        <?php
-        include "admin/template/menu.php";
-        ?>
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
         <div class="col-lg-10 pt-3">
          <!-- Input untuk melakukan pencarian -->
