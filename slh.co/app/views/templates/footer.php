@@ -1,9 +1,59 @@
-<script src="assets/dist/js/bootstrap.bundle.min.js"></script>
-<script src="assets/js/jquery-3.7.1.js"></script>
-<script src="assets/js/Rincian.js"></script>
+    <!-- JavaScript -->
+    <script>
+        const body = document.querySelector("body");
+        const darkLight = document.querySelector("#darkLight");
+        const sidebar = document.querySelector(".sidebar");
+        const submenuItems = document.querySelectorAll(".submenu_item");
+        const sidebarOpen = document.querySelector("#sidebarOpen");
+        const sidebarClose = document.querySelector(".collapse_sidebar");
+        const sidebarExpand = document.querySelector(".expand_sidebar");
+        sidebarOpen.addEventListener("click", () => sidebar.classList.toggle("close"));
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.2/dist/chart.umd.js" integrity="sha384-eI7PSr3L1XLISH8JdDII5YN/njoSsxfbrkCTnJrzXt+ENP5MOVBxD+l6sEG4zoLp" crossorigin="anonymous"></script>
-<script src="assets/custom/dashboard.js"></script>
-</body>
+        sidebarClose.addEventListener("click", () => {
+        sidebar.classList.add("close", "hoverable");
+        });
+        sidebarExpand.addEventListener("click", () => {
+        sidebar.classList.remove("close", "hoverable");
+        });
 
+        sidebar.addEventListener("mouseenter", () => {
+        if (sidebar.classList.contains("hoverable")) {
+            sidebar.classList.remove("close");
+        }
+        });
+        sidebar.addEventListener("mouseleave", () => {
+        if (sidebar.classList.contains("hoverable")) {
+            sidebar.classList.add("close");
+        }
+        });
+
+        darkLight.addEventListener("click", () => {
+        body.classList.toggle("dark");
+        if (body.classList.contains("dark")) {
+            document.setI;
+            darkLight.classList.replace("bx-sun", "bx-moon");
+        } else {
+            darkLight.classList.replace("bx-moon", "bx-sun");
+        }
+        });
+
+        submenuItems.forEach((item, index) => {
+        item.addEventListener("click", () => {
+            item.classList.toggle("show_submenu");
+            submenuItems.forEach((item2, index2) => {
+            if (index !== index2) {
+                item2.classList.remove("show_submenu");
+            }
+            });
+        });
+        });
+
+        if (window.innerWidth < 768) {
+        sidebar.classList.add("close");
+        } else {
+        sidebar.classList.remove("close");
+        }
+
+    </script>
+  </body>
 </html>
