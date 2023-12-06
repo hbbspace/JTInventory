@@ -24,17 +24,17 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-3 " href="<?= base_url; ?>/DataBarang">
+                    <a class="nav-link d-flex align-items-center gap-3 " href="<?= base_url; ?>/Data_Barang">
                         Data Barang
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-3 " href="<?= base_url; ?>/DataPeminjaman">
+                    <a class="nav-link d-flex align-items-center gap-3 " href="<?= base_url; ?>/Data_peminjaman">
                         Data Peminjaman
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-3 " href="<?= base_url; ?>/DataPengembalian">
+                    <a class="nav-link d-flex align-items-center gap-3 " href="<?= base_url; ?>/Data_Pengembalian">
                         Data Pengembalian
                     </a>
                 </li>

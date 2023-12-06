@@ -12,7 +12,4 @@ class Admin_model {
         return $this->db->resultSet();
     }
 
-
-
-    
 }
