@@ -56,8 +56,8 @@
                                     <td><?= $row['qty'] ?></td>
                                     <td>
                                         <!-- Tombol untuk mengedit dan menghapus data barang -->
-                                        <a href="index.php?page=barang/edit&id=<?= $row['id_barang'] ?>" class="btn btn-warning btn-xs"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit</a>
-                                        <a href="fungsi/hapus.php?barang=hapus&id=<?= $row['id_barang'] ?>" onclick="javascript:return confirm('Hapus Data barang ?');" class="btn btn-danger btn-xs"><i class="fa fa-trash-o" aria-hidden="true"></i>Hapus</a>
+                                        <a href="<?= $row['id_barang'] ?>" class="btn btn-warning btn-xs"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit</a>
+                                        <a href="<?= base_url;?>/Data_Barang/hapusBarang <?=$row['id_barang'] ?>" class="btn btn-danger btn-xs" onclick="return confrim('Yakin?');"><i class="fa fa-trash-o" aria-hidden="true"></i>Hapus</a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -80,7 +80,7 @@
                                 <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Data Barang</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <form action="fungsi/tambah.php?barang=tambah" method="post">
+                            <form action="<?= base_url; ?>/Data_Barang/tambahBarang" method="post">
                                 <div class="modal-body">
                                     <div class="mb-3">
                                         <label for="recipient-name" class="col-form-label">Nama Barang:</label>
