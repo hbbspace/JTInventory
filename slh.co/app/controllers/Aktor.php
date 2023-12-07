@@ -1,6 +1,6 @@
 <?php
 // Abstract class Aktor
-abstract class Aktor {
+abstract class Aktor extends Controller {
     protected $userId;
     protected $unicode;
     protected $email;
