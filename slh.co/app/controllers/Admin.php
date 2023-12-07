@@ -5,9 +5,8 @@ class Admin extends Controller {
         $data['title'] = 'Home';
         $data['admin']=$this->model('Admin_model')->getAllAdmin();
 
-        $this->view('templates/header');
-		$this->view('templates/menu');
+        $this->view('templates/top');
         $this->view('admin/index', $data);
-        $this->view('templates/footer');
+        $this->view('templates/bottom');
     }
 }

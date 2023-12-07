@@ -5,9 +5,8 @@ class Data_Peminjaman {
         $data['title'] = 'Home';
         $data['admin']=$this->model('Data_Peminjaman_Model')->getAllPeminjaman();
 
-        $this->view('templates/header');
-		$this->view('templates/menu');
+        $this->view('templates/top');
         $this->view('data_peminjaman/index', $data);
-        $this->view('templates/footer');
+        $this->view('templates/bottom');
     }
 }
