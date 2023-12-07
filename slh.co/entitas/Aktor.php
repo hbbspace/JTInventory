@@ -1,6 +1,4 @@
 <?php
-
-
 // Abstract class Aktor
 abstract class Aktor {
     protected $userId;
