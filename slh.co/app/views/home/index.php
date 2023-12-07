@@ -19,28 +19,33 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link d-flex align-items-center gap-3 " href="<?= base_url; ?>/Data_Barang">
+                                <a class="nav-link d-flex align-items-center gap-3 " href="<?= base_url; ?>/Admin/Data_Barang">
                                     Data Barang
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link d-flex align-items-center gap-3 " href="<?= base_url; ?>/Data_peminjaman">
+                                <a class="nav-link d-flex align-items-center gap-3 " href="<?= base_url; ?>/Admin/Data_Peminjaman">
                                     Data Peminjaman
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link d-flex align-items-center gap-3 " href="<?= base_url; ?>/Data_Pengembalian">
+                                <a class="nav-link d-flex align-items-center gap-3 " href="<?= base_url; ?>/Admin/Data_Pengembalian">
                                     Data Pengembalian
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link d-flex align-items-center gap-3 " href="<?= base_url; ?>/History">
+                                <a class="nav-link d-flex align-items-center gap-3 " href="<?= base_url; ?>/Admin/History">
                                     History
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link d-flex align-items-center gap-3 " href="index.php?page=akun">
+                                <a class="nav-link d-flex align-items-center gap-3 " href="/Admin/Akun">
                                     Akun
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link d-flex align-items-center gap-3 " href="/Admin/Logout">
+                                    Logout
                                 </a>
                             </li>
                         </ul>

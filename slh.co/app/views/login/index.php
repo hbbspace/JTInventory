@@ -206,16 +206,8 @@
 
 
     <main class="form-signin w-100 m-auto">
-        <form action="<?= base_url; ?>/home" method="post">
+        <form action="<?= base_url; ?>/Admin" method="post">
             <img class="mb-4" src="assets/img/favicons/Logo.png" alt="" height="73" style="margin-left: 18%;">
-
-            <?php
-            if (isset($_SESSION['_flashdata'])) {
-                foreach ($_SESSION['_flashdata'] as $key => $val) {
-                    echo get_flashdata($key);
-                }
-            }
-            ?>
             <div class="border-section">
             <h1 class="h3 mb-3 fw-normal">Login</h1>
             <div class="form-floating">
@@ -234,7 +226,7 @@
 
             <button class="btn btn-primary w-100 py-2 rounded-4 mt-2" type="submit">Masuk</button>
             
-            <a href="<?= base_url; ?>/register" class="register ">register</a>
+            <a href="<?= base_url; ?>/Register" class="register ">register</a>
 
             <p class="mt-5 mb-3 text-body-secondary">&copy; 2023</p>
             </div>

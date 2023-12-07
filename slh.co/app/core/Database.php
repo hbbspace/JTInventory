@@ -1,10 +1,10 @@
 <?php
 
 class Database{
-	private $host = 'localhost';
-	private $user = 'root';
-	private $pass = '';
-	private $dbnm = 'inventorydb';
+	private $host = DB_HOST;
+	private $user = DB_USER;
+	private $pass = DB_PASS;
+	private $dbnm = DB_NAME;
 
 	private $dbh;
 	private $stmt;
