@@ -4,7 +4,7 @@ class Home extends Controller {
 	public function index() {
 		$data['title'] = 'Home';
 		$data['level'] = 'Teknisi';
-		$data['nama'] = 'Habibatul Mustofa';
+		$id = $_SESSION['user_id'];
 
 		//$data['nama'] = $this->model('User_model')->getUser();
 

@@ -206,7 +206,7 @@
 
 
     <main class="form-signin w-100 m-auto">
-        <form action="<?= base_url; ?>/Home" method="post">
+        <form action="<?= base_url; ?>/Login/prosesLogin" method="post">
             <img class="mb-4" src="assets/img/favicons/Logo.png" alt="" height="73" style="margin-left: 18%;">
             <?php
                 // Menampilkan pesan flash jika ada

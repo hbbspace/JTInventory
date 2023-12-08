@@ -51,13 +51,13 @@ class Admin_model {
 
     return $this->db->rowCount();
     }
+    
     public function hapusDataAdmin($nip) {
-        $query = "DELETE FROM user WHERE unicode = :nip";
+        $query = "DELETE FROM user WHERE unicode = ':nip'";
         $this->db->query($query);
-        $this->db->bind('nip', $nip);
+        $this->db->bind('unicode', $nip);
 
         $this->db->execute();
-
         return $this->db->rowCount();
     }
 

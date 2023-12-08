@@ -29,7 +29,7 @@ class Admin extends Controller {
         }
     }
     public function hapusAdmin($nip) {
-        if($this->model('Admin_Model')->hapusDataAdmin($nip) > 0) {
+        if($this->model('Admin_model')->hapusDataAdmin($nip) > 0) {
             Flasher::setMessage('Berhasil','Dihapus','success');
             header('Location: ' . base_url . '/Admin');
             exit; 

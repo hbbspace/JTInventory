@@ -72,4 +72,12 @@ class Database{
 	{
 		return $this->stmt->rowCount();
 	}
+
+    public function queryAndFetch( $fetchStyle = PDO::FETCH_OBJ)
+    {
+        $this->execute();
+        
+        return $this->stmt->fetchAll($fetchStyle);
+    }
+
 }
