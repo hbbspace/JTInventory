@@ -53,7 +53,7 @@
                                         <td>
                                             <!-- Tombol untuk mengedit dan menghapus data barang -->
                                             <a href="<?= $row['id_barang'] ?>" class="btn btn-warning btn-xs"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit</a>
-                                            <a href="<?= base_url;?>/Data_Barang/hapusBarang <?=$row['id_barang'] ?>" class="btn btn-danger btn-xs" onclick="return confirm('Yakin?');"><i class="fa fa-trash-o" aria-hidden="true"></i>Hapus</a>
+                                            <a href="<?= base_url;?>/Data_Barang/hapusBarang/ <?=$row['id_barang'] ?>" class="btn btn-danger btn-xs" onclick="return confirm('Hapus Data Barang?');"><i class="fa fa-trash-o" aria-hidden="true"></i>Hapus</a>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>

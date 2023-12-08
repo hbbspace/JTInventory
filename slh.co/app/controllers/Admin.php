@@ -28,6 +28,17 @@ class Admin extends Controller {
 
         }
     }
+    public function hapusAdmin($nip) {
+        if($this->model('Admin_Model')->hapusDataAdmin($nip) > 0) {
+            Flasher::setMessage('Berhasil','Dihapus','success');
+            header('Location: ' . base_url . '/Admin');
+            exit; 
+        }else{
+            Flasher::setMessage('Gagal','Dihapus','danger');
+            header('Location: ' . base_url . '/Admin');
+            exit; 
+        }
+    }
 
     // public function Data_Barang() {
     //     $data['title'] = 'Data Barang';
