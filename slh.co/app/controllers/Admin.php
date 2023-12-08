@@ -11,13 +11,14 @@ class Admin extends Controller {
         $data['admin']=$this->model('Admin_model')->getAllAdmin();
 
         $this->view('templates/top');
+        $this->view('templates/sideMenuAdmin');
         $this->view('admin/index', $data);
         $this->view('templates/bottom');
     }
 
     public function tambahAdmin() {
         if($this->model('Admin_Model')->tambahDataAdmin($_POST) > 0) {
-            Flasher::setMessage('Berhasil','Ditambahkan','succes');
+            Flasher::setMessage('Berhasil','Ditambahkan','success');
             header('Location: ' . base_url . '/Admin');
             exit; 
         }else{

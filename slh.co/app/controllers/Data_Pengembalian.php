@@ -7,6 +7,7 @@ class Data_Pengembalian extends Controller {
         $data['pengembalian']=$this->model('Data_Pengembalian_Model')->getAllPengembalian();
 
         $this->view('templates/top');
+        $this->view('templates/sideMenuAdmin');
         $this->view('data_pengembalian/index', $data);
         $this->view('templates/bottom');
     }

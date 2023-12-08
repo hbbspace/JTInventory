@@ -6,7 +6,8 @@ class Data_Barang extends Controller{
         $data['barang']=$this->model('Data_Barang_Model')->getAllBarang();
 
         $this->view('templates/top');
-        $this->view('list_barang/index', $data);
+        $this->view('templates/sideMenuAdmin');
+        $this->view('data_barang/index', $data);
         $this->view('templates/bottom');
     }
     

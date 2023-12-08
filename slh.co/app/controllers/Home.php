@@ -9,6 +9,7 @@ class Home extends Controller {
 		//$data['nama'] = $this->model('User_model')->getUser();
 
 		$this->view('templates/top', $data);
+		$this->view('templates/sideMenuAdmin');
 		$this->view('home/index', $data);
 		$this->view('templates/bottom');
 	}

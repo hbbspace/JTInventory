@@ -7,6 +7,7 @@ class History extends Controller {
         $data['history']=$this->model('History_Model')->getAllHistory();
 
         $this->view('templates/top');
+        $this->view('templates/sideMenuAdmin');
         $this->view('history/index', $data);
         $this->view('templates/bottom');
     }

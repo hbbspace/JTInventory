@@ -6,6 +6,7 @@ class Data_Peminjaman extends Controller {
         $data['peminjaman']=$this->model('Data_Peminjaman_Model')->getAllPeminjaman();
 
         $this->view('templates/top');
+        $this->view('templates/sideMenuAdmin');
         $this->view('data_peminjaman/index', $data);
         $this->view('templates/bottom');
     }
