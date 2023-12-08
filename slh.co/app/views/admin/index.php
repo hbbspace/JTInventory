@@ -16,6 +16,7 @@
             overflow-y: auto;
         }
     </style>
+    <link rel="stylesheet" href="assets/custom/dashboard.css">
 </head>
 <body>
    <div class="container-fluid">
@@ -39,27 +40,27 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link d-flex align-items-center gap-3 " href="<?= base_url; ?>/Admin/Data_Barang">
+                                <a class="nav-link d-flex align-items-center gap-3 " href="<?= base_url; ?>/Data_Barang">
                                     Data Barang
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link d-flex align-items-center gap-3 " href="<?= base_url; ?>/Admin/Data_Peminjaman">
+                                <a class="nav-link d-flex align-items-center gap-3 " href="<?= base_url; ?>/Data_Peminjaman">
                                     Data Peminjaman
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link d-flex align-items-center gap-3 " href="<?= base_url; ?>/Admin/Data_Pengembalian">
+                                <a class="nav-link d-flex align-items-center gap-3 " href="<?= base_url; ?>/Data_Pengembalian">
                                     Data Pengembalian
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link d-flex align-items-center gap-3 " href="<?= base_url; ?>/Admin/History">
+                                <a class="nav-link d-flex align-items-center gap-3 " href="<?= base_url; ?>/History">
                                     History
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link d-flex align-items-center gap-3 " href="/Admin/Akun">
+                                <a class="nav-link d-flex align-items-center gap-3 " href="/Akun">
                                     Akun
                                 </a>
                             </li>
@@ -80,12 +81,7 @@
             <div class="row">
                 <?php
                  // Menampilkan pesan flash jika ada
-                if (isset($_SESSION['_flashdata'])) {
-                    echo "<br>";
-                    foreach ($_SESSION['_flashdata'] as $key => $val) {
-                        echo get_flashdata($key);
-                    }
-                }
+                 Flasher::Message();
                 ?>
 
                 <div class="table-responsive small">
@@ -136,7 +132,7 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <!-- Form untuk menambahkan admin -->
-                            <form action="fungsi/tambah.php?list_admin=tambah" method="post">
+                            <form action="<?= base_url; ?>/Admin/tambahAdmin" method="post">
                                 <div class="modal-body">
                                     <div class="mb-3">
                                         <label for="recipient-name" class="col-form-label">Nama:</label>

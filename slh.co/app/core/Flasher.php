@@ -2,44 +2,30 @@
 
 class Flasher{
 
-    public static function set_flashdata($key = "", $value = "")
+    public static function setMessage($pesan, $aksi, $type)
     {
-        if (!empty($key) || !empty($value)) {
-            $_SESSION['_flashdata'][$key] = $value;
-            return true;
-        }
-        return false;
+
+        $_SESSION['msg'] = [
+            'pesan' => $pesan,
+            'aksi'  => $aksi,
+            'type'  => $type
+        ];   
     }
 
-    public static function get_flashdata($key = "")
-    {
-        if (!empty($key) && isset($_SESSION['_flashdata'][$key])) {
-            $data = $_SESSION['_flashdata'][$key];
-            unset($_SESSION['_flashdata'][$key]);
-            return $data;
-        } else {
-            echo "<script>alert(' Flash Message \'{$key}\' is not defined.')</script>";
+    public static function Message(){
+        if( isset($_SESSION['msg']) )
+        {
+
+            echo '<div class="alert alert-'. $_SESSION['msg']['type'] .' alert-dismissible fade show" role="alert">
+                    Data <strong>'. $_SESSION['msg']['pesan'] .'</strong> '. $_SESSION['msg']['aksi'] .'
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>';
+
+            unset($_SESSION['msg']);
         }
+
     }
 
-    public static function pesan($key = "", $pesan = "")
-    {
-        if ($key == "info") {
-            set_flashdata("info", "<div class='alert alert-primary alert-dismissible fade show' role='alert'>
-            <strong>Info!</strong> {$pesan}
-            <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>");
-        } elseif ($key == "success") {
-            set_flashdata("success", "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-            <strong>Success!</strong> {$pesan}
-            <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>");
-        } elseif ($key == "danger") {
-            set_flashdata("danger", "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-            <strong>Danger!</strong> {$pesan}
-            <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>");
-        } elseif ($key == "warning") {
-            set_flashdata("warning", "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
-            <strong>Warning!</strong> {$pesan}
-            <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>");
-        }
-    }
 }

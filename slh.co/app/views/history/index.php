@@ -1,3 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        /* CSS to enable scrolling inside modal */
+        .modal-dialog-scrollable {
+            display: flex;
+            flex-direction: column;
+        }
+        .modal-dialog-scrollable .modal-content {
+            flex: 1;
+            overflow-y: auto;
+        }
+        .modal-body {
+            flex: 1;
+            overflow-y: auto;
+        }
+    
+        .data-container {
+            margin: 10px; 
+            padding: 10px; 
+        }
+
+        .data-row {
+            display: flex; 
+            align-items: center; 
+            margin-bottom: 5px; 
+        }
+
+        .data-label {
+            font-weight: bold; 
+            width: 200px; 
+        }
+
+        .data-value {
+            width: 300px; 
+        }
+
+</style>
+<link rel="stylesheet" href="assets/custom/dashboard.css">
+    
+</head>
+<body>
 <div class="container-fluid">
     <div class="row">
         <div class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary">
@@ -39,10 +82,15 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link d-flex align-items-center gap-3 " href="index.php?page=akun">
-                                Akun
-                            </a>
-                        </li>
+                                <a class="nav-link d-flex align-items-center gap-3 " href="/Akun">
+                                    Akun
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link d-flex align-items-center gap-3 " href="/Logout">
+                                    Logout
+                                </a>
+                            </li>
                     </ul>
                 </div>
             </div>
@@ -52,13 +100,9 @@
                 <h1 class="h2">History</h1>
             </div>
             <div class="row">
-                <?php
-                if (isset($_SESSION['_flashdata'])) {
-                    echo "<br>";
-                    foreach ($_SESSION['_flashdata'] as $key => $val) {
-                        echo get_flashdata($key);
-                    }
-                }
+            <?php
+                 // Menampilkan pesan flash jika ada
+                 Flasher::Message();
                 ?>
 
                 <div class="table-responsive small">

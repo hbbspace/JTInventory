@@ -9,6 +9,7 @@ class Data_Barang extends Controller{
         $this->view('list_barang/index', $data);
         $this->view('templates/bottom');
     }
+    
     public function tambahBarang() {
         if($this->model('Data_Barang_Model')->tambahDataBarang($_POST) > 0) {
             header('Location: ' . base_url . '/data_barang');

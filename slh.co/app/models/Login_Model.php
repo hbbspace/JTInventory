@@ -13,7 +13,7 @@ class Login_Model {
 		//$username = antiinjection($koneksi, $_POST['username']);
         // $password = antiinjection($koneksi, $_POST['password']);
 
-        $this->db->query("SELECT user_id,unicode, username, level, salt, password as hashed_password FROM user WHERE username = :$username;");
+        $this->db->query('SELECT user_id,unicode, username, level, salt, password as hashed_password FROM user WHERE username = :$username');
 		$this->db->bind('username', $username);
 		$this->db->bind('password', md5($password));
 		return $this->db->resultSet();

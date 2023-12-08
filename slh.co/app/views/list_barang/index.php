@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <!-- Your head content here -->
     <style>
         /* CSS to enable scrolling inside modal */
         .modal-dialog-scrollable {
@@ -16,7 +14,8 @@
             flex: 1;
             overflow-y: auto;
         }
-    </style>
+        </style>
+    <link rel="stylesheet" href="assets/custom/dashboard.css">
 </head>
 <body>
 <div class="container-fluid">
@@ -60,10 +59,15 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link d-flex align-items-center gap-3 " href="index.php?page=akun">
-                                Akun
-                            </a>
-                        </li>
+                                <a class="nav-link d-flex align-items-center gap-3 " href="/Akun">
+                                    Akun
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link d-flex align-items-center gap-3 " href="/Logout">
+                                    Logout
+                                </a>
+                            </li>
                     </ul>
                 </div>
             </div>

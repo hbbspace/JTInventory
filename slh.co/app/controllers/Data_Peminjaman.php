@@ -1,9 +1,9 @@
 <?php
 
-class Data_Peminjaman {
+class Data_Peminjaman extends Controller {
     public function index() {
         $data['title'] = 'Home';
-        $data['admin']=$this->model('Data_Peminjaman_Model')->getAllPeminjaman();
+        $data['peminjaman']=$this->model('Data_Peminjaman_Model')->getAllPeminjaman();
 
         $this->view('templates/top');
         $this->view('data_peminjaman/index', $data);
