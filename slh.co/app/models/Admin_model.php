@@ -51,10 +51,10 @@ class Admin_model {
 
     return $this->db->rowCount();
     }
-    public function hapusDataBarang($id_barang) {
-        $query = "DELETE FROM barang WHERE id_barang = :id_b";
+    public function hapusDataAdmin($nip) {
+        $query = "DELETE FROM user WHERE unicode = :nip";
         $this->db->query($query);
-        $this->db->bind('id_b', $id_barang);
+        $this->db->bind('nip', $nip);
 
         $this->db->execute();
 
