@@ -19,12 +19,20 @@
 </head>
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <div class="col-lg-10 pt-3">
-                <!-- Input untuk melakukan pencarian -->
-                    <input type="text" id="searchInput" class="form-control" placeholder="Cari Nama Barang" onkeyup="searchTable()">
+                    <form action="<?=base_url;?>/Data_Barang/cariBarang" method="post">
+                    <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Cari Barang" aria-label="Recipient's username" aria-describedby="basic-addon2" name="keyword">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="submit" id="tombolCari">cari</button>
+                    </div>
                 </div>
+                  </form>
+
+
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <h1 class="h2">Data Barang</h1>
                 </div>
+
                 <div class="row">
                     <div class="table-responsive small" id="dataTable">
                         <!-- Menampilkan data admin dalam tabel -->

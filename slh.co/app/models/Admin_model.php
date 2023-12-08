@@ -1,21 +1,20 @@
 <?php
 
 class Admin_model {
-    private $table='teknisi';
-    private $table1='barang';
-    private $table2='peminjaman';
     private $db;
 
     public function __construct(){
         $this->db=new Database;
     }
     public function getAlladmin(){
-        $this->db->query('SELECT * FROM '.$this->table);
+        $query="SELECT* FROM teknisi;";
+        $this->db->query($query);
         return $this->db->resultSet();
     }
 
     public function getAllBarang(){
-        $this->db->query('SELECT * FROM '.$this->table1);
+        $query="SELECT* FROM barang;";
+        $this->db->query($query);
         return $this->db->resultSet();
     }
     public function tambahDataAdmin($data) {
@@ -63,15 +62,16 @@ class Admin_model {
     }
 
     public function getAllPeminjaman(){
-        $this->db->query("SELECT m.nama_mhs AS nama, p.time AS waktu, u.level AS status, p.id_peminjaman AS id FROM'. $this->table2.' AS p
+        $query="SELECT m.nama_mhs AS nama, p.time AS waktu, u.level AS status, p.id_peminjaman AS id FROM peminjaman AS p
         INNER JOIN user AS u ON u.user_id = p.user_id
         INNER JOIN mahasiswa AS m ON m.nim = u.unicode
         WHERE p.status = 'request'
         UNION
-        SELECT d.nama_dosen AS nama, p.time AS waktu, u.level AS status, p.id_peminjaman AS id FROM'. $this->table2.' AS p
+        SELECT d.nama_dosen AS nama, p.time AS waktu, u.level AS status, p.id_peminjaman AS id FROM peminjaman AS p
         INNER JOIN user AS u ON u.user_id = p.user_id
         INNER JOIN dosen AS d ON d.nidn = u.unicode
-        WHERE p.status = 'request'");
+        WHERE p.status = 'request'";
+        $this->db->query($query);
         return $this->db->resultSet();
     }
 

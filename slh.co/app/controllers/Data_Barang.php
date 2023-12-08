@@ -23,4 +23,14 @@ class Data_Barang extends Controller{
             exit;
         }
     }
+
+    public function cariBarang(){
+        $data['title'] = 'List_Barang';
+        $data['barang']=$this->model('Data_Barang_Model')->cariDataBarang();
+
+        $this->view('templates/top');
+        $this->view('templates/sideMenuAdmin');
+        $this->view('data_barang/index', $data);
+        $this->view('templates/bottom');
+    }
 }
