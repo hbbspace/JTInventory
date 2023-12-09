@@ -221,14 +221,11 @@
 
 
     <main class="form-register  m-auto">
-        <form action="cek_register.php" method="post">
+        <form action="<?= base_url; ?>/Register/userRegister" method="post">
             <img class="mb-4" src="assets/img/favicons/Logo.png" alt="" height="73" style="margin-left: 30%;" >
             <?php
-            if (isset($_SESSION['_flashdata'])) {
-                foreach ($_SESSION['_flashdata'] as $key => $val) {
-                    echo get_flashdata($key);
-                }
-            }
+                // Menampilkan pesan flash jika ada
+                Flasher::Message();
             ?>
             <div class="border-section">
             <h1 class="h3 mb-3 fw-normal">Register</h1>

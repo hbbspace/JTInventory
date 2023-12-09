@@ -30,6 +30,7 @@ class Login_Model {
 	// 	}
 	// }
 
+
 	public function checkLogin($data)
 	{
 		$query = "SELECT user_id, unicode, username, level, salt, password FROM user WHERE username = :username";

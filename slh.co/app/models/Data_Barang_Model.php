@@ -47,4 +47,18 @@ class Data_Barang_Model {
         return $this->db->resultSet();
     }
 
+    public function hitungTotalBarang(){
+        $query="SELECT sum(qty) as nilai FROM barang";
+        $this->db->query($query);
+        $this->db->execute();
+        return $this->db->single();
+    }
+
+    public function totalBarangDipinjam(){
+        $query="SELECT sum(qty) as jumlahPinjam FROM list_barang";
+        $this->db->query($query);
+        $this->db->execute();
+        return $this->db->single();
+    }
+
 }
