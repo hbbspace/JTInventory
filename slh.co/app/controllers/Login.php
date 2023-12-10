@@ -36,5 +36,9 @@ class Login extends Controller {
             header('location: '. base_url .'/Login');
             exit;	
         }
+        
+        //cek var dump
+        // $data['query'] = $this->model('Login_Model')->checkLogin($_POST);
+        // $this->view('login/index', $data);
     }
 }

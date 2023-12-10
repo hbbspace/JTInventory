@@ -4,7 +4,7 @@ class Data_Pengembalian extends Controller {
 
     public function index() {
         $data['title'] = 'Home';
-        $data['pengembalian']=$this->model('Data_Pengembalian_Model')->getAllPengembalian();
+        $data['pengembalian']=$this->model('Data_Barang_Model')->getAllPengembalianBarang();
 
         $this->view('templates/top');
         $this->view('templates/sideMenuAdmin');

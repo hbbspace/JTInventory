@@ -18,12 +18,14 @@
     <link rel="stylesheet" href="assets/custom/dashboard.css">
 </head>
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-                <div class="col-lg-10 pt-3">
-                    <form action="<?=base_url;?>/Data_Barang/cariBarang" method="post">
+                <div class="col-lg-12 pt-3">
+                    <form action="<?=base_url;?>/Cari_Barang" method="post">
                     <div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="Cari Barang" aria-label="Recipient's username" aria-describedby="basic-addon2" name="keyword">
                     <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="submit" id="tombolCari">cari</button>
+                        <button class="btn btn-outline-secondary" type="submit" id="tombolCari">                    <svg class="bi">
+                        <use xlink:href="#search" />
+                    </svg></button>
                     </div>
                 </div>
                   </form>

@@ -10,6 +10,7 @@ class Data_Barang extends Controller{
         $this->view('data_barang/index', $data);
         $this->view('templates/bottom');
     }
+
     
     public function tambahBarang() {
         if($this->model('Data_Barang_Model')->tambahDataBarang($_POST) > 0) {
@@ -22,6 +23,7 @@ class Data_Barang extends Controller{
             exit; 
         }
     }
+
     public function hapusBarang($id_barang) {
         if($this->model('Data_Barang_Model')->hapusDataBarang($id_barang) > 0) {
             Flasher::setMessage('Berhasil','Dihapus','success');
@@ -34,13 +36,22 @@ class Data_Barang extends Controller{
         }
     }
 
-    public function cariBarang(){
-        $data['title'] = 'List_Barang';
-        $data['barang']=$this->model('Data_Barang_Model')->cariDataBarang();
+    // public function cariBarang(){
+    //     $data['barang']=$this->model('Data_Barang_Model')->cariDataBarang();
 
-        $this->view('templates/top');
-        $this->view('templates/sideMenuAdmin');
-        $this->view('data_barang/index', $data);
-        $this->view('templates/bottom');
-    }
+    //     $this->view('templates/top');
+    //     $this->view('templates/sideMenuAdmin');
+    //     $this->view('data_barang/index', $data);
+    //     $this->view('templates/bottom');
+    // }
+
+    // public function tampilDataPeminjaman() {
+    //     $data['title'] = 'Home';
+    //     $data['peminjaman']=$this->model('Data_Barang_Model')->getAllPeminjamanBarang();
+
+    //     $this->view('templates/top');
+    //     $this->view('templates/sideMenuAdmin');
+    //     $this->view('data_peminjaman/index', $data);
+    //     $this->view('templates/bottom');
+    // }
 }
