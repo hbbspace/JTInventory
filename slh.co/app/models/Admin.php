@@ -5,10 +5,24 @@ abstract class Admin extends Aktor {
     // public function user($userId, $unicode, $email, $username, $password, $salt, $level) {
 
     // }
+    protected $nip;
+    protected $namaTeknisi;
+    protected $jenisKelamin;
+
     private $db;
 
     public function __construct(){
         $this->db=new Database;
+    }
+
+    public function Teknisi($data){
+		$query = "SELECT nip, nama_teknisi, jk FROM teknisi WHERE username = :username";
+		$this->db->query($query);
+		$this->db->bind('username', $data['username']);
+		$result = $this->db->single();        
+        $nip=$result['nip'];
+        $namaTeknisi=$result ['nama_teknisi'];
+        $jenisKelamin =$result['jk'];
     }
     public function TampilDataBarang(){
         $query="SELECT* FROM barang";
