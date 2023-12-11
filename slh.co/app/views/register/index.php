@@ -223,10 +223,11 @@
     <main class="form-register  m-auto">
         <form action="<?= base_url; ?>/Register/userRegister" method="post">
             <img class="mb-4" src="assets/img/favicons/Logo.png" alt="" height="73" style="margin-left: 30%;" >
-            <?php
-                // Menampilkan pesan flash jika ada
-                Flasher::Message();
-            ?>
+        
+                        <?php
+                        // Menampilkan pesan flash jika ada
+                        Flasher::Message();
+                        ?>
             <div class="border-section">
             <h1 class="h3 mb-3 fw-normal">Register</h1>
             <div class="form-floating">

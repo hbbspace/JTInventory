@@ -36,6 +36,12 @@
                 </div>
 
                 <div class="row">
+                <div class="col-lg-16">
+                        <?php
+                        // Menampilkan pesan flash jika ada
+                        Flasher::Message();
+                        ?>
+                    </div>
                     <div class="table-responsive small" id="dataTable">
                         <!-- Menampilkan data admin dalam tabel -->
                         <table class="table table-striped">

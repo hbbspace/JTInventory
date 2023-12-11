@@ -67,6 +67,7 @@ class Admin extends Controller {
     public function Data_Pengembalian() {
         $data['title'] = 'Data Peminjaman';
         $data['pengembalian']=$this->model('Data_Barang_Model')->getAllPengembalianBarang();
+        
 		$this->topBarName();
         $this->view('templates/sideMenuAdmin');
         $this->view('data_pengembalian/index', $data);
@@ -75,8 +76,8 @@ class Admin extends Controller {
 
     public function History() {
         $data['title'] = 'History';
-        $data['admin']=$this->model('Admin_model')->getAllAdmin();
-
+        $data['history']=$this->model('Admin_model')->getAllHistory();
+        // var_dump($data['history']);
 		$this->topBarName();
         $this->view('templates/sideMenuAdmin');
         $this->view('history/index', $data);
@@ -140,6 +141,15 @@ class Admin extends Controller {
 		$this->topBarName();
 		$this->view('templates/sideMenuAdmin');
 		$this->view('akun/index', $data);
+		$this->view('templates/bottom');
+    }
+
+    public function editAkun(){
+        $data=$this->model('Admin_Model')->getRincianProfile();	 
+
+		$this->topBarName();
+		$this->view('templates/sideMenuAdmin');
+		$this->view('edit_akun/index', $data);
 		$this->view('templates/bottom');
     }
 }

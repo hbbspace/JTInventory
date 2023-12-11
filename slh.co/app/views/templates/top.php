@@ -104,6 +104,26 @@
         .card {
             background-color: #87C4FF;
         }
+        .sidebar {
+        position: fixed sticky;
+        }
+
+        .offcanvas-body {
+        height: 91vh; /* Membuat height sama dengan tinggi viewport */
+        /* Properti lainnya */
+        }
+
+        .nav-item{
+            margin-top: 20px;
+        }
+
+        .bi{
+           margin-bottom: 10px;
+        }
+
+
+
+
     </style>
 
     <!-- Custom styles for this template -->
@@ -234,11 +254,11 @@
         </div>
         <ul class="navbar-nav flex-row d-md-none">
             <li class="nav-item text-nowrap">
-                <button class="nav-link px-3 text-white" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="nav-link px-3 text-white mb-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
                     <svg class="bi">
                         <use xlink:href="#list" />
                     </svg>
                 </button>
             </li>
-        </ul>
+        </ul> 
     </header>

@@ -23,7 +23,7 @@
                     <h1 class="h2">Data Admin</h1>
                 </div>
                 <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-lg-16">
                         <?php
                         // Menampilkan pesan flash jika ada
                         Flasher::Message();
@@ -55,8 +55,8 @@
                                         <td><?= $row['jk'] ?></td>
                                         <td>
                                             <!-- Tombol untuk mengedit dan menghapus data admin -->
-                                            <a href="index.php?page=list_admin/edit&id=<?= $row['nip'] ?>" class="btn btn-warning btn-xs"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit</a>
-                                            <a href="<?= base_url; ?>/Admin/hapusAdmin/<?= $row['nip'] ?>" onclick="javascript:return confirm('Hapus Data Admin ?');" class="btn btn-danger btn-xs"><i class="fa fa-trash-o" aria-hidden="true"></i>Hapus</a>
+                                            <!-- <a href="index.php?page=list_admin/edit&id=<?= $row['nip'] ?>" class="btn btn-warning btn-xs"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit</a>
+                                            <a href="<?= base_url; ?>/Admin/hapusAdmin/<?= $row['nip'] ?>" onclick="javascript:return confirm('Hapus Data Admin ?');" class="btn btn-danger btn-xs"><i class="fa fa-trash-o" aria-hidden="true"></i>Hapus</a> -->
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
