@@ -36,14 +36,14 @@ class Data_Barang extends Controller{
         }
     }
 
-    // public function cariBarang(){
-    //     $data['barang']=$this->model('Data_Barang_Model')->cariDataBarang();
+    public function cariBarang(){
+        $data['barang']=$this->model('Data_Barang_Model')->cariDataBarang();
 
-    //     $this->view('templates/top');
-    //     $this->view('templates/sideMenuAdmin');
-    //     $this->view('data_barang/index', $data);
-    //     $this->view('templates/bottom');
-    // }
+        $this->view('templates/top');
+        $this->view('templates/sideMenuAdmin');
+        $this->view('data_barang/index', $data);
+        $this->view('templates/bottom');
+    }
 
     // public function tampilDataPeminjaman() {
     //     $data['title'] = 'Home';

@@ -7,6 +7,8 @@ class App {
 
     public function __construct() {
 
+		//Sesssion stsrt code
+		
         $url = $this->parse_url();
 
 		//controller

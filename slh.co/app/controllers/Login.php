@@ -24,9 +24,10 @@ class Login extends Controller {
         //     endforeach;
         //     Flasher::set_flashdata('danger','Login gagal. Username / Password Anda Salah.');
         // }
-        if($row = $this->model('Login_Model')->checkLogin($_POST) > 0 ) {
+        $row = $this->model('Login_Model')->checkLogin($_POST);
+        if($row > 0 ) {
                 $_SESSION['username'] = $row['username'];
-                $_SESSION['nama'] = $row['nama'];
+                //$_SESSION['nama'] = $row['nama'];
                 $_SESSION['user_id'] = $row['user_id'];
                 $_SESSION['unicode'] = $row['unicode'];
                 //$this->model('LoginModel')->isLoggedIn($_SESSION['session_login']);
