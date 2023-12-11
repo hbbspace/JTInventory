@@ -6,7 +6,7 @@
 </head>
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1>Selamat Datang <?= $data['level'] . $data['nama'] ?></h1>
+                    <h1>Selamat Datang  <?=$data['level'] ." ". $data['nama']['nama']?></h1>
                 </div>
                 <div class="row">
                     <div class="col-sm-3">
@@ -44,7 +44,7 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <a  href="<?= base_url; ?>/Data_Peminjaman" style="text-decoration: none; color:auto"><h1 class="">Request Info</h1> </a>
+                    <a  href="<?= base_url; ?>/Admin/Data_Peminjaman" style="text-decoration: none; color:auto"><h1 class="">Request Info</h1> </a>
                 </div>
                 <div class="table-responsive small mt-3">
                     <table class="table table-striped">

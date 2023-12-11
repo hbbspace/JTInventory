@@ -75,5 +75,23 @@ class Admin_model {
         return $this->db->resultSet();
     }
 
+    public function getNamaById($id){
+      $query="SELECT t.nama_teknisi AS nama FROM user AS u INNER JOIN teknisi AS t ON t.nip = u.unicode WHERE u.user_id = '$id'";
+      $this->db->query($query);
+      return $this->db->single();
+    }
+    
+    public function getRincianProfile(){
+        $id = $_SESSION['user_id'];
+        $level=$_SESSION['level'];
+
+        $query = "SELECT t.nama_teknisi AS nama , t.nip AS nip, t.jk AS jk, u.username AS username, u.email AS email, u.level as level FROM user AS u 
+        INNER JOIN teknisi AS t ON t.nip = u.unicode WHERE u.level = '$level' AND u.user_id = '$id'";
+        $this->db->query($query);
+        return $this->db->single();
+        
+    }
+
+
 
 }

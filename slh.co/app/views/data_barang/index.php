@@ -19,7 +19,7 @@
 </head>
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <div class="col-lg-12 pt-3">
-                    <form action="<?=base_url;?>/Data_Barang/cariBarang" method="post">
+                    <form action="<?=base_url;?>/Admin/cariBarang" method="post">
                     <div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="Cari Barang" aria-label="Recipient's username" aria-describedby="basic-addon2" name="keyword">
                     <div class="input-group-append">

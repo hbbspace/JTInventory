@@ -8,22 +8,26 @@ class Admin extends Controller {
 
     public function index() {
         $data['title'] = 'Home';
-        $data['admin']=$this->model('Admin_model')->getAllAdmin();
+		$data['level'] = $_SESSION['level'];
+        $data['nama']=$this->getNamaById();		 
+        $data['jumlahBarang']=$this->model('Data_Barang_Model')->hitungTotalBarang();
+		$data['jumlahBarangDipinjam']=$this->model('Data_Barang_Model')->totalBarangDipinjam();
+		$data['peminjaman']=$this->model('Data_Peminjaman_Model')->getAllPeminjaman();
 
-        $this->view('templates/top');
-        $this->view('templates/sideMenuAdmin');
-        $this->view('admin/index', $data);
-        $this->view('templates/bottom');
+		$this->view('templates/top', $data);
+		$this->view('templates/sideMenuAdmin');
+		$this->view('home/index', $data);
+		$this->view('templates/bottom');
     }
 
     public function tambahAdmin() {
         if($this->model('Admin_Model')->tambahDataAdmin($_POST) > 0) {
             Flasher::setMessage('Berhasil','Ditambahkan','success');
-            header('Location: ' . base_url . '/Admin');
+            header('Location: ' . base_url . '/Admin/Akun');
             exit; 
         }else{
             Flasher::setMessage('Gagal','Ditambahkan','danger');
-            header('Location: ' . base_url . '/Admin');
+            header('Location: ' . base_url . '/Admin/Akun');
             exit; 
 
         }
@@ -31,65 +35,111 @@ class Admin extends Controller {
     public function hapusAdmin($nip) {
         if($this->model('Admin_model')->hapusDataAdmin($nip) > 0) {
             Flasher::setMessage('Berhasil','Dihapus','success');
-            header('Location: ' . base_url . '/Admin');
+            header('Location: ' . base_url . '/Admin/Akun');
             exit; 
         }else{
-            Flasher::setMessage('Gagal','Dihapus','danger');
-            header('Location: ' . base_url . '/Admin');
+            Flasher::setMessage('Gagal','Dihapus','danger'); 
+            header('Location: ' . base_url . '/Admin/Akun');
             exit; 
         }
     }
 
-    // public function Data_Barang() {
-    //     $data['title'] = 'Data Barang';
-    //     $data['barang']=$this->model('Admin_model')->getAllBarang();
+    public function Data_Barang() {
+        $data['title'] = 'Data Barang';
+        $data['barang']=$this->model('Admin_model')->getAllBarang();
 
-    //     $this->view('templates/top');
-    //     $this->view('list_barang/index', $data);
-    //     $this->view('templates/bottom');
-    // }
+		$this->topBarName();
+        $this->view('templates/sideMenuAdmin');
+        $this->view('data_barang/index', $data);
+        $this->view('templates/bottom');
+    }
 
-    // public function Data_Peminjaman() {
-    //     $data['title'] = 'Data Peminjaman';
-    //     $data['peminjaman']=$this->model('Admin_model')->getAllPeminjaman();
+    public function Data_Peminjaman() {
+        $data['title'] = 'Data Peminjaman';
+        $data['peminjaman']=$this->model('Admin_model')->getAllPeminjaman();
 
-    //     $this->view('templates/top');
-    //     $this->view('data_peminjaman/index', $data);
-    //     $this->view('templates/bottom');
-    // }
+		$this->topBarName();
+        $this->view('templates/sideMenuAdmin');
+        $this->view('data_peminjaman/index', $data);
+        $this->view('templates/bottom');
+    }
 
-    // public function Data_Pengembalian() {
-    //     $data['title'] = 'Data Peminjaman';
-    //     $data['admin']=$this->model('Admin_model')->getAllPeminjaman();
+    public function Data_Pengembalian() {
+        $data['title'] = 'Data Peminjaman';
+        $data['pengembalian']=$this->model('Data_Barang_Model')->getAllPengembalianBarang();
+		$this->topBarName();
+        $this->view('templates/sideMenuAdmin');
+        $this->view('data_pengembalian/index', $data);
+        $this->view('templates/bottom');
+    }
 
-    //     $this->view('templates/top');
-    //     $this->view('data_pengembalian/index', $data);
-    //     $this->view('templates/bottom');
-    // }
+    public function History() {
+        $data['title'] = 'History';
+        $data['admin']=$this->model('Admin_model')->getAllAdmin();
 
-    // public function History() {
-    //     $data['title'] = 'History';
-    //     $data['admin']=$this->model('Admin_model')->getAllAdmin();
+		$this->topBarName();
+        $this->view('templates/sideMenuAdmin');
+        $this->view('history/index', $data);
+        $this->view('templates/bottom');
+    }
 
-    //     $this->view('templates/top');
-    //     $this->view('history/index', $data);
-    //     $this->view('templates/bottom');
-    // }
+    public function Akun() {
+        $data['title'] = 'Profile Akun';
+        $data['admin']=$this->model('Admin_model')->getAllAdmin();
 
-    // public function Akun() {
-    //     $data['title'] = 'Akun';
-    //     $data['admin']=$this->model('Admin_model')->getAllAdmin();
+		$this->topBarName();
+        $this->view('templates/sideMenuAdmin');
+        $this->view('admin/index', $data);
+        $this->view('templates/bottom');
+    }
 
-    //     $this->view('templates/top');
-    //     $this->view('akun/index', $data);
-    //     $this->view('templates/bottom');
-    // }
+    public function Logout() {
+        //$data['admin']=$this->model('Admin_model')->getAllAdmin();
 
-    // public function Logout() {
-    //     //$data['admin']=$this->model('Admin_model')->getAllAdmin();
+        $data['title'] = 'Halaman Login';
+		$this->view('login/index', $data);
+    }
 
-    //     $data['title'] = 'Halaman Login';
+    public function getNamaById(){
+        $data['nama']=$this->model('Admin_Model')->getNamaById($_SESSION['user_id']);
+        return $data['nama'];
+    }
 
-	// 	$this->view('login/index', $data);
-    // }
+
+    public function Home() {
+		$data['title'] = 'Home';	 
+        $data['jumlahBarang']=$this->model('Data_Barang_Model')->hitungTotalBarang();
+		$data['jumlahBarangDipinjam']=$this->model('Data_Barang_Model')->totalBarangDipinjam();
+		$data['peminjaman']=$this->model('Data_Peminjaman_Model')->getAllPeminjaman();
+
+		$this->topBarName();
+		$this->view('templates/sideMenuAdmin');
+		$this->view('home/index', $data);
+		$this->view('templates/bottom');
+	}
+
+    public function topBarName(){
+        $data['level'] = $_SESSION['level'];
+        $data['nama']=$this->getNamaById();		 
+        return 	$this->view('templates/top', $data);
+    }
+
+    public function cariBarang(){
+        $data['barang']=$this->model('Data_Barang_Model')->cariDataBarang();
+
+		$this->topBarName();
+        $this->view('templates/sideMenuAdmin');
+        $this->view('data_barang/index', $data);
+        $this->view('templates/bottom');
+    }
+
+    public function tampilprofile(){
+        $data=$this->model('Admin_Model')->getRincianProfile();	 
+
+
+		$this->topBarName();
+		$this->view('templates/sideMenuAdmin');
+		$this->view('akun/index', $data);
+		$this->view('templates/bottom');
+    }
 }
