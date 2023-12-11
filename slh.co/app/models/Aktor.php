@@ -9,11 +9,11 @@ abstract class Aktor{
     protected $salt;
     protected $level;
 
-    private $db;
+    protected $db;
 
 	public function __construct()
 	{
-		$this->db = new Database;
+		
 	}
 
     public function LogIn($data){
@@ -22,22 +22,18 @@ abstract class Aktor{
 		$this->db->bind('username', $data['username']);
 		$result = $this->db->single();        
         $userId=$result['user_id'];
-        $unicode=$result ['result'];
         $email =$result['email'];
         $username =$result ['username'];
-        $password =$result ['password'];
         $salt=$result ['salt'];
         $level =$result ['level'];
     }
 
-    public abstract function TampilDataBarang();
-    public abstract function TampilPeminjaman();
-    public abstract function TampilPengembalian();
-    public abstract function TampilAkun();
-    public abstract function TampilHistory();
-
-
-    // public abstract function user($userId, $unicode, $email, $username, $password, $salt, $level);
+    public abstract function tampilSemuaAdmin();
+    public abstract function tampilSemuaBarang();
+    public abstract function tampilSemuaPeminjaman();
+    public abstract function tampilSemuaPengembalian();
+    public abstract function tampilHistory();
+    public abstract function tampilProfile();
 
     public function getuserId() {
         return $this->userId;

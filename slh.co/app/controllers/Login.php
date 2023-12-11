@@ -17,12 +17,12 @@ class Login extends Controller {
                 $_SESSION['unicode'] = $row['unicode'];
                 //$this->model('LoginModel')->isLoggedIn($_SESSION['session_login']);
                 if($_SESSION['level']=='Teknisi'){
-                    header('location: '. base_url . '/Admin');
+                    header('location: '. base_url . '/Admin_Side');
                 }else{
-                echo"Anda adalah user";                
+                echo"Anda adalah user";        
                 }
         } else {
-            Flasher::setMessage('Tidak Ditemukan','Username/Password','danger');
+            Flasher::setMessage('Login Gagal','Username/Password tidak valid.','danger');
             header('location: '. base_url .'/Login');
             exit;	
         }

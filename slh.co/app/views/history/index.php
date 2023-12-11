@@ -75,7 +75,7 @@
                                     <td><?= $row['keterangan'] ?></td>
                                     <td>
                                         <!-- buutton untuk menampilkan data peminjaman -->
-                                        <button onclick="getRincian(this);" id="<?= $row['id'] ?>" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" data-bs-whatever="@mdo">
+                                        <button  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalRincian" data-bs-whatever="@mdo">
                                         Rincian
                                         </button>                                   
                                     </td>

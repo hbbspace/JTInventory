@@ -15,42 +15,42 @@
                     <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a class="nav-link d-flex align-items-center gap-3" aria-current="page" href="<?= base_url; ?>/Admin">
+                                <a class="nav-link d-flex align-items-center gap-3" aria-current="page" href="<?= base_url; ?>/Admin_Side">
                                     Dashboard
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link d-flex align-items-center gap-3 " href="<?= base_url; ?>/Admin/Akun">
+                                <a class="nav-link d-flex align-items-center gap-3 " href="<?= base_url; ?>/Admin_Side/Data_Admin">
                                     Data Admin
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link d-flex align-items-center gap-3 " href="<?= base_url; ?>/Admin/Data_Barang">
+                                <a class="nav-link d-flex align-items-center gap-3 " href="<?= base_url; ?>/Admin_Side/Data_Barang">
                                     Data Barang
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link d-flex align-items-center gap-3 " href="<?= base_url; ?>/Admin/Data_Peminjaman">
+                                <a class="nav-link d-flex align-items-center gap-3 " href="<?= base_url; ?>/Admin_Side/Data_Peminjaman">
                                     Data Peminjaman
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link d-flex align-items-center gap-3 " href="<?= base_url; ?>/Admin/Data_Pengembalian">
+                                <a class="nav-link d-flex align-items-center gap-3 " href="<?= base_url; ?>/Admin_Side/Data_Pengembalian">
                                     Data Pengembalian
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link d-flex align-items-center gap-3 " href="<?= base_url; ?>/Admin/History">
+                                <a class="nav-link d-flex align-items-center gap-3 " href="<?= base_url; ?>/Admin_Side/History">
                                     History
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link d-flex align-items-center gap-3 " href="<?= base_url; ?>/Admin/tampilProfile">
+                                <a class="nav-link d-flex align-items-center gap-3 " href="<?= base_url; ?>/Admin_Side/Akun">
                                     Akun
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link d-flex align-items-center gap-3 " href="/Admin/Logout">
+                                <a class="nav-link d-flex align-items-center gap-3 " href="/dasarWeb/JTInventory/slh.co/public/logout.php">
                                     Logout
                                 </a>
                             </li>

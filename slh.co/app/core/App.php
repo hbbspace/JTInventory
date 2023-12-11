@@ -7,7 +7,9 @@ class App {
 
     public function __construct() {
 
-		//Sesssion stsrt code
+		//Sesssion start
+		if (session_status() == PHP_SESSION_NONE)
+    		session_start();
 		
         $url = $this->parse_url();
 

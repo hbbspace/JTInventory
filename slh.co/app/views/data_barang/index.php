@@ -19,7 +19,7 @@
 </head>
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <div class="col-lg-12 pt-3">
-                    <form action="<?=base_url;?>/Admin/cariBarang" method="post">
+                    <form action="<?=base_url;?>/Admin_Side/cariBarang" method="post">
                     <div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="Cari Barang" aria-label="Recipient's username" aria-describedby="basic-addon2" name="keyword">
                     <div class="input-group-append">
@@ -69,7 +69,7 @@
                                         <td>
                                             <!-- Tombol untuk mengedit dan menghapus data barang -->
                                             <a href="<?= $row['id_barang'] ?>" class="btn btn-warning btn-xs"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit</a>
-                                            <a href="<?= base_url;?>/Data_Barang/hapusBarang/ <?=$row['id_barang'] ?>" class="btn btn-danger btn-xs" onclick="return confirm('Hapus Data Barang?');"><i class="fa fa-trash-o" aria-hidden="true"></i>Hapus</a>
+                                            <a href="<?= base_url;?>/Admin_Side/hapusBarang/<?=$row['id_barang'] ?>" class="btn btn-danger btn-xs" onclick="return confirm('Hapus Data Barang?');"><i class="fa fa-trash-o" aria-hidden="true"></i>Hapus</a>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
@@ -92,7 +92,7 @@
                                     <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Data Barang</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
-                                <form action="<?= base_url; ?>/Data_Barang/tambahBarang" method="post">
+                                <form action="<?= base_url; ?>/Admin_Side/tambahBarang" method="post">
                                     <div class="modal-body">
                                         <div class="mb-3">
                                             <label for="recipient-name" class="col-form-label">Nama Barang:</label>

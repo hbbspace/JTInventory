@@ -1,36 +1,35 @@
 <?php
 
-abstract class Admin extends Aktor {
+class Admin {
 
-    // public function user($userId, $unicode, $email, $username, $password, $salt, $level) {
 
-    // }
-    // protected $nip;
-    // protected $namaTeknisi;
-    // protected $jenisKelamin;
+    protected $nip;
+    protected $namaTeknisi;
+    protected $jenisKelamin;
 
-    private $db;
+    protected $db;
 
     public function __construct(){
+
         $this->db=new Database;
     }
 
-    public function Teknisi($data){
-		// $query = "SELECT nip, nama_teknisi, jk FROM teknisi WHERE username = :username";
-		// $this->db->query($query);
-		// $this->db->bind('username', $data['username']);
-		// $result = $this->db->single();        
-        // $nip=$result['nip'];
-        // $namaTeknisi=$result ['nama_teknisi'];
-        // $jenisKelamin =$result['jk'];
-    }
-    public function TampilDataBarang(){
-        $query="SELECT* FROM barang";
+    // Fungsi Inti
+    public function tampilSemuaAdmin(){
+        $query="SELECT * FROM teknisi;";
+
         $this->db->query($query);
         return $this->db->resultSet();
     }
-    public function TampilPeminjaman(){
-        $querry="SELECT m.nama_mhs AS nama, p.time AS waktu, u.level AS status, p.id_peminjaman AS id FROM peminjaman AS p
+
+    public function tampilSemuaBarang(){
+        $query="SELECT* FROM barang;";
+        $this->db->query($query);
+        return $this->db->resultSet();
+    }
+
+    public function tampilSemuaPeminjaman(){
+        $query="SELECT m.nama_mhs AS nama, p.time AS waktu, u.level AS status, p.id_peminjaman AS id FROM peminjaman AS p
         INNER JOIN user AS u ON u.user_id = p.user_id
         INNER JOIN mahasiswa AS m ON m.nim = u.unicode
         WHERE p.status = 'request'
@@ -39,11 +38,11 @@ abstract class Admin extends Aktor {
         INNER JOIN user AS u ON u.user_id = p.user_id
         INNER JOIN dosen AS d ON d.nidn = u.unicode
         WHERE p.status = 'request'";
-        $this->db->query($querry);
-
+        $this->db->query($query);
         return $this->db->resultSet();
     }
-    public function TampilPengembalian(){
+
+    public function tampilSemuaPengembalian(){
         $querry="SELECT m.nama_mhs AS nama, p.time AS waktu, u.level AS status, p.id_peminjaman AS id FROM peminjaman AS p
         INNER JOIN user AS u ON u.user_id = p.user_id
         INNER JOIN mahasiswa AS m ON m.nim = u.unicode
@@ -56,108 +55,78 @@ abstract class Admin extends Aktor {
         $this->db->query($querry);
         return $this->db->resultSet();
     }
-    public function TampilAkun(){
-        
-    }
-    public function TampilHistory(){
-        $querry="SELECT m.nama_mhs AS nama, p.time AS waktu, u.level AS status, p.id_peminjaman AS id, p.keterangan as keterangan FROM peminjaman AS p
+
+    public function tampilHistory(){
+        $querry="SELECT m.nama_mhs AS nama, p.time AS waktu, u.level AS status, p.id_peminjaman AS id, p.keterangan AS keterangan FROM peminjaman AS p
         INNER JOIN user AS u ON u.user_id = p.user_id
         INNER JOIN mahasiswa AS m ON m.nim = u.unicode
         WHERE p.status = 'done' OR p.status ='failed'
         UNION
-        SELECT d.nama_dosen AS nama, p.time AS waktu, u.level AS status, p.id_peminjaman AS id, p.keterangan as keterangan FROM peminjaman AS p
+        SELECT d.nama_dosen AS nama, p.time AS waktu, u.level AS status, p.id_peminjaman AS id, p.keterangan AS keterangan FROM peminjaman AS p
         INNER JOIN user AS u ON u.user_id = p.user_id
         INNER JOIN dosen AS d ON d.nidn = u.unicode
-        WHERE p.status = 'done' OR p.status ='failed'";
+        WHERE p.status = 'done' OR p.status ='failed';";
         $this->db->query($querry);
 
         return $this->db->resultSet();
     }
 
-    public function index() {
-        $data['title'] = 'Home';
-        $data['admin']=$this->model('Admin_model')->getAllAdmin();
+    public function tampilProfile(){
+        $id = $_SESSION['user_id'];
+        $level=$_SESSION['level'];
 
-        $this->view('templates/top');
-        $this->view('templates/sideMenuAdmin');
-        $this->view('admin/index', $data);
-        $this->view('templates/bottom');
+        $query = "SELECT t.nama_teknisi AS nama , t.nip AS nip, t.jk AS jk, u.username AS username, u.email AS email, u.level as level FROM user AS u 
+        INNER JOIN teknisi AS t ON t.nip = u.unicode WHERE u.level = '$level' AND u.user_id = '$id'";
+        $this->db->query($query);
+        return $this->db->single();
+        
     }
 
-    // public function tambahAdmin() {
-    //     if($this->model('Admin_Model')->tambahDataAdmin($_POST) > 0) {
-    //         Flasher::setMessage('Berhasil','Ditambahkan','success');
-    //         header('Location: ' . base_url . '/Admin');
-    //         exit; 
-    //     }else{
-    //         Flasher::setMessage('Gagal','Ditambahkan','danger');
-    //         header('Location: ' . base_url . '/Admin');
-    //         exit; 
+    // Fungsi Fitur
+    public function getNamaById($id){
+      $query="SELECT t.nama_teknisi AS nama FROM user AS u INNER JOIN teknisi AS t ON t.nip = u.unicode WHERE u.user_id = '$id'";
+      $this->db->query($query);
+      return $this->db->single();
+    }
 
-    //     }
-    // }
-    // public function hapusAdmin($nip) {
-    //     if($this->model('Admin_model')->hapusDataAdmin($nip) > 0) {
-    //         Flasher::setMessage('Berhasil','Dihapus','success');
-    //         header('Location: ' . base_url . '/Admin');
-    //         exit; 
-    //     }else{
-    //         Flasher::setMessage('Gagal','Dihapus','danger');
-    //         header('Location: ' . base_url . '/Admin');
-    //         exit; 
-    //     }
-    // }
+    public function editProfile(){
 
-    // public function Data_Barang() {
-    //     $data['title'] = 'Data Barang';
-    //     $data['barang']=$this->model('Admin_model')->getAllBarang();
+    }
 
-    //     $this->view('templates/top');
-    //     $this->view('list_barang/index', $data);
-    //     $this->view('templates/bottom');
-    // }
+    public function cariBarang(){
+        $keyword=$_POST['keyword'];
+        $query="SELECT * FROM barang where nama_barang LIKE :keyword";
+        $this->db->query($query);
+        $this->db->bind('keyword', "%$keyword%");
+        return $this->db->resultSet();
+    }
 
-    // public function Data_Peminjaman() {
-    //     $data['title'] = 'Data Peminjaman';
-    //     $data['peminjaman']=$this->model('Admin_model')->getAllPeminjaman();
+    public function tambahDataBarang($data) {
+        if ($data['nama_barang'] != null && $data['id_barang'] != null && $data['maintener'] != null && $data['qty'] != null) {
+            $query = "INSERT INTO barang VALUES (:id_barang, :nama_barang, :maintener, :qty)";
 
-    //     $this->view('templates/top');
-    //     $this->view('data_peminjaman/index', $data);
-    //     $this->view('templates/bottom');
-    // }
+            $this->db->query($query);
+            $this->db->bind('nama_barang', $data['nama_barang']);
+            $this->db->bind('id_barang', $data['id_barang']);
+            $this->db->bind('maintener', $data['maintener']);
+            $this->db->bind('qty', $data['qty']);
 
-    // public function Data_Pengembalian() {
-    //     $data['title'] = 'Data Peminjaman';
-    //     $data['admin']=$this->model('Admin_model')->getAllPeminjaman();
+            $this->db->execute();
+            
+        } else {
+            return 0;
+        }
 
-    //     $this->view('templates/top');
-    //     $this->view('data_pengembalian/index', $data);
-    //     $this->view('templates/bottom');
-    // }
+        return $this->db->rowCount();
+    }
 
-    // public function History() {
-    //     $data['title'] = 'History';
-    //     $data['admin']=$this->model('Admin_model')->getAllAdmin();
+    public function hapusDataBarang($id_barang) {
+        $query = "DELETE FROM barang WHERE id_barang = :id_b";
+        $this->db->query($query);
+        $this->db->bind('id_b', $id_barang);
 
-    //     $this->view('templates/top');
-    //     $this->view('history/index', $data);
-    //     $this->view('templates/bottom');
-    // }
+        $this->db->execute();
 
-    // public function Akun() {
-    //     $data['title'] = 'Akun';
-    //     $data['admin']=$this->model('Admin_model')->getAllAdmin();
-
-    //     $this->view('templates/top');
-    //     $this->view('akun/index', $data);
-    //     $this->view('templates/bottom');
-    // }
-
-    // public function Logout() {
-    //     //$data['admin']=$this->model('Admin_model')->getAllAdmin();
-
-    //     $data['title'] = 'Halaman Login';
-
-	// 	$this->view('login/index', $data);
-    // }
+        return $this->db->rowCount();
+    }
 }

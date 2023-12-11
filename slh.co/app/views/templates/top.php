@@ -245,11 +245,11 @@
     </svg>
 
     <header class="navbar sticky-top flex-md-nowrap p-0" data-bs-theme="dark" style="background-color: #39A7FF;">
-        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-4" href="#"><img src="/dasarWeb/JTInventory/slh.co/public/assets/img/favicons/Logo.png" alt="" style="width: 90px; height:auto"></a>
+        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-4" href="<?= base_url; ?>/Admin_Side"><img src="/dasarWeb/JTInventory/slh.co/public/assets/img/favicons/Logo.png" alt="" style="width: 90px; height:auto"></a>
         <div class="icon-user">
             <?=$data['nama'] ['nama']?>
-            <a href="index.php?page=akun" >
-                <img src="/dasarWeb/JTInventory/slh.co/public/assets/img/profile.png" alt="Logo Profil" href="index.php?page=akun" class="col-lg-1" class="logo-profil" style="width: 30px;">
+            <a href="<?= base_url; ?>/Admin_Side/Akun" >
+                <img src="/dasarWeb/JTInventory/slh.co/public/assets/img/profile.png" alt="Logo Profil" href="<?= base_url; ?>/Admin_Side/Akun" class="col-lg-1" class="logo-profil" style="width: 30px;">
             </a>
         </div>
         <ul class="navbar-nav flex-row d-md-none">
