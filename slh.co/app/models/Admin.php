@@ -84,29 +84,29 @@ abstract class Admin extends Aktor {
         $this->view('templates/bottom');
     }
 
-    public function tambahAdmin() {
-        if($this->model('Admin_Model')->tambahDataAdmin($_POST) > 0) {
-            Flasher::setMessage('Berhasil','Ditambahkan','success');
-            header('Location: ' . base_url . '/Admin');
-            exit; 
-        }else{
-            Flasher::setMessage('Gagal','Ditambahkan','danger');
-            header('Location: ' . base_url . '/Admin');
-            exit; 
+    // public function tambahAdmin() {
+    //     if($this->model('Admin_Model')->tambahDataAdmin($_POST) > 0) {
+    //         Flasher::setMessage('Berhasil','Ditambahkan','success');
+    //         header('Location: ' . base_url . '/Admin');
+    //         exit; 
+    //     }else{
+    //         Flasher::setMessage('Gagal','Ditambahkan','danger');
+    //         header('Location: ' . base_url . '/Admin');
+    //         exit; 
 
-        }
-    }
-    public function hapusAdmin($nip) {
-        if($this->model('Admin_model')->hapusDataAdmin($nip) > 0) {
-            Flasher::setMessage('Berhasil','Dihapus','success');
-            header('Location: ' . base_url . '/Admin');
-            exit; 
-        }else{
-            Flasher::setMessage('Gagal','Dihapus','danger');
-            header('Location: ' . base_url . '/Admin');
-            exit; 
-        }
-    }
+    //     }
+    // }
+    // public function hapusAdmin($nip) {
+    //     if($this->model('Admin_model')->hapusDataAdmin($nip) > 0) {
+    //         Flasher::setMessage('Berhasil','Dihapus','success');
+    //         header('Location: ' . base_url . '/Admin');
+    //         exit; 
+    //     }else{
+    //         Flasher::setMessage('Gagal','Dihapus','danger');
+    //         header('Location: ' . base_url . '/Admin');
+    //         exit; 
+    //     }
+    // }
 
     // public function Data_Barang() {
     //     $data['title'] = 'Data Barang';

@@ -69,7 +69,7 @@
                                         <td><?= $row['waktu'] ?></td>
                                         <td>
                                         <!-- buutton untuk menampilkan data peminjaman -->
-                                        <button onclick="getRincian(this);" id="<?= $row['id'] ?>" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" data-bs-whatever="@mdo">
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalRincian" data-bs-whatever="@mdo">
                                         Rincian
                                     </button>                                
                                     </td>
@@ -77,6 +77,73 @@
                                 <?php endforeach; ?>
                         </tbody>
                     </table>
+                    <div class="modal fade" id="modalRincian" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-scrollable" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Rincian Data Peminjaman</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <!-- Form to add admin -->
+                        <form action="" method="">
+                            <div class="modal-body">
+                                <?php
+                                // ...
+                                ?>
+                                <div class="data-container">
+                                    <div class="data-row">
+                                        <p class="data-label"><strong>Nama:</strong></p>
+                                        <p class="data-value">statis</p>
+                                    </div>
+                                </div>
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Nama Barang</th>
+                                            <th scope="col">Kode Barang</th>
+                                            <th scope="col">Jumlah</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>statis</td>
+                                            <td>statis</td>
+                                            <td>statis</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="data-container">
+                                <div class="data-row">
+                                        <p class="data-label"><strong>Jumlah Barang Dipinjam:</strong></p>
+                                        <p class="data-value">statis></p>
+                                    </div>
+                                    <div class="data-row">
+                                        <p class="data-label"><strong>Maintener:</strong></p>
+                                        <p class="data-value">atatis</p>
+                                    </div>
+                                    <div class="data-row">
+                                        <p class="data-label"><strong>Tanggal Peminjaman:</strong></p>
+                                        <p class="data-value">statis</p>
+                                    </div>
+                                    <div class="data-row">
+                                        <p class="data-label"><strong>Tanggal Pengembalian:</strong></p>
+                                        <p class="data-value">statis</p>
+                                    </div>
+                                    <div class="data-row">
+                                        <p class="data-label"><strong>Upload KTM:</strong></p>
+                                        <p class="data-value">statis</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer" style="display: flex;">
+                                <button type="submit" class="btn btn-primary" aria-hidden="true"> Accept</button>
+                                <button type="submit" class="btn btn-danger" aria-hidden="true"> Decline</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+                    
             </main>
         </div>
     </div>
