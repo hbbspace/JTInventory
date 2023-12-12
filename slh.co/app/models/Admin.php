@@ -36,13 +36,13 @@ class Admin extends Aktor {
 
     public function tampilSemuaPeminjaman(){
         $helper = new Helper();
-        $result = $helper->tampilSemuaPeminjaman();
+        $result = $helper->tampilPeminjaman('request');
         return $result;
     }
 
     public function tampilSemuaPengembalian(){
         $helper = new Helper();
-        $result = $helper->tampilSemuaPengembalian();
+        $result = $helper->tampilPeminjaman('return');
         return $result;
     }
 

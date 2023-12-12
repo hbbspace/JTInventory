@@ -9,7 +9,8 @@ class Login extends Controller {
 
     public function prosesLogin() {
 
-        $row = $this->model('Helper')->checkLogin();
+        $row = $this->model('Helper')->checkLogin();        
+        var_dump($row);
         if($row > 0 ) {
 
             if($row['level'] == 'Teknisi') {
@@ -25,9 +26,9 @@ class Login extends Controller {
             $_SESSION['user_id'] = $row['user_id'];
             $_SESSION['unicode'] = $row['unicode'];
                 
-            if($_SESSION['level']=='Teknisi'){
+            if($_SESSION['level'] == 'Teknisi'){
                 header('location: '. base_url . '/Admin_Side');
-            }else{
+            }else {
                 header('location: '. base_url . '/User_Side');
             }
         } else {

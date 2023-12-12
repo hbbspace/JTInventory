@@ -37,9 +37,9 @@ class Helper {
     }
 
     public function ambilDataChild($id) {
-        if($_SESSION['level'] = 'Teknisi') {
+        if($_SESSION['level'] == 'Teknisi') {
             $query="SELECT * FROM teknisi AS t INNER JOIN user AS u ON u.unicode = t.nip WHERE u.unicode = '$id'";
-        } else if ($_SESSION['level'] = 'Dosen') {
+        } else if ($_SESSION['level'] == 'Dosen') {
             $query="SELECT * FROM dosen AS t INNER JOIN user AS u ON u.unicode = t.nidn WHERE u.unicode = '$id'";
         } else {
             $query="SELECT * FROM mahasiswa AS t INNER JOIN user AS u ON u.unicode = t.nim WHERE u.unicode = '$id'";
@@ -52,71 +52,75 @@ class Helper {
 	// Fungsi inti Admin
 	public function tampilSemuaAdmin(){
         $query="SELECT * FROM teknisi;";
-
         $this->db->query($query);
         return $this->db->resultSet();
     }
 
     public function tampilSemuaBarang(){
-        $query="SELECT * FROM barang";
+            $query="SELECT * FROM barang";
         $this->db->query($query);
         return $this->db->resultSet();
     }
 
-    public function tampilSemuaPeminjaman(){
-        $query="SELECT m.nama_mhs AS nama, p.time AS waktu, u.level AS status, p.id_peminjaman AS id FROM peminjaman AS p
-        INNER JOIN user AS u ON u.user_id = p.user_id
-        INNER JOIN mahasiswa AS m ON m.nim = u.unicode
-        WHERE p.status = 'request'
-        UNION
-        SELECT d.nama_dosen AS nama, p.time AS waktu, u.level AS status, p.id_peminjaman AS id FROM peminjaman AS p
-        INNER JOIN user AS u ON u.user_id = p.user_id
-        INNER JOIN dosen AS d ON d.nidn = u.unicode
-        WHERE p.status = 'request'";
+    public function tampilPeminjaman($status){
+        if($_SESSION['level'] == 'Teknisi') {
+            $query="SELECT m.nama_mhs AS nama, p.time AS waktu, u.level AS status, p.id_peminjaman AS id FROM peminjaman AS p
+            INNER JOIN user AS u ON u.user_id = p.user_id
+            INNER JOIN mahasiswa AS m ON m.nim = u.unicode
+            WHERE p.status = '$status'
+            UNION
+            SELECT d.nama_dosen AS nama, p.time AS waktu, u.level AS status, p.id_peminjaman AS id FROM peminjaman AS p
+            INNER JOIN user AS u ON u.user_id = p.user_id
+            INNER JOIN dosen AS d ON d.nidn = u.unicode
+            WHERE p.status = '$status'";
+        } else {
+            $id=$_SESSION['user_id'];
+            $query="SELECT p.id_peminjaman as id,p.time as waktu ,sum(lb.qty) as jumlah, p.status as status
+            FROM peminjaman as p inner join list_barang as lb on p.id_peminjaman=lb.id_peminjaman inner join barang as b on b.id_barang = lb.id_barang WHERE p.user_id='$id' and p.status='$status'";
+        }
         $this->db->query($query);
-        return $this->db->resultSet();
-    }
-
-    public function tampilSemuaPengembalian(){
-        $querry="SELECT m.nama_mhs AS nama, p.time AS waktu, u.level AS status, p.id_peminjaman AS id FROM peminjaman AS p
-        INNER JOIN user AS u ON u.user_id = p.user_id
-        INNER JOIN mahasiswa AS m ON m.nim = u.unicode
-        WHERE p.status = 'progress'
-        UNION
-        SELECT d.nama_dosen AS nama, p.time AS waktu, u.level AS status, p.id_peminjaman AS id FROM peminjaman AS p
-        INNER JOIN user AS u ON u.user_id = p.user_id
-        INNER JOIN dosen AS d ON d.nidn = u.unicode
-        WHERE p.status = 'progress'";
-        $this->db->query($querry);
         return $this->db->resultSet();
     }
 
     public function tampilHistory(){
-        $querry="SELECT m.nama_mhs AS nama, p.time AS waktu, u.level AS status, p.id_peminjaman AS id, p.keterangan AS keterangan FROM peminjaman AS p
-        INNER JOIN user AS u ON u.user_id = p.user_id
-        INNER JOIN mahasiswa AS m ON m.nim = u.unicode
-        WHERE p.status = 'done' OR p.status ='failed'
-        UNION
-        SELECT d.nama_dosen AS nama, p.time AS waktu, u.level AS status, p.id_peminjaman AS id, p.keterangan AS keterangan FROM peminjaman AS p
-        INNER JOIN user AS u ON u.user_id = p.user_id
-        INNER JOIN dosen AS d ON d.nidn = u.unicode
-        WHERE p.status = 'done' OR p.status ='failed';";
-        $this->db->query($querry);
-
+        if($_SESSION['level'] == 'Teknisi') {
+            $query="SELECT m.nama_mhs AS nama, p.time AS waktu, u.level AS status, p.id_peminjaman AS id, p.keterangan AS keterangan FROM peminjaman AS p
+            INNER JOIN user AS u ON u.user_id = p.user_id
+            INNER JOIN mahasiswa AS m ON m.nim = u.unicode
+            WHERE p.status = 'done' OR p.status ='failed'
+            UNION
+            SELECT d.nama_dosen AS nama, p.time AS waktu, u.level AS status, p.id_peminjaman AS id, p.keterangan AS keterangan FROM peminjaman AS p
+            INNER JOIN user AS u ON u.user_id = p.user_id
+            INNER JOIN dosen AS d ON d.nidn = u.unicode
+            WHERE p.status = 'done' OR p.status ='failed';";
+        } else if ($_SESSION['level'] == 'Dosen') {
+            $id=$_SESSION['user_id'];
+            $query="SELECT d.nama_dosen AS nama, p.time AS waktu, u.level AS status, p.id_peminjaman AS id, p.keterangan AS keterangan FROM peminjaman AS p
+            INNER JOIN user AS u ON u.user_id = p.user_id
+            INNER JOIN dosen AS d ON d.nidn = u.unicode
+            WHERE p.status = 'done' OR p.status ='failed' AND p.user_id = $id";
+        } else {
+            $id=$_SESSION['user_id'];
+            $query = "SELECT m.nama_mhs AS nama, p.time AS waktu, u.level AS status, p.id_peminjaman AS id, p.keterangan AS keterangan FROM peminjaman AS p
+            INNER JOIN user AS u ON u.user_id = p.user_id
+            INNER JOIN mahasiswa AS m ON m.nim = u.unicode
+            WHERE p.status = 'done' OR p.status ='failed' AND p.user_id = $id";
+        }
+        $this->db->query($query);
         return $this->db->resultSet();
     }
 
     public function tampilProfile(){
         $id = $_SESSION['user_id'];
-        if($_SESSION['level'] = 'Teknisi') {
+        if($_SESSION['level'] == 'Teknisi') {
             $query = "SELECT t.nama_teknisi AS nama , t.nip AS unicode, t.jk AS jk, u.username AS username, u.email AS email, u.level as level FROM user AS u 
             INNER JOIN teknisi AS t ON t.nip = u.unicode WHERE u.level = 'Teknisi' AND u.user_id = '$id'";
-        } else if ($_SESSION['level'] = 'Dosen') {
-            $query = "SELECT t.nama_dosen AS nama , t.nip AS unicode, t.jk AS jk, u.username AS username, u.email AS email, u.level as level FROM user AS u 
-            INNER JOIN dosen AS t ON t.nip = u.unicode WHERE u.level = 'Teknisi' AND u.user_id = '$id'";
+        } else if ($_SESSION['level'] == 'Dosen') {
+            $query = "SELECT t.nama_dosen AS nama , t.nidn AS unicode, t.jk AS jk, u.username AS username, u.email AS email, u.level as level FROM user AS u 
+            INNER JOIN dosen AS t ON t.nidn = u.unicode WHERE u.level = 'Dosen' AND u.user_id = '$id'";
         } else {
-            $query = "SELECT t.nama_mhs AS nama , t.nip AS unicode, t.jk AS jk, u.username AS username, u.email AS email, u.level as level FROM user AS u 
-            INNER JOIN mahasiswa AS t ON t.nip = u.unicode WHERE u.level = 'Teknisi' AND u.user_id = '$id'";
+            $query = "SELECT t.nama_mhs AS nama , t.nim AS unicode, t.jk AS jk, u.username AS username, u.email AS email, u.level as level FROM user AS u 
+            INNER JOIN mahasiswa AS t ON t.nim = u.unicode WHERE u.level = 'Mahasiswa' AND u.user_id = '$id'";
         }
         $this->db->query($query);
         return $this->db->single();
@@ -128,7 +132,13 @@ class Helper {
 
     // Fungsi Tambahan
     public function getNamaById($id){
-        $query="SELECT t.nama_teknisi AS nama FROM user AS u INNER JOIN teknisi AS t ON t.nip = u.unicode WHERE u.user_id = '$id'";
+        if($_SESSION['level'] == 'Teknisi') {        
+            $query="SELECT t.nama_teknisi AS nama FROM user AS u INNER JOIN teknisi AS t ON t.nip = u.unicode WHERE u.user_id = '$id'";
+        } else if ($_SESSION['level'] == 'Dosen') {
+            $query="SELECT t.nama_dosen AS nama FROM user AS u INNER JOIN dosen AS t ON t.nidn = u.unicode WHERE u.user_id = '$id'";
+        } else{
+            $query="SELECT t.nama_mhs AS nama FROM user AS u INNER JOIN mahasiswa AS t ON t.nim = u.unicode WHERE u.user_id = '$id'";            
+        }
         $this->db->query($query);
         return $this->db->single();
     }
@@ -186,5 +196,13 @@ class Helper {
         $query="SELECT count(user_id) as jumlahUser FROM user AS u WHERE u.level = 'Dosen' OR u.level = 'Mahasiswa'";
         $this->db->query($query);
         return $this->db->single();
+    }
+
+    public function tampilDataRequestBarang($idBarang) {
+        $id=$_SESSION['user_id'];
+        $query="SELECT p.id_peminjaman as id,p.time as waktu,b.nama_barang as nama_barang,b.id_barang as id_barang ,lb.qty as jumlah, p.tgl_pinjam as tanggal_pinjam, p.tgl_kembali as tanggal_kembali, p.status as status
+        FROM peminjaman as p inner join list_barang as lb on p.id_peminjaman=lb.id_peminjaman inner join barang as b on b.id_barang=lb.id_barang WHERE p.user_id='$id' and p.status='request' and p.id_peminjaman='$idBarang'";
+        $this->db->query($query);
+        return $this->db->resultSet();
     }
 }

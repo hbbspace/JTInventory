@@ -14,7 +14,7 @@ class Admin_Side extends Controller {
     public function index() {
         $data['title'] = 'Home';
 		$data['level'] = $_SESSION['level'];
-        $data['nama']=$this->getNamaById($_SESSION['user_id']);		 
+        $data['nama']=$this->getNamaById();		 
         $data['jumlahBarang']=$this->model('Admin')->hitungTotalBarang();
 		$data['jumlahBarangDipinjam']=$this->model('Admin')->totalBarangDipinjam();
         $data['jumlahUser']=$this->model('Admin')->hitungTotalUser();
