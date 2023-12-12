@@ -19,7 +19,7 @@ class Login extends Controller {
                 if($_SESSION['level']=='Teknisi'){
                     header('location: '. base_url . '/Admin_Side');
                 }else{
-                echo"Anda adalah user";        
+                    header('location: '. base_url . '/User_Side');
                 }
         } else {
             Flasher::setMessage('Login Gagal','Username/Password tidak valid.','danger');

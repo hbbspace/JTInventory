@@ -50,7 +50,6 @@ class Data_Barang_Model {
     public function hitungTotalBarang(){
         $query="SELECT sum(qty) as nilai FROM barang";
         $this->db->query($query);
-        $this->db->execute();
         return $this->db->single();
     }
 

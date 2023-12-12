@@ -4,7 +4,7 @@ class Admin_Side extends Controller {
 
     public function __construct()
 	{	
-		if($_SESSION['username'] == null) {
+		if($_SESSION['level'] != 'Teknisi') {
 			Flasher::setMessage('Terdeteksi!','Tindakan terlarang.','danger');
 			header('location: '. base_url . '/login');
 			exit;
@@ -24,7 +24,6 @@ class Admin_Side extends Controller {
 		$this->view('home/index', $data);
 		$this->view('templates/bottom');
 
-        $admin = new Admin;
     }
 
     // Controller Fungsi Inti
