@@ -1,6 +1,6 @@
 <?php
 
-class Teknisi{
+class Teknisi extends Admin {
     protected $nip;
     protected $namaTeknisi;
     protected $jenisKelamin;

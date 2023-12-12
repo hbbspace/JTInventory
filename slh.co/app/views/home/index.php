@@ -30,7 +30,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">Jumlah User</h5>
-                                <p class="card-text"><!-- Jangan lupa diganti -->0 orang.</p>
+                                <p class="card-text"><?=$data['jumlahUser']['jumlahUser']?> orang.</p>
                             </div>
                         </div>
                     </div>
@@ -38,13 +38,13 @@
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">Presentase Barang dipinjam</h5>
-                                <p class="card-text"><?=$data['jumlahBarang']['nilai']/$data['jumlahBarangDipinjam']['jumlahPinjam']?>%</p>
+                                <p class="card-text"><?=$data['jumlahBarangDipinjam']['jumlahPinjam']/$data['jumlahBarang']['nilai']*100?>%</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <a  href="<?= base_url; ?>/Admin/Data_Peminjaman" style="text-decoration: none; color:auto"><h1 class="">Request Info</h1> </a>
+                    <a  href="<?= base_url; ?>/Admin_Side/Data_Peminjaman" style="text-decoration: none; color:auto"><h1 class="">Request Info</h1> </a>
                 </div>
                 <div class="table-responsive small mt-3">
                     <table class="table table-striped">

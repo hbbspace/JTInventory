@@ -1,131 +1,109 @@
 <?php
 
-class Admin {
+require_once 'Aktor.php';
+class Admin extends Aktor {
 
     protected $nip;
     protected $namaTeknisi;
     protected $jenisKelamin;
 
-    protected $db;
-
     public function __construct(){
+        parent::__construct();
+        $helper = new Helper();
+        $result = $helper->ambilDataChild($_SESSION['unicode']);
 
-        $this->db=new Database;
+        $this->nip = $result['nip'];
+        $this->namaTeknisi = $result['nama_teknisi'];
+        $this->jenisKelamin = $result['jk'];
     }
 
     // Fungsi Inti
-    public function tampilSemuaAdmin(){
-        $query="SELECT * FROM teknisi;";
+    public function login() {
+        return parent::login();
+    }
 
-        $this->db->query($query);
-        return $this->db->resultSet();
+    public function tampilSemuaAdmin(){ 
+        $helper = new Helper();
+        $result = $helper->tampilSemuaAdmin();
+        return $result;
     }
 
     public function tampilSemuaBarang(){
-        $query="SELECT* FROM barang;";
-        $this->db->query($query);
-        return $this->db->resultSet();
+        $helper = new Helper();
+        $result = $helper->tampilSemuaBarang();
+        return $result;
     }
 
     public function tampilSemuaPeminjaman(){
-        $query="SELECT m.nama_mhs AS nama, p.time AS waktu, u.level AS status, p.id_peminjaman AS id FROM peminjaman AS p
-        INNER JOIN user AS u ON u.user_id = p.user_id
-        INNER JOIN mahasiswa AS m ON m.nim = u.unicode
-        WHERE p.status = 'request'
-        UNION
-        SELECT d.nama_dosen AS nama, p.time AS waktu, u.level AS status, p.id_peminjaman AS id FROM peminjaman AS p
-        INNER JOIN user AS u ON u.user_id = p.user_id
-        INNER JOIN dosen AS d ON d.nidn = u.unicode
-        WHERE p.status = 'request'";
-        $this->db->query($query);
-        return $this->db->resultSet();
+        $helper = new Helper();
+        $result = $helper->tampilSemuaPeminjaman();
+        return $result;
     }
 
     public function tampilSemuaPengembalian(){
-        $querry="SELECT m.nama_mhs AS nama, p.time AS waktu, u.level AS status, p.id_peminjaman AS id FROM peminjaman AS p
-        INNER JOIN user AS u ON u.user_id = p.user_id
-        INNER JOIN mahasiswa AS m ON m.nim = u.unicode
-        WHERE p.status = 'progress'
-        UNION
-        SELECT d.nama_dosen AS nama, p.time AS waktu, u.level AS status, p.id_peminjaman AS id FROM peminjaman AS p
-        INNER JOIN user AS u ON u.user_id = p.user_id
-        INNER JOIN dosen AS d ON d.nidn = u.unicode
-        WHERE p.status = 'progress'";
-        $this->db->query($querry);
-        return $this->db->resultSet();
+        $helper = new Helper();
+        $result = $helper->tampilSemuaPengembalian();
+        return $result;
     }
 
     public function tampilHistory(){
-        $querry="SELECT m.nama_mhs AS nama, p.time AS waktu, u.level AS status, p.id_peminjaman AS id, p.keterangan AS keterangan FROM peminjaman AS p
-        INNER JOIN user AS u ON u.user_id = p.user_id
-        INNER JOIN mahasiswa AS m ON m.nim = u.unicode
-        WHERE p.status = 'done' OR p.status ='failed'
-        UNION
-        SELECT d.nama_dosen AS nama, p.time AS waktu, u.level AS status, p.id_peminjaman AS id, p.keterangan AS keterangan FROM peminjaman AS p
-        INNER JOIN user AS u ON u.user_id = p.user_id
-        INNER JOIN dosen AS d ON d.nidn = u.unicode
-        WHERE p.status = 'done' OR p.status ='failed';";
-        $this->db->query($querry);
-
-        return $this->db->resultSet();
+        $helper = new Helper();
+        $result = $helper->tampilHistory();
+        return $result;
     }
 
     public function tampilProfile(){
-        $id = $_SESSION['user_id'];
-        $level=$_SESSION['level'];
+        $helper = new Helper();
+        $result = $helper->tampilProfile();
+        return $result;
+    }
 
-        $query = "SELECT t.nama_teknisi AS nama , t.nip AS nip, t.jk AS jk, u.username AS username, u.email AS email, u.level as level FROM user AS u 
-        INNER JOIN teknisi AS t ON t.nip = u.unicode WHERE u.level = '$level' AND u.user_id = '$id'";
-        $this->db->query($query);
-        return $this->db->single();
-        
+    public function logout() {
+        parent::logout();
     }
 
     // Fungsi Fitur
     public function getNamaById($id){
-      $query="SELECT t.nama_teknisi AS nama FROM user AS u INNER JOIN teknisi AS t ON t.nip = u.unicode WHERE u.user_id = '$id'";
-      $this->db->query($query);
-      return $this->db->single();
+        return parent::getNamaById($id);
+    }
+
+    public function hitungTotalBarang(){
+        $helper = new Helper();
+        $result = $helper->hitungTotalBarang();
+        return $result;
+    }
+
+    public function totalBarangDipinjam(){
+        $helper = new Helper();
+        $result = $helper->totalBarangDipinjam();
+        return $result;
+    }
+
+    public function hitungTotalUser() {
+        $helper = new Helper();
+        $result = $helper->hitungTotalUser();
+        return $result;
+    }
+
+    public function cariBarang(){
+        $helper = new Helper();
+        $result = $helper->cariBarang();
+        return $result;
+    }
+
+    public function tambahDataBarang($data) {
+        $helper = new Helper();
+        $result = $helper->tambahDataBarang($data);
+        return $result;
+    }
+
+    public function hapusDataBarang($id_barang) {
+        $helper = new Helper();
+        $result = $helper->hapusDataBarang($id_barang);
+        return $result;
     }
 
     public function editProfile(){
 
-    }
-
-    public function cariBarang(){
-        $keyword=$_POST['keyword'];
-        $query="SELECT * FROM barang where nama_barang LIKE :keyword";
-        $this->db->query($query);
-        $this->db->bind('keyword', "%$keyword%");
-        return $this->db->resultSet();
-    }
-
-    public function tambahDataBarang($data) {
-        if ($data['nama_barang'] != null && $data['id_barang'] != null && $data['maintener'] != null && $data['qty'] != null) {
-            $query = "INSERT INTO barang VALUES (:id_barang, :nama_barang, :maintener, :qty)";
-
-            $this->db->query($query);
-            $this->db->bind('nama_barang', $data['nama_barang']);
-            $this->db->bind('id_barang', $data['id_barang']);
-            $this->db->bind('maintener', $data['maintener']);
-            $this->db->bind('qty', $data['qty']);
-
-            $this->db->execute();
-            
-        } else {
-            return 0;
-        }
-
-        return $this->db->rowCount();
-    }
-
-    public function hapusDataBarang($id_barang) {
-        $query = "DELETE FROM barang WHERE id_barang = :id_b";
-        $this->db->query($query);
-        $this->db->bind('id_b', $id_barang);
-
-        $this->db->execute();
-
-        return $this->db->rowCount();
     }
 }

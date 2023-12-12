@@ -1,6 +1,7 @@
 <?php
 
-class User {
+require_once 'Aktor.php';
+class User extends Aktor {
 
     protected $nip;
     protected $namaTeknisi;
@@ -70,19 +71,9 @@ class User {
     }
 
     public function tampilProfile(){
-        $id = $_SESSION['user_id'];
-        $level=$_SESSION['level'];
-        if($level=='Mahasiswa'){
-            $query = "SELECT mhs.nama_mhs AS nama, mhs.nim AS unicode, mhs.jk AS jk, u.username AS username, u.email AS email, u.level as level FROM user AS u 
-            INNER JOIN mahasiswa AS mhs ON mhs.nim = u.unicode where u.user_id = '$id'";
-            $this->db->query($query);
-            return $this->db->single();
-        }else if($level=='Dosen'){
-            $query = "SELECT d.nama_dosen AS nama, d.nidn AS unicode, d.jk AS jk, u.username AS username, u.email AS email, u.level as level FROM user AS u 
-            INNER JOIN dosen AS d ON d.nidn = u.unicode where u.user_id = '$id'";
-            $this->db->query($query);
-            return $this->db->single();
-        }
+        $helper = new Helper();
+        $result = $helper->tampilProfile();
+        return $result;
     }
 
     // Fungsi Fitur

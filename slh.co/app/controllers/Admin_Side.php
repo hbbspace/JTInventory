@@ -14,10 +14,11 @@ class Admin_Side extends Controller {
     public function index() {
         $data['title'] = 'Home';
 		$data['level'] = $_SESSION['level'];
-        $data['nama']=$this->getNamaById();		 
-        $data['jumlahBarang']=$this->model('Data_Barang_Model')->hitungTotalBarang();
-		$data['jumlahBarangDipinjam']=$this->model('Data_Barang_Model')->totalBarangDipinjam();
-		$data['peminjaman']=$this->model('Data_Peminjaman_Model')->getAllPeminjaman();
+        $data['nama']=$this->getNamaById($_SESSION['user_id']);		 
+        $data['jumlahBarang']=$this->model('Admin')->hitungTotalBarang();
+		$data['jumlahBarangDipinjam']=$this->model('Admin')->totalBarangDipinjam();
+        $data['jumlahUser']=$this->model('Admin')->hitungTotalUser();
+		$data['peminjaman']=$this->model('Admin')->tampilSemuaPeminjaman();
 
 		$this->view('templates/top', $data);
 		$this->view('templates/sideMenuAdmin');
@@ -87,8 +88,7 @@ class Admin_Side extends Controller {
     }
 
     public function Logout() {
-        session_destroy();
-        header("Location:http://localhost/dasarWeb/JTInventory/slh.co/public/");
+        $this->model('Admin')->Logout();
     }
 
     // Controller Fungsi Fitur

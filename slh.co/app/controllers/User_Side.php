@@ -12,7 +12,7 @@ class User_Side extends Controller {
 	}
 
     public function index() {
-        $data['jumlahBarang']=$this->model('Data_Barang_Model')->hitungTotalBarang();
+        $data['jumlahBarang']=$this->model('Admin')->hitungTotalBarang();
         $data['request']=$this->model('User')->tampilRequestBarang();
         $data['nama']=$this->getNamaById();
 		$this->topBarName();

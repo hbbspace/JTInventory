@@ -4,12 +4,12 @@ class Mahasiswa extends User {
     private $namaMHS;
     private $jenisKelamin;
 
-    public function Mahasiswa($userId, $unicode, $email, $username, $password, $salt, $level, $nim, $namaMHS, $jenisKelamin) {
-        parent::User($userId, $unicode, $email, $username, $password, $salt, $level);
-        $this->nim = $nim;
-        $this->namaMHS = $namaMHS;
-        $this->jenisKelamin = $jenisKelamin;
-    }
+    // public function Mahasiswa($userId, $unicode, $email, $username, $password, $salt, $level, $nim, $namaMHS, $jenisKelamin) {
+    //     parent::User($userId, $unicode, $email, $username, $password, $salt, $level);
+    //     $this->nim = $nim;
+    //     $this->namaMHS = $namaMHS;
+    //     $this->jenisKelamin = $jenisKelamin;
+    // }
 
     public function getnim() {
         return $this->nim;
