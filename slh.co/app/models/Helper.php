@@ -121,7 +121,10 @@ class Helper {
         $this->db->query($query);
         return $this->db->single();
     }
-
+    public function editProfile($data) {
+        $id = $_SESSION['user_id'];
+        $query = "UPDATE user SET email = :email, username = :username,  WHERE user_id =  ";
+    }
 
     // Fungsi Tambahan
     public function getNamaById($id){

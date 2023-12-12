@@ -103,7 +103,9 @@ class Admin extends Aktor {
         return $result;
     }
 
-    public function editProfile(){
-
+    public function editProfile($data){
+        $helper = new Helper();
+        $result = $helper->editProfile($data);
+        return $result;
     }
 }

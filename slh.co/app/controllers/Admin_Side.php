@@ -86,6 +86,24 @@ class Admin_Side extends Controller {
 		$this->view('akun/index', $data);
 		$this->view('templates/bottom');
     }
+    public function editAkun(){
+        $data=$this->model('Admin')->tampilProfile();	 
+
+		$this->topBarName();
+		$this->view('templates/sideMenuAdmin');
+		$this->view('edit/index', $data);
+		$this->view('templates/bottom');
+
+        if ($this->model('Admin')->editProfile($_POST)){
+            Flasher::setMessage('Berhasil','Diubah','success');
+            header('Location: ' . base_url . '/Admin_Side/Akun');
+            exit;
+        } else{
+            Flasher::setMessage('Gagal','Diubah','danger');
+            header('Location: ' . base_url . '/Admin_Side/Akun');
+            exit; 
+        }
+    }
 
     public function Logout() {
         $this->model('Admin')->Logout();
@@ -115,6 +133,7 @@ class Admin_Side extends Controller {
             exit; 
         }
     }
+    
 
     public function getNamaById(){
         $data['nama']=$this->model('Admin')->getNamaById($_SESSION['user_id']);
@@ -136,12 +155,5 @@ class Admin_Side extends Controller {
         $this->view('templates/bottom');
     }
 
-    public function editAkun(){
-        $data=$this->model('Admin')->editProfile();	 
-
-		$this->topBarName();
-		$this->view('templates/sideMenuAdmin');
-		$this->view('edit_akun/index', $data);
-		$this->view('templates/bottom');
-    }
+    
 }
