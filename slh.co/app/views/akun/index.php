@@ -41,7 +41,7 @@
                             </tr>
                             <tr>
                                 <td><strong>NIP:</strong></td>
-                                <td><?= $data['nip'] ?></td>
+                                <td><?= $data['unicode'] ?></td>
                             </tr>
                             <tr>
                                 <td><strong>Username:</strong></td>

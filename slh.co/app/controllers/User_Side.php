@@ -12,14 +12,22 @@ class User_Side extends Controller {
 	}
 
     public function index() {
-        $data['title'] = 'Home';
         $data['jumlahBarang']=$this->model('Data_Barang_Model')->hitungTotalBarang();
         $data['request']=$this->model('User')->tampilRequestBarang();
-        $data['rincian']=$this->model('User')->tampilRincianRequestBarang($data['request']);
         $data['nama']=$this->getNamaById();
 		$this->topBarName();
 		$this->view('templates/sideMenuUser');
 		$this->view('User_View/home/index', $data);
+		$this->view('templates/bottom');
+    }
+
+    public function Rincian($id){
+        $data['request']=$this->model('User')->tampilRequestBarang();
+        $data['rincian']=$this->model('User')->tampilRincianRequestBarang($id);
+        $data['nama']=$this->getNamaById();
+		$this->topBarName();
+		$this->view('templates/sideMenuUser');
+		$this->view('User_View/rincian/index', $data);
 		$this->view('templates/bottom');
     }
 
@@ -37,21 +45,21 @@ class User_Side extends Controller {
 
     public function Data_Peminjaman() {
         $data['title'] = 'Data Peminjaman';
-        $data['peminjaman']=$this->model('Admin')->tampilSemuaPeminjaman();
+        $data['barang']=$this->model('User')->tampilPeminjaman();
 
 		$this->topBarName();
         $this->view('templates/sideMenuUser');
-        $this->view('data_peminjaman/index', $data);
+        $this->view('User_View/data_peminjaman/index', $data);
         $this->view('templates/bottom');
     }
 
     public function Data_Pengembalian() {
         $data['title'] = 'Data Peminjaman';
-        $data['pengembalian']=$this->model('Admin')->tampilSemuaPengembalian();
-        
+        $data['barang']=$this->model('User')->tampilPengembalian();
+// var_dump($data['pengembalian']);        
 		$this->topBarName();
         $this->view('templates/sideMenuUser');
-        $this->view('data_pengembalian/index', $data);
+        $this->view('User_View/data_pengembalian/index', $data);
         $this->view('templates/bottom');
     }
 
@@ -67,7 +75,7 @@ class User_Side extends Controller {
     public function Akun(){
         $data=$this->model('User')->tampilProfile();	 
 
-
+// var_dump($data);
 		$this->topBarName();
 		$this->view('templates/sideMenuUser');
 		$this->view('akun/index', $data);
@@ -92,7 +100,7 @@ class User_Side extends Controller {
     public function topBarName(){
         $data['level'] = $_SESSION['level'];
         $data['nama']=$this->getNamaById();		 
-        return 	$this->view('templates/top', $data);
+        return 	$this->view('templates/topUser', $data);
     }
 
     public function cariBarang(){

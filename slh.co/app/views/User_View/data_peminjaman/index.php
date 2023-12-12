@@ -35,7 +35,7 @@
                     <div class="table-responsive small" id="dataTable">
                         <!-- Menampilkan data admin dalam tabel -->
                         <table class="table table-striped">
-                        <thead>
+                            <thead>
                                 <tr>
                                     <th scope="col">No</th>
                                     <th scope="col">Id Peminjaman</th>
