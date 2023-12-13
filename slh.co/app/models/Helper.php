@@ -262,13 +262,13 @@ class Helper {
                 FROM peminjaman as p inner join list_barang as lb on p.id_peminjaman=lb.id_peminjaman inner join barang as b on b.id_barang=lb.id_barang
                 inner join user as u on p.user_id=u.user_id
                 INNER JOIN mahasiswa AS m ON m.nim = u.unicode
-                WHERE p.status='Request Pengembalian' and p.id_peminjaman='$idBarang'";
+                WHERE p.status='Return' and p.id_peminjaman='$idBarang'";
             else{
                 $query="SELECT p.id_peminjaman as id,p.time as waktu,d.nama_dosen as nama, b.nama_barang as nama_barang,b.id_barang as id_barang ,lb.qty as jumlah, p.tgl_pinjam as tanggal_pinjam, p.tgl_kembali as tanggal_kembali, p.status as status
                 FROM peminjaman as p inner join list_barang as lb on p.id_peminjaman=lb.id_peminjaman inner join barang as b on b.id_barang=lb.id_barang
                 inner join user as u on p.user_id=u.user_id
                 INNER JOIN dosen AS d ON d.nidn = u.unicode
-                WHERE p.status='Request Pengembalian' and p.id_peminjaman='$idBarang'";
+                WHERE p.status='Return' and p.id_peminjaman='$idBarang'";
             }
         }else {
         $id=$_SESSION['user_id'];
