@@ -56,7 +56,7 @@
                                     <td><?= $row['status'] ?></td>
                                     <td>
                                         <!-- Tombol untuk menampilkan data peminjaman -->
-                                        <button type="button" class="btn btn-primary" onclick="window.location.href='<?= base_url; ?>/User_Side/Rincian/<?= $row['id'] ?>'">
+                                        <button type="button" class="btn btn-primary" onclick="window.location.href='<?= base_url; ?>/User_Side/Rincian_Request/<?= $row['id'] ?>'">
                                             Rincian
                                         </button>
                                     </td>

@@ -69,7 +69,6 @@ class Admin_Side extends Controller {
     }
 
     public function History() {
-        $data['title'] = 'History';
         $data['history']=$this->model('Admin')->tampilHistory();
 		$this->topBarName();
         $this->view('templates/sideMenuAdmin');
@@ -154,6 +153,32 @@ class Admin_Side extends Controller {
         $this->view('data_barang/index', $data);
         $this->view('templates/bottom');
     }
+
+    public function Rincian_Request($id){
+        $data['rincian']=$this->model('Admin')->tampilRincianRequestBarang($id);
+		$this->topBarName();
+		$this->view('templates/sideMenuAdmin');
+		$this->view('rincian/index', $data);
+		$this->view('templates/bottom');
+    }
+
+    public function Rincian_Peminjaman($id){
+        $data['rincian']=$this->model('Admin')->tampilDataBarangProgress($id);
+		$this->topBarName();
+		$this->view('templates/sideMenuAdmin');
+		$this->view('data_peminjaman_rincian/index', $data);
+		$this->view('templates/bottom');
+    }
+
+    public function Rincian_Pengembalian($id){
+        $data['rincian']=$this->model('Admin')->tampilRincianRequestBarang($id);
+		$this->topBarName();
+		$this->view('templates/sideMenuAdmin');
+		$this->view('data_pengembalian_rincian/index', $data);
+		$this->view('templates/bottom');
+    }
+
+    
 
     
 }

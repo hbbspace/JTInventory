@@ -36,7 +36,6 @@
             width: 300px;
         }
     </style>
-    <link rel="stylesheet" href="assets/custom/dashboard.css">
 </head>
 <body>
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
@@ -73,7 +72,7 @@
                                 <td><?= $row['waktu'] ?></td>
                                 <td>
                                     <!-- button untuk menampilkan data peminjaman -->
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalRincian" data-bs-whatever="@mdo">
+                                    <button type="button" class="btn btn-primary" onclick="window.location.href='<?= base_url; ?>/Admin_Side/Rincian_Peminjaman/<?= $row['id'] ?>'">
                                         Rincian
                                     </button>
                                 </td>

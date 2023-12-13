@@ -108,4 +108,18 @@ class Admin extends Aktor {
         $result = $helper->editProfile($data);
         return $result;
     }
+
+    public function tampilRincianRequestBarang($idBarang){
+        $helper = new Helper();
+        $result = $helper->tampilDataRequestBarang($idBarang);
+        return $result;
+    }
+
+    public function tampilRincianBarang($idBarang){
+        $helper = new Helper();
+        $result = $helper->tampilDataBarangProgress($idBarang);
+        return $result;
+    }
+
+
 }
