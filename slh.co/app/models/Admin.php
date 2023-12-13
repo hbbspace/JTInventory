@@ -36,6 +36,11 @@ class Admin extends Aktor {
 
     public function tampilSemuaPeminjaman(){
         $helper = new Helper();
+        $result = $helper->tampilPeminjaman('progress');
+        return $result;
+    }
+    public function tampilSemuaRequest(){
+        $helper = new Helper();
         $result = $helper->tampilPeminjaman('request');
         return $result;
     }
@@ -120,6 +125,11 @@ class Admin extends Aktor {
         $result = $helper->tampilDataBarangProgress($idBarang);
         return $result;
     }
-
+    
+    public function tampilDataBarangProgress($idBarang){
+        $helper = new Helper();
+        $result = $helper->tampilDataBarangProgress($idBarang);
+        return $result;
+    }
 
 }

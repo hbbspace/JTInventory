@@ -252,7 +252,7 @@ class Helper {
         return $this->db->resultSet();
     }
 
-    public function tampilDataBarangRequestPengembalian($idBarang) {
+    public function tampilDataBarangReturn($idBarang) {
         if($_SESSION['level']=='Teknisi'){
             $query="SELECT u.level as level from user as u inner join peminjaman as p on p.user_id = u.user_id where p.id_peminjaman='$idBarang'";
             $this->db->query($query);

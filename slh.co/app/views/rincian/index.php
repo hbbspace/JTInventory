@@ -60,7 +60,7 @@
                             </div>
                         </form>
                         <div class="text-center mt-5">
-                            <a href="<?= base_url; ?>/Admin_Side" class="btn btn-warning btn-xs" style="margin-right: 25px;">kembali</a>
+                            <a href="<?= base_url; ?>/Admin_Side/Data_Request" class="btn btn-warning btn-xs" style="margin-right: 25px;">kembali</a>
                             <a href="<?= base_url; ?>/Admin_Side" class="btn btn-warning btn-xs" style="margin-right: 25px;">Accepted</a>
                             <a href="<?= base_url; ?>/Admin_Side" class="btn btn-warning btn-xs">Reject</a>
                         </div>

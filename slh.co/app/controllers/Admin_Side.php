@@ -18,7 +18,7 @@ class Admin_Side extends Controller {
         $data['jumlahBarang']=$this->model('Admin')->hitungTotalBarang();
 		$data['jumlahBarangDipinjam']=$this->model('Admin')->totalBarangDipinjam();
         $data['jumlahUser']=$this->model('Admin')->hitungTotalUser();
-		$data['peminjaman']=$this->model('Admin')->tampilSemuaPeminjaman();
+		$data['peminjaman']=$this->model('Admin')->tampilSemuaRequest();
 
 		$this->view('templates/top', $data);
 		$this->view('templates/sideMenuAdmin');
@@ -85,6 +85,7 @@ class Admin_Side extends Controller {
 		$this->view('akun/index', $data);
 		$this->view('templates/bottom');
     }
+
     public function editAkun(){
         $data=$this->model('Admin')->tampilProfile();	 
 
@@ -133,7 +134,6 @@ class Admin_Side extends Controller {
         }
     }
     
-
     public function getNamaById(){
         $data['nama']=$this->model('Admin')->getNamaById($_SESSION['user_id']);
         return $data['nama'];
@@ -171,14 +171,20 @@ class Admin_Side extends Controller {
     }
 
     public function Rincian_Pengembalian($id){
-        $data['rincian']=$this->model('Admin')->tampilRincianRequestBarang($id);
+        $data['rincian']=$this->model('Admin')->tampilRincianBarangReturn($id);
 		$this->topBarName();
 		$this->view('templates/sideMenuAdmin');
 		$this->view('data_pengembalian_rincian/index', $data);
 		$this->view('templates/bottom');
     }
 
-    
+    public function Data_Request(){
+        $data['title'] = 'Data Peminjaman';
+        $data['request']=$this->model('Admin')->tampilSemuaRequest();
 
-    
+		$this->topBarName();
+        $this->view('templates/sideMenuAdmin');
+        $this->view('data_request/index', $data);
+        $this->view('templates/bottom');
+    }
 }

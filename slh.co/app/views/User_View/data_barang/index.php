@@ -30,7 +30,6 @@
                 </div>
                   </form>
 
-
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <h1 class="h2">Data Barang</h1>
                 </div>
@@ -51,7 +50,7 @@
                                     <th scope="col">Kode Barang</th>
                                     <th scope="col">Nama Barang </th>
                                     <th scope="col">Maintener</th>
-                                    <th scope="col">Total Barang</th>
+                                    <th scope="col">Total Barang Tersedia</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -82,50 +81,7 @@
                             </button>
                         </div>
                     </div>
-                    </div>
-                        <!-- Modal untuk menambahkan data barang -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-scrollable" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">Pinjam Barang</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <form action="fungsi/tambah.php?data_peminjaman=tambah" method="post">
-                                <div class="modal-body">
-                                    <div class="mb-3">
-                                        <label for="user-name" class="col-form-label">Nama Peminjam:</label>
-                                        <?php 
-
-                                        ?>
-                                        <p>statis</p>
-                                    </div>
-                                    <div class="mb-3" id="barangPilihan">
-                                        <label for="pil-bar">Barang Pilihan</label>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="quantity" class="col-form-label">Jumlah Pinjam:</label>
-                                        <input type="number" name="quantity" class="form-control" id="quantity" min="1" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="date" class="col-form-label">Tanggal Pinjam:</label>
-                                        <input type="date" name="date" class="form-control" id="date" min="<?= date('Y-m-d') ?>" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="date" class="col-form-label">Tanggal Pengembalian:</label>
-                                        <input type="date" name="date" class="form-control" id="date" min="<?= date('Y-m-d') ?>" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="file" class="col-form-label">Upload Foto:</label>
-                                        <input type="file" name="file" class="form-control" id="file" accept="image/*" required>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i> Close</button>
-                                    <button type="submit" class="btn btn-primary" aria-hidden="true"><i class="fa fa-floppy-o"></i> Simpan</button>
-                                </div>
-                            </form>
-                        </div>
+                    
                     </div>
                 </div>
                 </div>
