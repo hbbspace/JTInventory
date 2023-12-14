@@ -56,6 +56,11 @@
                                         <td><?= $row['waktu'] ?></td>
                                         <td><?= $row['jumlah'] ?></td>
                                         <td><?= $row['status'] ?></td>
+                                        <td>
+                                        <button type="button" class="btn btn-primary" onclick="window.location.href='<?= base_url; ?>/User_Side/Rincian_Request/<?= $row['id'] ?>'">
+                                            Rincian
+                                        </button>
+                                        </td>
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>

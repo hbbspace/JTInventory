@@ -38,7 +38,6 @@
                                 <th scope="col">id peminjaman</th>
                                 <th scope="col">jumlah</th>
                                 <th scope="col">Status</th>
-                                <th scope="col"> </th>
                             </tr>
                         </thead>
                         <tbody>

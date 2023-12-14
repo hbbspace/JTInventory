@@ -22,7 +22,7 @@ class User_Side extends Controller {
 		$this->view('templates/bottom');
     }
 
-    public function Rincian($id){
+    public function Rincian_Request($id){
         $data['request']=$this->model('User')->tampilRequestBarang();
         $data['rincian']=$this->model('User')->tampilRincianRequestBarang($id);
         $data['nama']=$this->getNamaById();
@@ -32,6 +32,23 @@ class User_Side extends Controller {
 		$this->view('templates/bottom');
     }
 
+    public function Rincian_Peminjaman($id){
+        $data['rincian']=$this->model('User')->tampilRincianProgressBarang($id);
+        $data['nama']=$this->getNamaById();
+		$this->topBarName();
+		$this->view('templates/sideMenuUser');
+		$this->view('User_View/rincian_peminjaman/index', $data);
+		$this->view('templates/bottom');
+    }
+    
+    public function Rincian_History($id){
+        $data['rincian']=$this->model('User')->tampilRincianHistoryBarang($id);
+        $data['nama']=$this->getNamaById();
+		$this->topBarName();
+		$this->view('templates/sideMenuUser');
+		$this->view('User_View/rincian_history/index', $data);
+		$this->view('templates/bottom');
+    }
     // Controller Fungsi Inti
 
     public function Data_Barang() {
@@ -116,5 +133,18 @@ class User_Side extends Controller {
 		$this->view('templates/sideMenuUser');
 		$this->view('edit_akun/index', $data);
 		$this->view('templates/bottom');
+    }
+
+    public function tambahDataBarang() {
+        if($this->model('User')->tambahDataPeminjamanBarang($_POST) > 0) {
+            Flasher::setMessage('Berhasil','Ditambahkan','success');
+            header('Location: ' . base_url . '/User_Side/Data_Barang');
+            exit; 
+        }else{
+            Flasher::setMessage('Gagal','Ditambahkan','danger');
+            header('Location: ' . base_url . '/User_Side/Data_Barang');
+            exit; 
+
+        }
     }
 }

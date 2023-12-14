@@ -156,6 +156,7 @@ class Admin_Side extends Controller {
 
     public function Rincian_Request($id){
         $data['rincian']=$this->model('Admin')->tampilRincianRequestBarang($id);
+        // var_dump($data['rincian']);
 		$this->topBarName();
 		$this->view('templates/sideMenuAdmin');
 		$this->view('rincian/index', $data);
@@ -176,6 +177,60 @@ class Admin_Side extends Controller {
 		$this->view('templates/sideMenuAdmin');
 		$this->view('data_pengembalian_rincian/index', $data);
 		$this->view('templates/bottom');
+    }
+
+    public function Accepted($id,$keterangan='-'){
+        $idBarang=$id;
+        // var_dump($this->model('Admin')->UpdateStok($idBarang));
+ 
+
+            if($this->model('Admin')->AcceptedRequest($id,$keterangan) > 0&&$this->model('Admin')->UpdateStok($idBarang)>0) {
+                Flasher::setMessage('Berhasil','Melakukan Accepted','success');
+                header('Location: ' . base_url . '/Admin_Side/Data_Request');
+                exit; 
+            }else{
+                Flasher::setMessage('Gagal','Melakukan Accepted','danger');
+                header('Location: ' . base_url . '/Admin_Side/Data_Request');
+                exit; 
+            }
+    }
+
+    public function Rejected($id,$keterangan='-'){
+            if($this->model('Admin')->Rejected($id,$keterangan) > 0) {
+                Flasher::setMessage('Berhasil','Melakukan Accepted','success');
+                header('Location: ' . base_url . '/Admin_Side/Data_Request');
+                exit; 
+            }else{
+                Flasher::setMessage('Gagal','Melakukan Accepted','danger');
+                header('Location: ' . base_url . '/Admin_Side/Data_Request');
+                exit; 
+            }
+    }
+    public function AcceptedReturn($id,$keterangan='-'){
+
+            if($this->model('Admin')->AcceptedReturn($id,$keterangan) > 0) {
+                $idBarang=$id;
+                $this->model('Admin')->UpdateStok($idBarang);
+                Flasher::setMessage('Berhasil','Melakukan Accepted','success');
+                header('Location: ' . base_url . '/Admin_Side/Data_Request');
+                exit; 
+            }else{
+                Flasher::setMessage('Gagal','Melakukan Accepted','danger');
+                header('Location: ' . base_url . '/Admin_Side/Data_Request');
+                exit; 
+            }
+    }
+
+    public function RejectedReturn($id,$keterangan='-'){
+            if($this->model('Admin')->RejectedReturn($id,$keterangan) > 0) {
+                Flasher::setMessage('Berhasil','Melakukan Accepted','success');
+                header('Location: ' . base_url . '/Admin_Side/Data_Request');
+                exit; 
+            }else{
+                Flasher::setMessage('Gagal','Melakukan Accepted','danger');
+                header('Location: ' . base_url . '/Admin_Side/Data_Request');
+                exit; 
+            }
     }
 
     public function Data_Request(){

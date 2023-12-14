@@ -82,10 +82,10 @@ tr{
                                         </tr>
                                     </table>
                                 </div>
+                                <div class="card-body" style="text-align: center;">
+                                <a href="index.php?page=akun/edit" class="btn btn-warning btn-xs"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit</a>
+                                </div>
 
-                                            <div class="card-body" style="text-align: center;">
-                                            <a href="index.php?page=akun/edit" class="btn btn-warning btn-xs"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit</a>
-                                            </div>
                        </tbody>
                 </div>
         </main>

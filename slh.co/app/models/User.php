@@ -71,11 +71,46 @@ class User extends Aktor {
 
     public function tampilRincianRequestBarang($idBarang){
         $helper = new Helper();
-        $result = $helper->tampilDataRequestBarang($idBarang);
+        $result = $helper->tampilDataBarangRequest($idBarang);
         return $result;
     }
 
-    public function editProfile(){
-
+    public function tampilRincianProgressBarang($idBarang){
+        $helper = new Helper();
+        $result = $helper->tampilDataBarangProgress($idBarang);
+        return $result;
     }
+
+    public function tampilRincianReturnBarang($idBarang){
+        $helper = new Helper();
+        $result = $helper->tampilDataBarangReturn($idBarang);
+        return $result;
+    }
+
+    public function tampilRincianHistoryBarang($idBarang){
+        $helper = new Helper();
+        $result = $helper->tampilDataBarangHistory($idBarang);
+        return $result;
+    }
+
+    public function tambahDataPeminjamanBarang($data){
+        // var_dump($data);
+        $helper = new Helper();
+        $result = $helper->tambahDataPeminjamanBarang($data);
+        return $result;
+    }
+
+    public function tambahDataAdmin($data) {
+        $password=$data['password'];
+        $salt = bin2hex(random_bytes(16));
+        $combined_password = $salt . $password;
+        $hashed_password = password_hash($combined_password, PASSWORD_BCRYPT);
+        $data['password']=$hashed_password;
+        if($data['nama'] != null && $data['nip'] != null && $data['jenis_kelamin'] != "null" && $data['email'] != "null" 
+        && $data['username'] != null && $data['password'] != null){
+            $query = "INSERT INTO user VALUES ( '',:unicode, :email, :username, :password, :salt, :level)";
+        }
+    }
+
+    
 }

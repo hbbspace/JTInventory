@@ -61,10 +61,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php
+                    <?php
                         $no = 1;
-                        foreach ($data['peminjaman'] as $row) :
-                        ?>
+                        $i = 0; // variabel untuk indeks array
+                        while ($i < count($data['peminjaman'])) { // kondisi untuk menghentikan loop
+                            $row = $data['peminjaman'][$i]; // mengakses elemen array dengan indeks
+                            ?>
                             <tr>
                                 <th scope="row"><?= $no++ ?></th>
                                 <td><?= $row['nama'] ?></td>
@@ -77,7 +79,11 @@
                                     </button>
                                 </td>
                             </tr>
-                        <?php endforeach; ?>
+                            <?php
+                            $i++; // menambahkan indeks
+                        }
+                        ?>
+
                     </tbody>
                 </table>
             </div>

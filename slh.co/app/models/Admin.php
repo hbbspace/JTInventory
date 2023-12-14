@@ -116,7 +116,7 @@ class Admin extends Aktor {
 
     public function tampilRincianRequestBarang($idBarang){
         $helper = new Helper();
-        $result = $helper->tampilDataRequestBarang($idBarang);
+        $result = $helper->tampilDataBarangRequest($idBarang);
         return $result;
     }
 
@@ -131,5 +131,36 @@ class Admin extends Aktor {
         $result = $helper->tampilDataBarangProgress($idBarang);
         return $result;
     }
+    
+    public function AcceptedRequest($id,$keterangan){
+        $helper = new Helper();
+        $result = $helper->AcceptedRequest($id,$keterangan);
+        return $result;
+    }
+    
+    public function RejectRequest($id,$keterangan){
+        $helper = new Helper();
+        $result = $helper->AcceptedRequest($id,$keterangan);
+        return $result;
+    }
+
+    public function AcceptedReturn($id,$keterangan){
+        $helper = new Helper();
+        $result = $helper->AcceptedReturn($id,$keterangan);
+        return $result;
+    }
+    
+    public function RejectReturn($id,$keterangan){
+        $helper = new Helper();
+        $result = $helper->RejectReturn($id,$keterangan);
+        return $result;
+    }
+    
+    public function UpdateStok($id){
+        $helper = new Helper();
+        $result = $helper->UpdateStok($id);
+        return $result;
+    }
+    
 
 }
