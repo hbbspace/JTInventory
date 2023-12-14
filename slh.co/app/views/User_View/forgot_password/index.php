@@ -2,7 +2,7 @@
 <html lang="en" data-bs-theme="auto">
 
 <head>
-    <script src="assets/js/color-modes.js"></script>
+    <script src="/dasarWeb/JTInventory/slh.co/public/assets/js/color-modes.js"></script>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,9 +14,9 @@
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sign-in/">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
-    <link rel="shortcut icon" href="assets/img/favicons/favicon.ico">
+    <link rel="shortcut icon" href="/dasarWeb/JTInventory/slh.co/public/assets/img/favicons/favicon.ico">
 
-    <link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/dasarWeb/JTInventory/slh.co/public/assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
         .border-section {
@@ -221,64 +221,31 @@
 
 
     <main class="form-register  m-auto">
-        <form action="<?= base_url; ?>/Register/userRegister" method="post">
-            <img class="mb-4" src="assets/img/favicons/Logo.png" alt="" height="73" style="margin-left: 30%;" >
+        <form action="<?= base_url; ?>/Forgot_Password/gantiPassword" method="post">
+            <img class="mb-4" src="/dasarWeb/JTInventory/slh.co/public/assets/img/favicons/Logo.png" alt="" height="73" style="margin-left: 30%;" >
         
                         <?php
                         // Menampilkan pesan flash jika ada
                         Flasher::Message();
                         ?>
             <div class="border-section">
-            <h1 class="h3 mb-3 fw-normal">Register</h1>
+            <h1 class="h3 mb-3 fw-normal">Forgot Password</h1>
             <div class="form-floating">
-                <input type="text" class="form-control rounded-4" id="floatingInput" name="nama" placeholder="Nama">
-                <label for="floatingInput">Nama</label>
-            </div>
-            <div class="form-floating">
-                <input type="text" class="form-control rounded-4 w" id="floatingInput" name="unicode" placeholder="NIM?NIDN">
-                <label for="floatingInput">NIM/NIDN</label>
+                <input type="text" class="form-control rounded-4" id="floatingInput" name="input" placeholder="Username/Email" required>
+                <label for="floatingInput">Username/Email</label>
             </div>
             <div class="form-floating">
-                <input type="email" class="form-control rounded-4" id="floatingInput" name="email" placeholder="Email" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
-                <label for="floatingInput">Email</label>
-                <span class="invalid-feedback">Please enter a valid email address.</span>
+                <input type="text" class="form-control rounded-4" id="floatingInput" name="password" placeholder="Password" required>
+                <label for="floatingInput">Password Baru</label>
             </div>
-            <div class="form-floating">
-                <input type="text" class="form-control rounded-4" id="floatingInput" name="username" placeholder="Username">
-                <label for="floatingInput">Username</label>
-            </div>
-            <div class="form-floating">
-                <input type="password" class="form-control rounded-4" id="floatingPassword" name="password" placeholder="Password">
-                <label for="floatingPassword">Password</label>
-            </div>
-            <div class="mb-3">
-                <label for="recipient-name" class="col-form-label">Jenis Kelamin :</label>
-                <br>
-                <div class="form-check form-check-inline">
-                    <input type="radio" class="form-check-input" name="jenis_kelamin" value="L">
-                    <label class="form-check-label" for="inlineRadio1">Laki-laki:</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input type="radio" class="form-check-input" name="jenis_kelamin" value="P">
-                    <label class="form-check-label" for="inlineRadio2">Perempuan</label>
-                </div>
-            </div>
-            <div class="dropdown">
-            <label for="recipient-name" class="col-form-label rounded-4">Level :</label>
-                <select name="level" class="form-select rounded-4" aria-label="Default select example">
-                    <option selected>Pilih Level</option>
-                    <option value='Mahasiswa'>Mahasiswa</option>
-                    <option value='Dosen'>Dosen</option>
-                </select>
-            </div>
-                <button class="btn btn-primary w-100 py-2 rounded-4" type="submit" name="register">Register</button>
+                <button class="btn btn-primary w-100 py-2 rounded-4" type="submit" name="register">Ganti Password</button>
                 <p class="login-inform">Sudah punya akun ? <a href="<?= base_url; ?>" class="login">Login</a></p>
                 
                 <p class="mt-5 mb-3 text-body-secondary">&copy; 2023</p>
             </div>
         </form>
     </main>
-    <script src="assets/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/dasarWeb/JTInventory/slh.co/public/assets/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             var emailInput = document.getElementById('floatingInput');

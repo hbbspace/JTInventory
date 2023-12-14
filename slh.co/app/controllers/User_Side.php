@@ -8,7 +8,7 @@ class User_Side extends Controller {
 			Flasher::setMessage('Terdeteksi!','Tindakan terlarang.','danger');
 			header('location: '. base_url . '/login');
 			exit;
-		}
+		} 
 	}
 
     public function index() {
@@ -32,7 +32,19 @@ class User_Side extends Controller {
 		$this->view('templates/bottom');
     }
 
+    
     // Controller Fungsi Inti
+    public function Register() {
+        if($this->model('User')->Register($_POST) > 0) {
+            Flasher::setMessage('Berhasil','Ditambahkan','success');
+            header('Location: ' . base_url . '/Login');
+            exit; 
+        }else{
+            Flasher::setMessage('Gagal','Ditambahkan','danger');
+            header('Location: ' . base_url . '/Register');
+            exit; 
+        }
+    }
 
     public function Data_Barang() {
         $data['title'] = 'Data Barang';

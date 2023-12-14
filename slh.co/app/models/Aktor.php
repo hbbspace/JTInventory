@@ -29,17 +29,9 @@ abstract class Aktor {
         return $result;
     }
 
-    // public abstract function tampilSemuaAdmin();
+    public abstract function tampilHistory();
 
-    // public abstract function tampilSemuaBarang();
-
-    // public abstract function tampilSemuaPeminjaman();
-
-    // public abstract function tampilSemuaPengembalian();
-
-    // public abstract function tampilHistory();
-
-    // public abstract function tampilProfile();
+    public abstract function tampilProfile();
 
     public function logout() {
         session_destroy();
