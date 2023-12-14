@@ -9,6 +9,7 @@ class Forgot_Password extends Controller {
     }
 
     public function gantiPassword() {
+        
         if($this->model('Helper')->gantiPassword($_POST) > 0) {
             Flasher::setMessage('Berhasil','Password berubah.','success');
             header('Location: ' . base_url . '/Login');

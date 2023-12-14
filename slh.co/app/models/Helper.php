@@ -61,14 +61,19 @@ class Helper {
             $data['nama'] != null &&
             $data['unicode'] != null &&
             $data['jenis_kelamin'] != null &&
-            $data['email'] !== "null" &&
+            $data['email'] != "null" &&
             $data['username'] != null &&
             $data['password'] != null &&
-            $data['level'] !== "null"
+            $data['level'] != "Pilih Level"
         ) {
-            $query = "INSERT INTO user VALUES ('', :unicode, :email, :username, :password, :salt, :level)";
+            $ambilId = "SELECT user_id FROM user ORDER BY user_id DESC LIMIT 1";
+            $this->db->query($ambilId);
+            $id = $this->db->single();
+            $newUserId = $id['user_id'] + 1;
+            $query = "INSERT INTO user VALUES (:newUserId, :unicode, :email, :username, :password, :salt, :level)";
     
             $this->db->query($query);
+            $this->db->bind('newUserId', $newUserId);
             $this->db->bind('unicode', $data['unicode']);
             $this->db->bind('email', $data['email']);
             $this->db->bind('username', $data['username']);
@@ -339,10 +344,9 @@ class Helper {
             $salt = bin2hex(random_bytes(16));
             $combined_password = $salt . $password;
             $hashed_password = password_hash($combined_password, PASSWORD_BCRYPT);
-            $data['password'] = $hashed_password;
-            $var = $data['password'];
-            $query = "UPDATE user SET password = '$var', salt = '$salt' WHERE user_id = '$id'";
-            $this->db->query($query);
+            $var = $hashed_password;
+            $query2 = "UPDATE user SET password = '$var', salt = '$salt' WHERE user_id = '$id'";
+            $this->db->query($query2);
             $this->db->execute();
             return 1;
         } else {
@@ -350,7 +354,18 @@ class Helper {
         }
     }
 
-    // public function hapusUser($id) {
-    //     $query = "SELECT user_id FROM user WHERE username = '$var' OR email = '$var'";
-    // }
+    public function hapusUser($id) {
+        $cekPeminjaman = "SELECT id_peminjaman FROM peminjaman AS p INNER JOIN user AS u ON u.user_id = p.user_id 
+                        WHERE p.status = progres OR p.status = return";
+        $this->db->query($cekPeminjaman);
+        if ($this->db->single() > 0) {
+            return 0;
+        } else {
+            $query = "DELETE FROM user WHERE user_id = $id";
+            $query2 = "DELETE FROM user WHERE user_id = $id";
+
+            $this->db->query($query);
+            $this->db->execute();
+        }
+    }
 }

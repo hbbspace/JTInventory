@@ -64,10 +64,10 @@
                         </table>
                     </div>
                     <div style="text-align:center">
-  <button type="button" class="btn" style="background-color: #87C4FF; text-align:center; justify-content:center;" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">
-    Edit Akun
-  </button>
-</div>
+                        <a href="<?= base_url ?>/User_Side/editAkun" class="btn btn-warning btn-xs"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit</a>
+                        <a href="<?= base_url ?>/User_Side/hapusAkun" class="btn btn-danger btn-xs"><i class="fa fa-pencil-square" aria-hidden="true"></i> Hapus</a>
+                    </div>
+                </div>
 
                     <!-- <div class="card-body" style="text-align: center;">
                     <a data-bs-target="#exampleModal" class="btn btn-warning btn-xs"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit</a>

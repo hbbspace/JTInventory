@@ -33,6 +33,12 @@ abstract class Aktor {
 
     public abstract function tampilProfile();
 
+    public function hapusAkun($data){
+        $helper = new Helper();
+        $result = $helper->hapusUser($data);
+        return $result;
+    }
+
     public function logout() {
         session_destroy();
         header("Location:http://localhost/dasarWeb/JTInventory/slh.co/public/");
