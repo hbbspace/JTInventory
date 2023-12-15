@@ -221,7 +221,7 @@
 
 
     <main class="form-register  m-auto">
-        <form action="<?= base_url; ?>/Register/userRegister" method="post">
+        <form action="<?= base_url; ?>/User_Side/Register" method="post">
             <img class="mb-4" src="assets/img/favicons/Logo.png" alt="" height="73" style="margin-left: 30%;" >
         
                         <?php
@@ -231,11 +231,11 @@
             <div class="border-section">
             <h1 class="h3 mb-3 fw-normal">Register</h1>
             <div class="form-floating">
-                <input type="text" class="form-control rounded-4" id="floatingInput" name="nama" placeholder="Nama">
+                <input type="text" class="form-control rounded-4" id="floatingInput" name="nama" placeholder="Nama" required>
                 <label for="floatingInput">Nama</label>
             </div>
             <div class="form-floating">
-                <input type="text" class="form-control rounded-4 w" id="floatingInput" name="unicode" placeholder="NIM?NIDN">
+                <input type="text" class="form-control rounded-4 w" id="floatingInput" name="unicode" placeholder="NIM?NIDN" required>
                 <label for="floatingInput">NIM/NIDN</label>
             </div>
             <div class="form-floating">
@@ -244,11 +244,11 @@
                 <span class="invalid-feedback">Please enter a valid email address.</span>
             </div>
             <div class="form-floating">
-                <input type="text" class="form-control rounded-4" id="floatingInput" name="username" placeholder="Username">
+                <input type="text" class="form-control rounded-4" id="floatingInput" name="username" placeholder="Username" required>
                 <label for="floatingInput">Username</label>
             </div>
             <div class="form-floating">
-                <input type="password" class="form-control rounded-4" id="floatingPassword" name="password" placeholder="Password">
+                <input type="password" class="form-control rounded-4" id="floatingPassword" name="password" placeholder="Password" required>
                 <label for="floatingPassword">Password</label>
             </div>
             <div class="mb-3">
@@ -264,7 +264,7 @@
                 </div>
             </div>
             <div class="dropdown">
-            <label for="recipient-name" class="col-form-label rounded-4">Level :</label>
+            <label for="recipient-name" class="col-form-label rounded-4 ">Level :</label>
                 <select name="level" class="form-select rounded-4" aria-label="Default select example">
                     <option selected>Pilih Level</option>
                     <option value='Mahasiswa'>Mahasiswa</option>

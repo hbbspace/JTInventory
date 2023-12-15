@@ -2,53 +2,55 @@
 <html lang="en" data-bs-theme="auto">
 
 <head>
-    <script src="assets/js/color-modes.js"></script>
+    <script src="/dasarWeb/JTInventory/slh.co/public/assets/js/color-modes.js"></script>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.118.2">
-    <title>SLH.CO</title>
+    <title><?= $data['title'] ?></title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sign-in/">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
-    <link rel="shortcut icon" href="assets/img/favicons/favicon.ico">
+    <link rel="shortcut icon" href="/dasarWeb/JTInventory/slh.co/public/assets/img/favicons/favicon.ico">
 
-    <link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/dasarWeb/JTInventory/slh.co/public/assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
         .border-section {
            border: 3px solid #712cf9;
            padding: 35px;
            border-radius: 5px;
+           width: 130%;
         }
         html,
         body {
             height: 100%;
+            width: auto;
         }
 
         .form-floating{
             margin: 5px;
         }
 
-        .form-signin {
-            max-width: 330px;
+        .form-register {
+            max-width: 300px;
             padding: 1rem;
         }
 
-        .form-signin .form-floating:focus-within {
+        .form-register .form-floating:focus-within {
             z-index: 2;
         }
 
-        .form-signin input[type="email"] {
+        .form-register input[type="email"] {
             margin-bottom: -1px;
             border-bottom-right-radius: 0;
             border-bottom-left-radius: 0;
         }
 
-        .form-signin input[type="password"] {
+        .form-register input[type="password"] {
             margin-bottom: 10px;
             border-top-left-radius: 0;
             border-top-right-radius: 0;
@@ -63,9 +65,12 @@
         }
 
         .register{
-            margin-left: 39%;
-            margin-top: 20px;
             text-decoration: none;
+        }
+
+        .login-inform{
+             margin-left: 20px;
+             padding-top: 20px;
         }
 
         @media (min-width: 768px) {
@@ -136,6 +141,16 @@
         .bd-mode-toggle .dropdown-menu .active .bi {
             display: block !important;
         }
+
+        .dropdown{
+            margin-bottom: 30px;
+        }
+
+        .invalid-feedback {
+            display: none;
+            color: #dc3545;
+            margin-top: 5px;
+        }
     </style>
 
 
@@ -205,49 +220,45 @@
     </div>
 
 
-    <main class="form-signin w-100 m-auto">
-        <form action="<?= base_url; ?>/Login/prosesLogin" method="post">
-            <img class="mb-4" src="assets/img/favicons/Logo.png" alt="" height="73" style="margin-left: 18%;">
-            <?php
-                // Menampilkan pesan flash jika ada
-                Flasher::Message();
-            ?>
+    <main class="form-register  m-auto">
+        <form action="<?= base_url; ?>/Forgot_Password/gantiPassword" method="post">
+            <img class="mb-4" src="/dasarWeb/JTInventory/slh.co/public/assets/img/favicons/Logo.png" alt="" height="73" style="margin-left: 30%;" >
+        
+                        <?php
+                        // Menampilkan pesan flash jika ada
+                        Flasher::Message();
+                        ?>
             <div class="border-section">
-            <h1 class="h3 mb-3 fw-normal">Login</h1>
+            <h1 class="h3 mb-3 fw-normal">Forgot Password</h1>
             <div class="form-floating">
-                <input type="text" class="form-control rounded-4" id="floatingInput" name="username" placeholder="Username">
-                <label for="floatingInput">Username</label>
+                <input type="text" class="form-control rounded-4" id="floatingInput" name="input" placeholder="Username/Email" required>
+                <label for="floatingInput">Username/Email</label>
             </div>
             <div class="form-floating">
-                <input type="password" class="form-control rounded-4" id="floatingPassword" name="password" placeholder="Password">
-                <label for="floatingPassword">Password</label>
+                <input type="text" class="form-control rounded-4" id="floatingInput" name="password" placeholder="Password" required>
+                <label for="floatingInput">Password Baru</label>
             </div>
-
-            <div class="form-check mt-2">
-                <input class="form-check-input" type="checkbox" id="showPassword" onclick="togglePasswordVisibility()">
-                <label class="form-check-label" for="showPassword">Show Password</label>
-            </div>            
-
-            <a href="<?= base_url; ?>/Forgot_Password" class="forgot_password">forgot password?</a>
-
-            <button class="btn btn-primary w-100 py-2 rounded-4 mt-2" type="submit">Masuk</button>
-            
-            <a href="<?= base_url; ?>/Register" class="register ">register</a>
-
-            <p class="mt-5 mb-3 text-body-secondary">&copy; 2023</p>
+                <button class="btn btn-primary w-100 py-2 rounded-4" type="submit" name="register">Ganti Password</button>
+                <p class="login-inform">Sudah punya akun ? <a href="<?= base_url; ?>" class="login">Login</a></p>
+                
+                <p class="mt-5 mb-3 text-body-secondary">&copy; 2023</p>
             </div>
         </form>
     </main>
-    <script src="assets/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/dasarWeb/JTInventory/slh.co/public/assets/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        function togglePasswordVisibility() {
-            var passwordInput = document.getElementById("floatingPassword");
-            if (passwordInput.type === "password") {
-                passwordInput.type = "text";
-            } else {
-                passwordInput.type = "password";
-            }
-        }
+        document.addEventListener('DOMContentLoaded', function () {
+            var emailInput = document.getElementById('floatingInput');
+            var invalidFeedback = document.querySelector('.invalid-feedback');
+
+            emailInput.addEventListener('input', function () {
+                if (emailInput.checkValidity()) {
+                    invalidFeedback.style.display = 'none';
+                } else {
+                    invalidFeedback.style.display = 'block';
+                }
+            });
+        });
     </script>
 
 </body>

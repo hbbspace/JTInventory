@@ -29,17 +29,15 @@ abstract class Aktor {
         return $result;
     }
 
-    // public abstract function tampilSemuaAdmin();
+    public abstract function tampilHistory();
 
-    // public abstract function tampilSemuaBarang();
+    public abstract function tampilProfile();
 
-    // public abstract function tampilSemuaPeminjaman();
-
-    // public abstract function tampilSemuaPengembalian();
-
-    // public abstract function tampilHistory();
-
-    // public abstract function tampilProfile();
+    public function hapusAkun($data){
+        $helper = new Helper();
+        $result = $helper->hapusUser($data);
+        return $result;
+    }
 
     public function logout() {
         session_destroy();

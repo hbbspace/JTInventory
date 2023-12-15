@@ -3,18 +3,8 @@
 require_once 'Aktor.php';
 class Admin extends Aktor {
 
-    protected $nip;
-    protected $namaTeknisi;
-    protected $jenisKelamin;
-
     public function __construct(){
         parent::__construct();
-        $helper = new Helper();
-        $result = $helper->ambilDataChild($_SESSION['unicode']);
-
-        $this->nip = $result['nip'];
-        $this->namaTeknisi = $result['nama_teknisi'];
-        $this->jenisKelamin = $result['jk'];
     }
 
     // Fungsi Inti

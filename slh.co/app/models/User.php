@@ -8,6 +8,12 @@ class User extends Aktor {
     }
 
     // Fungsi Inti
+    public function Register($data) {
+        $helper = new Helper();
+        $result = $helper->tambahDataUser($data);
+        return $result;
+    }
+
     public function login() {
         return parent::login();
     }

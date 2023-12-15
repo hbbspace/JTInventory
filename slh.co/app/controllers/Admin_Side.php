@@ -105,6 +105,18 @@ class Admin_Side extends Controller {
         }
     }
 
+    public function hapusAkun() {
+        if ($this->model('Admin')->hapusAkun($_SESSION['user_id']) > 0){
+            Flasher::setMessage('Berhasil','Akun dihapus','success');
+            header('Location: ' . base_url);
+            exit;
+        } else{
+            Flasher::setMessage('Gagal','Akun tidak dihapus','danger');
+            header('Location: ' . base_url . '/Admin_Side/Akun');
+            exit; 
+        }
+    }
+
     public function Logout() {
         $this->model('Admin')->Logout();
     }

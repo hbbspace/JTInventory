@@ -8,7 +8,7 @@ class User_Side extends Controller {
 			Flasher::setMessage('Terdeteksi!','Tindakan terlarang.','danger');
 			header('location: '. base_url . '/login');
 			exit;
-		}
+		} 
 	}
 
     public function index() {
@@ -49,7 +49,19 @@ class User_Side extends Controller {
 		$this->view('User_View/rincian_history/index', $data);
 		$this->view('templates/bottom');
     }
+    
     // Controller Fungsi Inti
+    public function Register() {
+        if($this->model('User')->Register($_POST) > 0) {
+            Flasher::setMessage('Berhasil','Ditambahkan','success');
+            header('Location: ' . base_url . '/Login');
+            exit; 
+        }else{
+            Flasher::setMessage('Gagal','Ditambahkan','danger');
+            header('Location: ' . base_url . '/Register');
+            exit; 
+        }
+    }
 
     public function Data_Barang() {
         $data['title'] = 'Data Barang';
@@ -97,6 +109,18 @@ class User_Side extends Controller {
 		$this->view('templates/sideMenuUser');
 		$this->view('User_View/akun/index', $data);
 		$this->view('templates/bottom');
+    }
+
+    public function hapusAkun() {
+        if ($this->model('User')->hapusAkun($_SESSION['user_id']) > 0){
+            Flasher::setMessage('Berhasil','Akun dihapus','success');
+            header('Location: ' . base_url);
+            exit;
+        } else{
+            Flasher::setMessage('Gagal','Akun tidak dihapus','danger');
+            header('Location: ' . base_url . '/Admin_Side/Akun');
+            exit; 
+        }
     }
 
     public function Logout() {
