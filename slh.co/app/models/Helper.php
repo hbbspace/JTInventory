@@ -420,31 +420,30 @@ class Helper {
         $this->db->execute();
         return $this->db->rowCount();
     }
-//update stok belum bisa karena bingung mengambil id, karena id berupa list, bukan single
+
     public function UpdateStok($id){
         $key = "SELECT id_barang as id, qty as jumlah_pinjam FROM list_barang WHERE id_peminjaman=$id";
         $this->db->query($key);
-        $row[] = $this->db->resultSet();
+        $rows = $this->db->resultSet();
         // var_dump($row);
-        $id=$row['id'][0]; // Menggunakan method row() untuk mendapatkan satu baris hasil query
-        if($row){
-            $stok="SELECT qty as qty from barang where id_barang=$id";
-            $this->db->query($stok);
-            $stok=$this->db->execute();
-            $jumlahStok=$stok['qty']-$row['jumlah_peminjaman'];
-            $update="UPDATE barang SET qty=$jumlahStok WHERE id_barang=$id";
-            $this->db->query($update);
-            $this->db->execute();
-            return 1;
-        }else{
-            return 0;
+        foreach ($rows as $row) {
+            $idBarang = $row['id'];
+            $stokQuery = "SELECT qty as jumlah_stok FROM barang WHERE id_barang='$idBarang' ";
+            $this->db->query($stokQuery);
+            $stokRow = $this->db->single();
+            if($stokRow){
+                $jumlahStok = $stokRow['jumlah_stok'] - $row['jumlah_pinjam'];
+                $updateQuery = "UPDATE barang SET qty=$jumlahStok WHERE id_barang='$idBarang'";
+                $this->db->query($updateQuery);
+                $this->db->execute();
+            }else{
+                return 0;
+            }
         }
+        return 1;
     }
 
 
-
-
-    
 
     public function gantiPassword($data) {
         $var = $data['input'];

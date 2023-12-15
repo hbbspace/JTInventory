@@ -194,8 +194,6 @@ class Admin_Side extends Controller {
     public function Accepted($id,$keterangan='-'){
         $idBarang=$id;
         // var_dump($this->model('Admin')->UpdateStok($idBarang));
- 
-
             if($this->model('Admin')->AcceptedRequest($id,$keterangan) > 0&&$this->model('Admin')->UpdateStok($idBarang)>0) {
                 Flasher::setMessage('Berhasil','Melakukan Accepted','success');
                 header('Location: ' . base_url . '/Admin_Side/Data_Request');
