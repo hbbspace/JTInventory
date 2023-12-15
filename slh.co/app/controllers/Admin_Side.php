@@ -217,10 +217,8 @@ class Admin_Side extends Controller {
             }
     }
     public function AcceptedReturn($id,$keterangan='-'){
-
-            if($this->model('Admin')->AcceptedReturn($id,$keterangan) > 0) {
-                $idBarang=$id;
-                $this->model('Admin')->UpdateStok($idBarang);
+        $idBarang=$id;
+        if($this->model('Admin')->AcceptedReturn($id,$keterangan) > 0 && $this->model('Admin')->UpdateStok($idBarang)) {
                 Flasher::setMessage('Berhasil','Melakukan Accepted','success');
                 header('Location: ' . base_url . '/Admin_Side/Data_Request');
                 exit; 
@@ -233,11 +231,11 @@ class Admin_Side extends Controller {
 
     public function RejectedReturn($id,$keterangan='-'){
             if($this->model('Admin')->RejectedReturn($id,$keterangan) > 0) {
-                Flasher::setMessage('Berhasil','Melakukan Accepted','success');
+                Flasher::setMessage('Berhasil','Melakukan Reject','success');
                 header('Location: ' . base_url . '/Admin_Side/Data_Request');
                 exit; 
             }else{
-                Flasher::setMessage('Gagal','Melakukan Accepted','danger');
+                Flasher::setMessage('Gagal','Melakukan Reject','danger');
                 header('Location: ' . base_url . '/Admin_Side/Data_Request');
                 exit; 
             }

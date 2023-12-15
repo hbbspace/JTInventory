@@ -151,11 +151,12 @@ class Helper {
             WHERE p.status = 'done' OR p.status ='failed';";
         } else {
             $id=$_SESSION['user_id'];
-            $query = "SELECT m.nama_mhs AS nama, p.time AS waktu, u.level AS status, p.id_peminjaman AS id, p.keterangan AS keterangan FROM peminjaman AS p
-            INNER JOIN user AS u ON u.user_id = p.user_id
-            INNER JOIN mahasiswa AS m ON m.nim = u.unicode
-            WHERE p.status = 'done' OR p.status ='failed' AND p.user_id = $id";
-        }
+            $query = "SELECT p.id_peminjaman as id, p.time as waktu, SUM(lb.qty) as jumlah, p.status as status
+            FROM peminjaman as p 
+            INNER JOIN list_barang as lb ON p.id_peminjaman = lb.id_peminjaman 
+            INNER JOIN barang as b ON b.id_barang = lb.id_barang 
+            WHERE p.user_id = '$id' AND (p.status = 'done' OR p.status = 'failed')";
+          }
         $this->db->query($query);
         return $this->db->resultSet();
     }
@@ -441,6 +442,15 @@ class Helper {
             }
         }
         return 1;
+    }
+
+    public function Return($id){
+        $query="UPDATE peminjaman
+        SET status = 'return'
+        WHERE id_peminjaman=$id;";
+        $this->db->query($query);
+        $this->db->execute();
+        return $this->db->rowCount();
     }
 
 

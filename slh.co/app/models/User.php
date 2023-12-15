@@ -106,6 +106,12 @@ class User extends Aktor {
         return $result;
     }
 
+    public function Return($id){
+        $helper = new Helper();
+        $result = $helper->Return($id);
+        return $result;
+    }
+
     public function tambahDataAdmin($data) {
         $password=$data['password'];
         $salt = bin2hex(random_bytes(16));

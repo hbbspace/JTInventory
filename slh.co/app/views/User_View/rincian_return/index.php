@@ -1,7 +1,7 @@
 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <div class="col-lg-12 pt-3">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1>Rincian Peminjaman</h1>
+                    <h1>Rincian Return</h1>
                 </div>
                 <div class="row">
                 <div class="col-lg-16">
@@ -55,14 +55,18 @@
                                         <p class="data-label"><strong>Upload KTM:</strong></p>
                                         <p class="data-value">statis</p>
                                     </div>
+                                    <div class="data-row">
+                                        <p class="data-label"><strong>Upload Bukti Pengembalian:</strong></p>
+                                        <p class="data-value">statis</p>
+                                    </div>
                                 </div>
                             </div>
                         </form>
                         <div class="text-center mt-5">
-                            <a href="<?= base_url; ?>/User_Side" class="btn btn-warning btn-xs" style="margin-right: 25px;">Kembali</a>
-                            <a href="<?= base_url; ?>/User_Side/Return/<?=$row['id']?>" class="btn btn-warning btn-xs">Return</a>
-                            </div>
-                       </div>
+    <a href="<?= base_url; ?>/User_Side" class="btn btn-warning btn-xs">kembali</a>
+</div>
+
+                    </div>
                         
                 </div>
                 </div>

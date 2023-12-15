@@ -31,7 +31,16 @@ class User_Side extends Controller {
 		$this->view('User_View/rincian/index', $data);
 		$this->view('templates/bottom');
     }
-
+    
+    public function Rincian_Return($id){
+        $data['request']=$this->model('User')->tampilRequestBarang();
+        $data['rincian']=$this->model('User')->tampilRincianReturnBarang($id);
+        $data['nama']=$this->getNamaById();
+		$this->topBarName();
+		$this->view('templates/sideMenuUser');
+		$this->view('User_View/rincian_return/index', $data);
+		$this->view('templates/bottom');
+    }
     public function Rincian_Peminjaman($id){
         $data['rincian']=$this->model('User')->tampilRincianProgressBarang($id);
         $data['nama']=$this->getNamaById();
@@ -171,4 +180,16 @@ class User_Side extends Controller {
 
         }
     }
+
+    public function Return($id){
+        if($this->model('User')->Return($id) > 0) {
+            Flasher::setMessage('Berhasil','Melakukan Return Request','success');
+            header('Location: ' . base_url . '/User_Side/data_peminjaman');
+            exit; 
+        }else{
+            Flasher::setMessage('Gagal','Melakukan Return Request','danger');
+            header('Location: ' . base_url . '/User_Side/data_peminjaman');
+            exit; 
+        }
+}
 }
