@@ -68,20 +68,20 @@
                                 ?>
                                     <tr>
                                         <td><?= $no++ ?></td>
-                                        <td><?= $row['id_barang'] ?><input type="hidden" name="kode_barang[<?= $no ?>]" value="<?= $row['id_barang'] ?>"></td>
-                                        <td><?= $row['nama_barang'] ?><input type="hidden" name="nama_barang[<?= $no ?>]" value="<?= $row['nama_barang'] ?>"></td>
+                                        <td><?= $row['id_barang'] ?></td> 
+                                        <td><?= $row['nama_barang'] ?></td> 
                                         <td><?= $row['qty'] ?></td>
                                         <td>
                                             <!-- Kolom input untuk memasukkan jumlah yang dipinjam -->
-                                            <input type="number" name="jumlah_pinjam[<?= $no ?>]" value="0" min="1" max="<?= $row['qty'] ?>" disabled>
+                                            <input type="number" name="jumlah_pinjam[]" value="1" min="1" max="<?= $row['qty'] ?>" disabled>
                                         </td>
                                         <td>
-                                            <!-- Input checkbox dengan atribut name yang berisi indeks -->
-                                            <input type="checkbox" name="check[<?= $no ?>]" value="<?= $row['id_barang'] ?>" onchange="toggleJumlahPinjam(this)">
+                                            <!-- Input checkbox dengan atribut name yang berisi array -->
+
+                                            <input type="checkbox" name="check[]" value="<?= $row['id_barang'] ?>" onchange="toggleJumlahPinjam(this)">
                                         </td>
                                     </tr>
                                 <?php
-                                $no++; // Menambahkan indeks
                                 endforeach;
                                 ?>
                             </tbody>

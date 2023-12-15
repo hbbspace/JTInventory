@@ -169,6 +169,7 @@ class User_Side extends Controller {
     }
 
     public function tambahDataBarang() {
+        
         if($this->model('User')->tambahDataPeminjamanBarang($_POST) > 0) {
             Flasher::setMessage('Berhasil','Ditambahkan','success');
             header('Location: ' . base_url . '/User_Side/Data_Barang');

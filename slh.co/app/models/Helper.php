@@ -356,35 +356,45 @@ class Helper {
         $this->db->query($query);
         return $this->db->resultSet();
     }
+
+
     public function tambahDataPeminjamanBarang($barang){
         $id=$_SESSION['user_id'];
-        if (isset($barang['tanggal_pinjam']) && isset($barang['tanggal_kembali']) && isset($barang['jumlah_pinjam'])) {
+        if (isset($barang['tanggal_pinjam']) && isset($barang['tanggal_kembali']) && isset($barang['check'])) {
+            // Ambil array barang yang dicentang
+            $check = $barang['check'];
+            // Ambil array jumlah pinjam yang sesuai
+            $jumlah_pinjam = $barang['jumlah_pinjam'];
+            // return($check[$i]);
+            // Buat query peminjaman
             $queryPeminjaman = "INSERT INTO peminjaman (user_id, tgl_pinjam, tgl_kembali, status) VALUES (:user_id, :tgl_pinjam, :tgl_kembali, 'request')";
-    
             $this->db->query($queryPeminjaman);
             $this->db->bind(':user_id', $id);
             $this->db->bind(':tgl_pinjam', $barang['tanggal_pinjam']);
             $this->db->bind(':tgl_kembali', $barang['tanggal_kembali']);
-            if($this->db->execute()){
-                $idPeminjaman = "SELECT id_peminjaman AS id FROM peminjaman WHERE user_id = $id AND status='request' ORDER BY time DESC LIMIT 1;"; 
-                $this->db->query($idPeminjaman);
-                $idPeminjaman=$this->db->single();
-                
-                $queryListBarang = "INSERT INTO list_barang (id_barang, id_peminjaman, qty) VALUES (:id_barang, :id_peminjaman, :qty)";
-                $this->db->query($queryListBarang);
-                $this->db->bind(':id_barang', $barang['kode_barang']);
+            $this->db->execute();
+                // Ambil id peminjaman yang baru dibuat
+            $query = "SELECT id_peminjaman AS id FROM peminjaman WHERE user_id = $id AND status='request' ORDER BY time DESC LIMIT 1;"; 
+            $this->db->query($query);
+            $idPeminjaman=$this->db->single();
+
+            $queryListBarang = "INSERT INTO list_barang VALUES (:id_barang, :id_peminjaman, :qty)";
+            $this->db->query($queryListBarang);
+            for ($i=0; $i<count($check); $i++) {
+                $this->db->bind(':id_barang', $check[$i]);
                 $this->db->bind(':id_peminjaman', $idPeminjaman['id']);
-                $this->db->bind(':qty', $barang['jumlah_pinjam']);
+                $this->db->bind(':qty', $jumlah_pinjam[$i]);
+                // Eksekusi query
                 $this->db->execute();
-                
-            }else{
-                return 0;
-            } 
+            }
+            return $this->db->rowCount();    
+  
         } else {
-            return 0 ;
+            return 0;
         }
-        return $this->db->rowCount();
+     
     }
+
 
     public function AcceptedRequest($id, $keterangan)  {
         $query="UPDATE peminjaman
