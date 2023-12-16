@@ -29,7 +29,12 @@
                 </div>
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <h1 class="">Request Info</h1>
+
                 </div>
+                <?php
+                        // Menampilkan pesan flash jika ada
+                        Flasher::Message();
+                        ?>
                 <div class="table-responsive small mt-3">
                     <table class="table table-striped">
                         <thead>
@@ -57,6 +62,9 @@
                                         <!-- Tombol untuk menampilkan data peminjaman -->
                                         <button type="button" class="btn btn-primary" onclick="window.location.href='<?= base_url; ?>/User_Side/Rincian_Request/<?= $row['id'] ?>'">
                                             Rincian
+                                        </button>
+                                        <button type="button" class="btn btn-danger" onclick="window.location.href='<?= base_url; ?>/User_Side/Delete_Request/<?= $row['id'] ?>'">
+                                            Hapus
                                         </button>
                                     </td>
                                 </tr>

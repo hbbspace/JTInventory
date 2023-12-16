@@ -52,8 +52,16 @@
                                         <p class="data-value"><?=$row['tanggal_kembali']?></p>
                                     </div>
                                     <div class="data-row">
+                                        <p class="data-label"><strong>Keterangan:</strong></p>
+                                        <p class="data-value"><?=$row['keterangan']?></p>
+                                    </div>
+                                    <div class="data-row">
                                         <p class="data-label"><strong>Upload KTM:</strong></p>
-                                        <p class="data-value">statis</p>
+                                        <p class="data-value"></p>
+                                    </div>
+                                    <div class="data-row">
+                                        <p class="data-label"><strong>Upload Bukti Pengembalian:</strong></p>
+                                        <p class="data-value"></p>
                                     </div>
                                 </div>
                             </div>

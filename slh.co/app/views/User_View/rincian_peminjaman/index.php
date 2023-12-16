@@ -52,15 +52,23 @@
                                         <p class="data-value"><?=$row['tanggal_kembali']?></p>
                                     </div>
                                     <div class="data-row">
+                                        <p class="data-label"><strong>Keterangan:</strong></p>
+                                        <p class="data-value"><?=$row['keterangan']?></p>
+                                    </div>
+                                    <div class="data-row">
                                         <p class="data-label"><strong>Upload KTM:</strong></p>
-                                        <p class="data-value">statis</p>
+                                        <p class="data-value"></p>
+                                    </div>
+                                    <div class="data-row">
+                                        <p class="data-label"><strong>Upload Bukti Pengembalian:</strong></p>
+                                        <p class="data-value"></p>
                                     </div>
                                 </div>
                             </div>
                         </form>
                         <div class="text-center mt-5">
-                            <a href="<?= base_url; ?>/User_Side" class="btn btn-warning btn-xs" style="margin-right: 25px;">Kembali</a>
-                            <a href="<?= base_url; ?>/User_Side/Return/<?=$row['id']?>" class="btn btn-warning btn-xs">Return</a>
+                            <a href="<?= base_url; ?>/User_Side/Data_Peinjaman" class="btn btn-warning btn-xs" style="margin-right: 25px;">Kembali</a>
+                            <a href="<?= base_url; ?>/User_Side/Return/<?=$row['id']?>" class="btn btn-primary btn-xs">Return</a>
                             </div>
                        </div>
                         

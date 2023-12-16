@@ -189,8 +189,20 @@ class User_Side extends Controller {
             exit; 
         }else{
             Flasher::setMessage('Gagal','Melakukan Return Request','danger');
-            header('Location: ' . base_url . '/User_Side/data_peminjaman');
+            header('Location: ' . base_url . '/User_Side/data_peminjaman');  exit; 
+        
+        }  
+    }
+
+    public function Delete_Request($id){
+        if($this->model('User')->deleteRequest($id) > 0) {
+            Flasher::setMessage('Berhasil','Melakukan Delete Request','success');
+            header('Location: ' . base_url . '/User_Side');
             exit; 
-        }
+        }else{
+            Flasher::setMessage('Gagal','Melakukan Delete Request','danger');
+            header('Location: ' . base_url . '/User_Side');
+        exit; 
+    }
 }
 }

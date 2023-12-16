@@ -131,9 +131,19 @@ class Helper {
             WHERE p.status = '$status'";
         } else {
             $id=$_SESSION['user_id'];
-            $query="SELECT p.id_peminjaman as id,p.time as waktu ,sum(lb.qty) as jumlah, p.status as status
-            FROM peminjaman as p inner join list_barang as lb on p.id_peminjaman=lb.id_peminjaman inner join barang as b on b.id_barang = lb.id_barang WHERE p.user_id='$id' and p.status='$status'";
+            $query="SELECT p.id_peminjaman as id,p.time as waktu ,sum(lb.qty) as jumlah, p.status as status, p.keterangan as keterangan
+            FROM peminjaman as p inner join list_barang as lb on p.id_peminjaman=lb.id_peminjaman inner join barang as b on b.id_barang = lb.id_barang WHERE p.user_id='$id' and p.status='$status'
+            GROUP BY p.id_peminjaman";
         }
+        $this->db->query($query);
+        return $this->db->resultSet();
+    }
+
+    public function tampilPeminjamanSemuaStatus(){
+        $id=$_SESSION['user_id'];
+        $query="SELECT p.id_peminjaman as id,p.time as waktu ,sum(lb.qty) as jumlah, p.status as status, p.keterangan as keterangan
+        FROM peminjaman as p inner join list_barang as lb on p.id_peminjaman=lb.id_peminjaman inner join barang as b on b.id_barang = lb.id_barang WHERE p.user_id='$id'
+        GROUP BY p.id_peminjaman";
         $this->db->query($query);
         return $this->db->resultSet();
     }
@@ -155,7 +165,8 @@ class Helper {
             FROM peminjaman as p 
             INNER JOIN list_barang as lb ON p.id_peminjaman = lb.id_peminjaman 
             INNER JOIN barang as b ON b.id_barang = lb.id_barang 
-            WHERE p.user_id = '$id' AND (p.status = 'done' OR p.status = 'failed')";
+            WHERE p.user_id = '$id' AND (p.status = 'done' OR p.status = 'failed')
+            GROUP BY p.id_peminjaman";
           }
         $this->db->query($query);
         return $this->db->resultSet();
@@ -396,43 +407,43 @@ class Helper {
     }
 
 
-    public function AcceptedRequest($id, $keterangan)  {
+    public function AcceptedRequest($id)  {
         $query="UPDATE peminjaman
-        SET status = 'progress', keterangan='$keterangan'
+        SET status = 'progress'
         WHERE id_peminjaman=$id;";
         $this->db->query($query);
         $this->db->execute();
         return $this->db->rowCount();
     }  
 
-    public function AcceptedReturn($id, $keterangan)  {
+    public function AcceptedReturn($id )  {
         $query="UPDATE peminjaman
-        SET status = 'done', keterangan='$keterangan'
+        SET status = 'done'
         WHERE id_peminjaman=$id;";
         $this->db->query($query);
         $this->db->execute();
         return $this->db->rowCount();
     }
     
-    public function RejectRequest($id, $keterangan)  {
+    public function RejectRequest($id )  {
         $query="UPDATE peminjaman
-        SET status = 'failed', keterangan='$keterangan'
+        SET status = 'failed'
         WHERE id_peminjaman=$id;";
         $this->db->query($query);
         $this->db->execute();
         return $this->db->rowCount();
     }
 
-    public function RejectReturn($id, $keterangan)  {
+    public function RejectReturn($id)  {
         $query="UPDATE peminjaman
-        SET status = 'progress', keterangan='$keterangan'
+        SET status = 'progress'
         WHERE id_peminjaman=$id;";
         $this->db->query($query);
         $this->db->execute();
         return $this->db->rowCount();
     }
 
-    public function UpdateStok($id){
+    public function UpdateStok($id,$status){
         $key = "SELECT id_barang as id, qty as jumlah_pinjam FROM list_barang WHERE id_peminjaman=$id";
         $this->db->query($key);
         $rows = $this->db->resultSet();
@@ -442,13 +453,19 @@ class Helper {
             $stokQuery = "SELECT qty as jumlah_stok FROM barang WHERE id_barang='$idBarang' ";
             $this->db->query($stokQuery);
             $stokRow = $this->db->single();
-            if($stokRow){
+            if($status=='peminjaman'){
                 $jumlahStok = $stokRow['jumlah_stok'] - $row['jumlah_pinjam'];
+                $updateQuery = "UPDATE barang SET qty=$jumlahStok WHERE id_barang='$idBarang'";
+                $this->db->query($updateQuery);
+                $this->db->execute();
+            }else if($status=='pengembalian'){
+                $jumlahStok = $stokRow['jumlah_stok'] + $row['jumlah_pinjam'];
                 $updateQuery = "UPDATE barang SET qty=$jumlahStok WHERE id_barang='$idBarang'";
                 $this->db->query($updateQuery);
                 $this->db->execute();
             }else{
                 return 0;
+                
             }
         }
         return 1;
@@ -497,5 +514,27 @@ class Helper {
             $this->db->query($query);
             $this->db->execute();
         }
+    }
+
+    public function tambahDataKeterangan($keterangan){
+        $keteranganval=$keterangan['keterangan'];
+        $idPeminjaman=$keterangan['row_id'];
+        if(isset($keterangan['keterangan']) && isset($keterangan['row_id'])){
+            $query="UPDATE peminjaman SET keterangan='$keteranganval'
+            WHERE id_peminjaman=$idPeminjaman;";
+            $this->db->query($query);
+            $this->db->execute();
+            return $this->db->rowCount();
+        }
+    }
+
+    public function deleteRequest($id){
+        $query="DELETE FROM list_barang WHERE id_peminjaman=$id";
+        $this->db->query($query);
+        $this->db->execute();
+        $query="DELETE FROM peminjaman WHERE id_peminjaman=$id";
+        $this->db->query($query);
+        $this->db->execute();
+        return 1;
     }
 }

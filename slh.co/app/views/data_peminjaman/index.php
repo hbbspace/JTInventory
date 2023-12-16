@@ -1,41 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <style>
-        /* CSS to enable scrolling inside modal */
-        .modal-dialog-scrollable {
-            display: flex;
-            flex-direction: column;
-        }
-        .modal-dialog-scrollable .modal-content {
-            flex: 1;
-            overflow-y: auto;
-        }
-        .modal-body {
-            flex: 1;
-            overflow-y: auto;
-        }
 
-        .data-container {
-            margin: 10px;
-            padding: 10px;
-        }
-
-        .data-row {
-            display: flex;
-            align-items: center;
-            margin-bottom: 5px;
-        }
-
-        .data-label {
-            font-weight: bold;
-            width: 200px;
-        }
-
-        .data-value {
-            width: 300px;
-        }
-    </style>
 </head>
 <body>
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
@@ -87,7 +53,6 @@
                     </tbody>
                 </table>
             </div>
-            <!-- Modal -->
         </div>
     </main>
 </body>

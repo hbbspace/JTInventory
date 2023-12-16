@@ -191,10 +191,11 @@ class Admin_Side extends Controller {
 		$this->view('templates/bottom');
     }
 
-    public function Accepted($id,$keterangan='-'){
+    public function Accepted($id){
         $idBarang=$id;
+        $status='peminjaman';
         // var_dump($this->model('Admin')->UpdateStok($idBarang));
-            if($this->model('Admin')->AcceptedRequest($id,$keterangan) > 0&&$this->model('Admin')->UpdateStok($idBarang)>0) {
+            if($this->model('Admin')->AcceptedRequest($id) > 0&&$this->model('Admin')->UpdateStok($idBarang,$status)>0) {
                 Flasher::setMessage('Berhasil','Melakukan Accepted','success');
                 header('Location: ' . base_url . '/Admin_Side/Data_Request');
                 exit; 
@@ -205,20 +206,21 @@ class Admin_Side extends Controller {
             }
     }
 
-    public function Rejected($id,$keterangan='-'){
-            if($this->model('Admin')->Rejected($id,$keterangan) > 0) {
-                Flasher::setMessage('Berhasil','Melakukan Accepted','success');
+    public function Rejected($id){
+            if($this->model('Admin')->RejectRequest($id) > 0) {
+                Flasher::setMessage('Berhasil','Melakukan Reject','success');
                 header('Location: ' . base_url . '/Admin_Side/Data_Request');
                 exit; 
             }else{
-                Flasher::setMessage('Gagal','Melakukan Accepted','danger');
+                Flasher::setMessage('Gagal','Melakukan Reject','danger');
                 header('Location: ' . base_url . '/Admin_Side/Data_Request');
                 exit; 
             }
     }
-    public function AcceptedReturn($id,$keterangan='-'){
+    public function AcceptedReturn($id){
         $idBarang=$id;
-        if($this->model('Admin')->AcceptedReturn($id,$keterangan) > 0 && $this->model('Admin')->UpdateStok($idBarang)) {
+        $status='pengembalian';
+        if($this->model('Admin')->AcceptedReturn($id) > 0 && $this->model('Admin')->UpdateStok($idBarang,$status)) {
                 Flasher::setMessage('Berhasil','Melakukan Accepted','success');
                 header('Location: ' . base_url . '/Admin_Side/Data_Request');
                 exit; 
@@ -229,8 +231,8 @@ class Admin_Side extends Controller {
             }
     }
 
-    public function RejectedReturn($id,$keterangan='-'){
-            if($this->model('Admin')->RejectedReturn($id,$keterangan) > 0) {
+    public function RejectedReturn($id){
+            if($this->model('Admin')->RejectedReturn($id) > 0) {
                 Flasher::setMessage('Berhasil','Melakukan Reject','success');
                 header('Location: ' . base_url . '/Admin_Side/Data_Request');
                 exit; 
@@ -241,10 +243,23 @@ class Admin_Side extends Controller {
             }
     }
 
+    public function tambahDataKeterangan(){
+        // var_dump( $this->model('Admin')->tambahDataKeterangan($_POST));
+        if($this->model('Admin')->tambahDataKeterangan($_POST) > 0) {
+          Flasher::setMessage('Keterangan Berhasil','Ditambahkan','success');
+          header('Location: ' . $_SERVER['HTTP_REFERER']);
+          exit; 
+        }else{
+          Flasher::setMessage('Keterangan Gagal','Ditambahkan','danger');
+          header('Location: ' . $_SERVER['HTTP_REFERER']);
+          exit; 
+        }
+      }
+      
+
     public function Data_Request(){
         $data['title'] = 'Data Peminjaman';
         $data['request']=$this->model('Admin')->tampilSemuaRequest();
-
 		$this->topBarName();
         $this->view('templates/sideMenuAdmin');
         $this->view('data_request/index', $data);

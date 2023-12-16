@@ -74,9 +74,9 @@
                                         <td><?= $row['waktu'] ?></td>
                                         <td>
                                         <!-- buutton untuk menampilkan data peminjaman -->
-                                        <button onclick="getRincian(this);" id="<?= $row['id'] ?>" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" data-bs-whatever="@mdo">
+                                        <button type="button" class="btn btn-primary" onclick="window.location.href='<?= base_url; ?>/Admin_Side/Rincian_Pengembalian/<?= $row['id'] ?>'">
                                         Rincian
-                                    </button>                                   
+                                    </button>
                                     </td>
                                     </tr>
                                 <?php endforeach; ?>

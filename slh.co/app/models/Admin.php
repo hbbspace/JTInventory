@@ -122,33 +122,45 @@ class Admin extends Aktor {
         return $result;
     }
     
-    public function AcceptedRequest($id,$keterangan){
+    public function AcceptedRequest($id){
         $helper = new Helper();
-        $result = $helper->AcceptedRequest($id,$keterangan);
+        $result = $helper->AcceptedRequest($id);
         return $result;
     }
     
-    public function RejectRequest($id,$keterangan){
+    public function RejectRequest($id){
         $helper = new Helper();
-        $result = $helper->AcceptedRequest($id,$keterangan);
+        $result = $helper->RejectRequest($id);
         return $result;
     }
 
-    public function AcceptedReturn($id,$keterangan){
+    public function AcceptedReturn($id){
         $helper = new Helper();
-        $result = $helper->AcceptedReturn($id,$keterangan);
+        $result = $helper->AcceptedReturn($id);
         return $result;
     }
     
-    public function RejectReturn($id,$keterangan){
+    public function RejectReturn($id){
         $helper = new Helper();
-        $result = $helper->RejectReturn($id,$keterangan);
+        $result = $helper->RejectReturn($id);
         return $result;
     }
     
-    public function UpdateStok($id){
+    public function UpdateStok($id,$status){
         $helper = new Helper();
-        $result = $helper->UpdateStok($id);
+        $result = $helper->UpdateStok($id,$status);
+        return $result;
+    }
+
+    public function tampilRincianBarangReturn($id){
+        $helper = new Helper();
+        $result = $helper->tampilDataBarangReturn($id);
+        return $result;
+    }
+
+    public function tambahDataKeterangan($keterangan){
+        $helper = new Helper();
+        $result = $helper->tambahDataKeterangan($keterangan);
         return $result;
     }
     

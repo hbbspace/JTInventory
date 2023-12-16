@@ -41,7 +41,12 @@ class User extends Aktor {
         $result = $helper->tampilPeminjaman('return');
         return $result;
     }
-
+    
+    public function tampilPeminjamanSemuaStatus(){
+        $helper = new Helper();
+        $result = $helper->tampilPeminjamanSemuaStatus();
+        return $result;
+    }
     public function tampilHistory(){
         $helper = new Helper();
         $result = $helper->tampilHistory();
@@ -122,6 +127,12 @@ class User extends Aktor {
         && $data['username'] != null && $data['password'] != null){
             $query = "INSERT INTO user VALUES ( '',:unicode, :email, :username, :password, :salt, :level)";
         }
+    }
+
+    public function deleteRequest($id){
+        $helper = new Helper();
+        $result = $helper->deleteRequest($id);
+        return $result;        
     }
 
     
