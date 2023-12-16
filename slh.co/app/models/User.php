@@ -59,6 +59,12 @@ class User extends Aktor {
         return $result;
     }
 
+    public function editProfile($data){
+        $helper = new Helper();
+        $result = $helper->editProfile($data);
+        return $result;
+    }
+
     public function logout() {
         parent::logout();
     }

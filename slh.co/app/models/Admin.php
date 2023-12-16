@@ -53,6 +53,12 @@ class Admin extends Aktor {
         return $result;
     }
 
+    public function editProfile($data){
+        $helper = new Helper();
+        $result = $helper->editProfile($data);
+        return $result;
+    }
+
     public function logout() {
         parent::logout();
     }
@@ -95,12 +101,6 @@ class Admin extends Aktor {
     public function hapusDataBarang($id_barang) {
         $helper = new Helper();
         $result = $helper->hapusDataBarang($id_barang);
-        return $result;
-    }
-
-    public function editProfile($data){
-        $helper = new Helper();
-        $result = $helper->editProfile($data);
         return $result;
     }
 

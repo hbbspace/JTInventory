@@ -119,6 +119,27 @@ class User_Side extends Controller {
 		$this->view('User_View/akun/index', $data);
 		$this->view('templates/bottom');
     }
+    public function formEditAkun(){
+        $data=$this->model('User')->tampilProfile();	 
+
+		$this->topBarName();
+		$this->view('templates/sideMenuUser');
+		$this->view('User_View/akun_edit/index', $data);
+		$this->view('templates/bottom');
+    }
+
+    public function editAkun(){
+        
+        if ($this->model('User')->editProfile($_POST)){
+            Flasher::setMessage('Berhasil','Diubah','success');
+            header('Location: ' . base_url . '/User_Side/Akun');
+            exit;
+        } else{
+            Flasher::setMessage('Gagal','Diubah','danger');
+            header('Location: ' . base_url . '/User_Side/Akun');
+            exit; 
+        }
+    }
 
     public function hapusAkun() {
         if ($this->model('User')->hapusAkun($_SESSION['user_id']) > 0){
@@ -159,14 +180,14 @@ class User_Side extends Controller {
         $this->view('templates/bottom');
     }
 
-    public function editAkun(){
-        $data=$this->model('Admin')->editProfile();	 
+    // public function editAkun(){
+    //     $data=$this->model('Admin')->editProfile();	 
 
-		$this->topBarName();
-		$this->view('templates/sideMenuUser');
-		$this->view('edit_akun/index', $data);
-		$this->view('templates/bottom');
-    }
+	// 	$this->topBarName();
+	// 	$this->view('templates/sideMenuUser');
+	// 	$this->view('edit_akun/index', $data);
+	// 	$this->view('templates/bottom');
+    // }
 
     public function tambahDataBarang() {
         

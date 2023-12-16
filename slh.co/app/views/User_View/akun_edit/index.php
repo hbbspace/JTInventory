@@ -1,6 +1,6 @@
  
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-            <form action="<?= base_url ?>/Admin_Side/editAkun" method="post">
+            <form action="<?= base_url ?>/User_Side/editAkun" method="post">
                 <div class="col-sm-12">
                     <div class="card-header mt-3 ">
                         <h1>Edit Akun</h1>
@@ -39,16 +39,8 @@
                     </div>
                     <div class="card-body" style="text-align: center;">
                         <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i> Ubah</button>
-                        <a href="<?= base_url ?>/Admin_Side/Akun" class="btn btn-secondary"><i class="fa fa-times"></i> Batal</a>
+                        <a href="<?= base_url ?>/User_Side/Akun" class="btn btn-secondary"><i class="fa fa-times"></i> Batal</a>
                     </div>
                 </div>
            </form>
         </main>
-
-
-
-
-  
-
-
-        

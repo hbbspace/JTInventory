@@ -86,14 +86,17 @@ class Admin_Side extends Controller {
 		$this->view('templates/bottom');
     }
 
-    public function editAkun(){
+    public function formEditAkun(){
         $data=$this->model('Admin')->tampilProfile();	 
 
 		$this->topBarName();
 		$this->view('templates/sideMenuAdmin');
-		$this->view('edit/index', $data);
+		$this->view('akun_edit/index', $data);
 		$this->view('templates/bottom');
+    }
 
+    public function editAkun(){
+        
         if ($this->model('Admin')->editProfile($_POST)){
             Flasher::setMessage('Berhasil','Diubah','success');
             header('Location: ' . base_url . '/Admin_Side/Akun');

@@ -49,7 +49,7 @@
                         </table>
                     </div>
                     <div style="text-align:center">
-                        <a href="<?= base_url ?>/Admin_Side/editAkun" class="btn btn-warning btn-xs"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit</a>
+                        <a href="<?= base_url ?>/Admin_Side/formEditAkun" class="btn btn-warning btn-xs"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit</a>
                         <a href="<?= base_url ?>/Admin_Side/editAkun" class="btn btn-danger btn-xs"><i class="fa fa-pencil-square" aria-hidden="true"></i> Hapus</a>
                     </div>
                 </tbody>

@@ -189,7 +189,38 @@ class Helper {
     }
     public function editProfile($data) {
         $id = $_SESSION['user_id'];
-        $query = "UPDATE user SET email = :email, username = :username,  WHERE user_id =  ";
+        $unicode = $_SESSION['unicode'];
+        $password = $data['password'];
+        $level = $_SESSION['level'];
+        $salt = bin2hex(random_bytes(16));
+        $combined_password = $salt . $password;
+        $hashed_password = password_hash($combined_password, PASSWORD_BCRYPT);
+        $var = $hashed_password;
+        $query = "UPDATE user SET email = :email, username = :username, password = '$var', salt = '$salt' WHERE user_id = $id";
+        $this->db->query($query);
+        $this->db->bind('username', $data['username']);
+        $this->db->bind('email', $data['email']);
+        $this->db->execute();
+        if ($level == 'Teknisi') {
+            $query2 = "UPDATE teknisi SET nama_teknisi = :nama_teknisi, jk = :jenis_kelamin WHERE nip = $unicode";
+            $this->db->query($query2);
+            $this->db->bind('nama_teknisi', $data['nama']);
+            $this->db->bind('jenis_kelamin', $data['jk']);
+            $this->db->execute();
+        } else if ($level == 'Dosen') {
+            $query2 = "UPDATE dosen SET nama_dosen = :nama_dosen, jk = :jenis_kelamin WHERE nidn = $unicode";
+            $this->db->query($query2);
+            $this->db->bind('nama_dosen', $data['nama']);
+            $this->db->bind('jenis_kelamin', $data['jk']);
+            $this->db->execute();
+        } else {
+            $query2 = "UPDATE mahasiswa SET nama_mhs = :nama_mhs, jk = :jenis_kelamin WHERE nim = $unicode";
+            $this->db->query($query2);
+            $this->db->bind('nama_mhs', $data['nama']);
+            $this->db->bind('jenis_kelamin', $data['jk']);
+            $this->db->execute();
+        }
+        return true;
     }
 
     // Fungsi Tambahan
