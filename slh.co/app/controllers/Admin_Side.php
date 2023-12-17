@@ -15,10 +15,10 @@ class Admin_Side extends Controller {
         $data['title'] = 'Home';
 		$data['level'] = $_SESSION['level'];
         $data['nama']=$this->getNamaById();		 
-        $data['jumlahBarang']=$this->model('Admin')->hitungTotalBarang();
-		$data['jumlahBarangDipinjam']=$this->model('Admin')->totalBarangDipinjam();
-        $data['jumlahUser']=$this->model('Admin')->hitungTotalUser();
-		$data['peminjaman']=$this->model('Admin')->tampilSemuaRequest();
+        $data['jumlahBarang']=$this->model($_SESSION['level'])->hitungTotalBarang();
+		$data['jumlahBarangDipinjam']=$this->model($_SESSION['level'])->totalBarangDipinjam();
+        $data['jumlahUser']=$this->model($_SESSION['level'])->hitungTotalUser();
+		$data['peminjaman']=$this->model($_SESSION['level'])->tampilSemuaRequest();
 
 		$this->view('templates/top', $data);
 		$this->view('templates/sideMenuAdmin');
@@ -30,7 +30,7 @@ class Admin_Side extends Controller {
     // Controller Fungsi Inti
     public function Data_Admin() {
         $data['title'] = 'Profile Akun';
-        $data['admin']=$this->model('Admin')->tampilSemuaAdmin();
+        $data[$_SESSION['level']]=$this->model($_SESSION['level'])->tampilSemuaAdmin();
 
 		$this->topBarName();
         $this->view('templates/sideMenuAdmin');
@@ -40,7 +40,7 @@ class Admin_Side extends Controller {
 
     public function Data_Barang() {
         $data['title'] = 'Data Barang';
-        $data['barang']=$this->model('Admin')->tampilSemuaBarang();
+        $data['barang']=$this->model($_SESSION['level'])->tampilSemuaBarang();
 
 		$this->topBarName();
         $this->view('templates/sideMenuAdmin');
@@ -48,9 +48,18 @@ class Admin_Side extends Controller {
         $this->view('templates/bottom');
     }
 
+    public function Data_Request(){
+        $data['title'] = 'Data Peminjaman';
+        $data['request']=$this->model($_SESSION['level'])->tampilSemuaRequest();
+		$this->topBarName();
+        $this->view('templates/sideMenuAdmin');
+        $this->view('data_request/index', $data);
+        $this->view('templates/bottom');
+    }
+
     public function Data_Peminjaman() {
         $data['title'] = 'Data Peminjaman';
-        $data['peminjaman']=$this->model('Admin')->tampilSemuaPeminjaman();
+        $data['peminjaman']=$this->model($_SESSION['level'])->tampilSemuaPeminjaman();
 
 		$this->topBarName();
         $this->view('templates/sideMenuAdmin');
@@ -60,7 +69,7 @@ class Admin_Side extends Controller {
 
     public function Data_Pengembalian() {
         $data['title'] = 'Data Peminjaman';
-        $data['pengembalian']=$this->model('Admin')->tampilSemuaPengembalian();
+        $data['pengembalian']=$this->model($_SESSION['level'])->tampilSemuaPengembalian();
         
 		$this->topBarName();
         $this->view('templates/sideMenuAdmin');
@@ -69,7 +78,7 @@ class Admin_Side extends Controller {
     }
 
     public function History() {
-        $data['history']=$this->model('Admin')->tampilHistory();
+        $data['history']=$this->model($_SESSION['level'])->tampilHistory();
 		$this->topBarName();
         $this->view('templates/sideMenuAdmin');
         $this->view('history/index', $data);
@@ -77,7 +86,7 @@ class Admin_Side extends Controller {
     }
 
     public function Akun(){
-        $data=$this->model('Admin')->tampilProfile();	 
+        $data=$this->model($_SESSION['level'])->tampilProfile();	 
 
 
 		$this->topBarName();
@@ -87,7 +96,7 @@ class Admin_Side extends Controller {
     }
 
     public function formEditAkun(){
-        $data=$this->model('Admin')->tampilProfile();	 
+        $data=$this->model($_SESSION['level'])->tampilProfile();	 
 
 		$this->topBarName();
 		$this->view('templates/sideMenuAdmin');
@@ -97,7 +106,7 @@ class Admin_Side extends Controller {
 
     public function editAkun(){
         
-        if ($this->model('Admin')->editProfile($_POST)){
+        if ($this->model($_SESSION['level'])->editProfile($_POST)){
             Flasher::setMessage('Berhasil','Diubah','success');
             header('Location: ' . base_url . '/Admin_Side/Akun');
             exit;
@@ -109,7 +118,7 @@ class Admin_Side extends Controller {
     }
 
     public function hapusAkun() {
-        if ($this->model('Admin')->hapusAkun($_SESSION['user_id']) > 0){
+        if ($this->model($_SESSION['level'])->hapusAkun($_SESSION['user_id']) > 0){
             Flasher::setMessage('Berhasil','Akun dihapus','success');
             header('Location: ' . base_url);
             exit;
@@ -121,12 +130,12 @@ class Admin_Side extends Controller {
     }
 
     public function Logout() {
-        $this->model('Admin')->Logout();
+        $this->model($_SESSION['level'])->Logout();
     }
 
     // Controller Fungsi Fitur
     public function tambahBarang() {
-        if($this->model('Admin')->tambahDataBarang($_POST) > 0) {
+        if($this->model($_SESSION['level'])->tambahDataBarang($_POST) > 0) {
             Flasher::setMessage('Berhasil','Ditambahkan','success');
             header('Location: ' . base_url . '/Admin_Side/Data_Barang');
             exit; 
@@ -138,7 +147,7 @@ class Admin_Side extends Controller {
     }
 
     public function hapusBarang($id_barang) {
-        if($this->model('Admin')->hapusDataBarang($id_barang) > 0) {
+        if($this->model($_SESSION['level'])->hapusDataBarang($id_barang) > 0) {
             Flasher::setMessage('Berhasil','Dihapus','success');
             header('Location: ' . base_url . '/Admin_Side/Data_Barang');
             exit; 
@@ -150,7 +159,7 @@ class Admin_Side extends Controller {
     }
     
     public function getNamaById(){
-        $data['nama']=$this->model('Admin')->getNamaById($_SESSION['user_id']);
+        $data['nama']=$this->model($_SESSION['level'])->getNamaById($_SESSION['user_id']);
         return $data['nama'];
     }
 
@@ -161,7 +170,7 @@ class Admin_Side extends Controller {
     }
 
     public function cariBarang(){
-        $data['barang']=$this->model('Admin')->cariBarang();
+        $data['barang']=$this->model($_SESSION['level'])->cariBarang();
 
 		$this->topBarName();
         $this->view('templates/sideMenuAdmin');
@@ -170,7 +179,7 @@ class Admin_Side extends Controller {
     }
 
     public function Rincian_Request($id){
-        $data['rincian']=$this->model('Admin')->tampilRincianRequestBarang($id);
+        $data['rincian']=$this->model($_SESSION['level'])->tampilRincianRequestBarang($id);
         // var_dump($data['rincian']);
 		$this->topBarName();
 		$this->view('templates/sideMenuAdmin');
@@ -179,7 +188,7 @@ class Admin_Side extends Controller {
     }
 
     public function Rincian_Peminjaman($id){
-        $data['rincian']=$this->model('Admin')->tampilDataBarangProgress($id);
+        $data['rincian']=$this->model($_SESSION['level'])->tampilDataBarangProgress($id);
 		$this->topBarName();
 		$this->view('templates/sideMenuAdmin');
 		$this->view('data_peminjaman_rincian/index', $data);
@@ -187,7 +196,7 @@ class Admin_Side extends Controller {
     }
 
     public function Rincian_Pengembalian($id){
-        $data['rincian']=$this->model('Admin')->tampilRincianBarangReturn($id);
+        $data['rincian']=$this->model($_SESSION['level'])->tampilRincianBarangReturn($id);
 		$this->topBarName();
 		$this->view('templates/sideMenuAdmin');
 		$this->view('data_pengembalian_rincian/index', $data);
@@ -195,7 +204,7 @@ class Admin_Side extends Controller {
     }
 
     public function Rincian_History($id){
-        $data['rincian']=$this->model('Admin')->tampilRincianBarangHistory($id);
+        $data['rincian']=$this->model($_SESSION['level'])->tampilRincianBarangHistory($id);
 		$this->topBarName();
 		$this->view('templates/sideMenuAdmin');
 		$this->view('rincian_history/index', $data);
@@ -205,8 +214,8 @@ class Admin_Side extends Controller {
     public function Accepted($id){
         $idBarang=$id;
         $status='peminjaman';
-        // var_dump($this->model('Admin')->UpdateStok($idBarang));
-            if($this->model('Admin')->AcceptedRequest($id) > 0&&$this->model('Admin')->UpdateStok($idBarang,$status)>0) {
+        // var_dump($this->model($_SESSION['level'])->UpdateStok($idBarang));
+            if($this->model($_SESSION['level'])->AcceptedRequest($id) > 0&&$this->model($_SESSION['level'])->UpdateStok($idBarang,$status)>0) {
                 Flasher::setMessage('Berhasil','Melakukan Accepted','success');
                 header('Location: ' . base_url . '/Admin_Side/Data_Request');
                 exit; 
@@ -218,7 +227,7 @@ class Admin_Side extends Controller {
     }
 
     public function Rejected($id){
-            if($this->model('Admin')->RejectRequest($id) > 0) {
+            if($this->model($_SESSION['level'])->RejectRequest($id) > 0) {
                 Flasher::setMessage('Berhasil','Melakukan Reject','success');
                 header('Location: ' . base_url . '/Admin_Side/Data_Request');
                 exit; 
@@ -232,7 +241,7 @@ class Admin_Side extends Controller {
     public function AcceptedReturn($id){
         $idBarang=$id;
         $status='pengembalian';
-        if($this->model('Admin')->AcceptedReturn($id) > 0 && $this->model('Admin')->UpdateStok($idBarang,$status)) {
+        if($this->model($_SESSION['level'])->AcceptedReturn($id) > 0 && $this->model($_SESSION['level'])->UpdateStok($idBarang,$status)) {
                 Flasher::setMessage('Berhasil','Melakukan Accepted','success');
                 header('Location: ' . base_url . '/Admin_Side/Data_Request');
                 exit; 
@@ -244,7 +253,7 @@ class Admin_Side extends Controller {
     }
 
     public function RejectedReturn($id){
-            if($this->model('Admin')->RejectedReturn($id) > 0) {
+            if($this->model($_SESSION['level'])->RejectedReturn($id) > 0) {
                 Flasher::setMessage('Berhasil','Melakukan Reject','success');
                 header('Location: ' . base_url . '/Admin_Side/Data_Request');
                 exit; 
@@ -256,8 +265,8 @@ class Admin_Side extends Controller {
     }
 
     public function tambahDataKeterangan(){
-        // var_dump( $this->model('Admin')->tambahDataKeterangan($_POST));
-        if($this->model('Admin')->tambahDataKeterangan($_POST) > 0) {
+        // var_dump( $this->model($_SESSION['level'])->tambahDataKeterangan($_POST));
+        if($this->model($_SESSION['level'])->tambahDataKeterangan($_POST) > 0) {
           Flasher::setMessage('Keterangan Berhasil','Ditambahkan','success');
           header('Location: ' . $_SERVER['HTTP_REFERER']);
           exit; 
@@ -267,14 +276,4 @@ class Admin_Side extends Controller {
           exit; 
         }
       }
-      
-
-    public function Data_Request(){
-        $data['title'] = 'Data Peminjaman';
-        $data['request']=$this->model('Admin')->tampilSemuaRequest();
-		$this->topBarName();
-        $this->view('templates/sideMenuAdmin');
-        $this->view('data_request/index', $data);
-        $this->view('templates/bottom');
-    }
 }

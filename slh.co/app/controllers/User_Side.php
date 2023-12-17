@@ -12,8 +12,8 @@ class User_Side extends Controller {
 	}
 
     public function index() {
-        $data['jumlahBarang']=$this->model('User')->hitungTotalBarang();
-        $data['request']=$this->model('User')->tampilRequestBarang(); 
+        $data['jumlahBarang']=$this->model($_SESSION['level'])->hitungTotalBarang();
+        $data['request']=$this->model($_SESSION['level'])->tampilRequestBarang(); 
         $data['nama']=$this->getNamaById();
         //var_dump($data['nama']);
         $this->view('templates/topUser', $data);
@@ -23,8 +23,8 @@ class User_Side extends Controller {
     }
 
     public function Rincian_Request($id){
-        $data['request']=$this->model('User')->tampilRequestBarang();
-        $data['rincian']=$this->model('User')->tampilRincianRequestBarang($id);
+        $data['request']=$this->model($_SESSION['level'])->tampilRequestBarang();
+        $data['rincian']=$this->model($_SESSION['level'])->tampilRincianRequestBarang($id);
         $data['nama']=$this->getNamaById();
 		$this->topBarName();
 		$this->view('templates/sideMenuUser');
@@ -33,8 +33,8 @@ class User_Side extends Controller {
     }
     
     public function Rincian_Return($id){
-        $data['request']=$this->model('User')->tampilRequestBarang();
-        $data['rincian']=$this->model('User')->tampilRincianReturnBarang($id);
+        $data['request']=$this->model($_SESSION['level'])->tampilRequestBarang();
+        $data['rincian']=$this->model($_SESSION['level'])->tampilRincianReturnBarang($id);
         $data['nama']=$this->getNamaById();
 		$this->topBarName();
 		$this->view('templates/sideMenuUser');
@@ -42,7 +42,7 @@ class User_Side extends Controller {
 		$this->view('templates/bottom');
     }
     public function Rincian_Peminjaman($id){
-        $data['rincian']=$this->model('User')->tampilRincianProgressBarang($id);
+        $data['rincian']=$this->model($_SESSION['level'])->tampilRincianProgressBarang($id);
         $data['nama']=$this->getNamaById();
 		$this->topBarName();
 		$this->view('templates/sideMenuUser');
@@ -51,7 +51,7 @@ class User_Side extends Controller {
     }
     
     public function Rincian_History($id){
-        $data['rincian']=$this->model('User')->tampilRincianHistoryBarang($id);
+        $data['rincian']=$this->model($_SESSION['level'])->tampilRincianHistoryBarang($id);
         $data['nama']=$this->getNamaById();
 		$this->topBarName();
 		$this->view('templates/sideMenuUser');
@@ -61,7 +61,7 @@ class User_Side extends Controller {
     
     // Controller Fungsi Inti
     public function Register() {
-        if($this->model('User')->Register($_POST) > 0) {
+        if($this->model('Helper')->tambahDataUser($_POST) > 0) {
             Flasher::setMessage('Berhasil','Ditambahkan','success');
             header('Location: ' . base_url . '/Login');
             exit; 
@@ -74,7 +74,7 @@ class User_Side extends Controller {
 
     public function Data_Barang() {
         $data['title'] = 'Data Barang';
-        $data['barang']=$this->model('User')->tampilSemuaBarang();
+        $data['barang']=$this->model($_SESSION['level'])->tampilSemuaBarang();
 
 		$this->topBarName();
         $this->view('templates/sideMenuUser');
@@ -84,7 +84,7 @@ class User_Side extends Controller {
 
     public function Data_Peminjaman() {
         $data['title'] = 'Data Peminjaman';
-        $data['barang']=$this->model('User')->tampilPeminjaman();
+        $data['barang']=$this->model($_SESSION['level'])->tampilPeminjaman();
 
 		$this->topBarName();
         $this->view('templates/sideMenuUser');
@@ -94,7 +94,7 @@ class User_Side extends Controller {
 
     public function Data_Pengembalian() {
         $data['title'] = 'Data Peminjaman';
-        $data['barang']=$this->model('User')->tampilPengembalian();       
+        $data['barang']=$this->model($_SESSION['level'])->tampilPengembalian();       
 		$this->topBarName();
         $this->view('templates/sideMenuUser');
         $this->view('User_View/data_pengembalian/index', $data);
@@ -103,7 +103,7 @@ class User_Side extends Controller {
 
     public function History() {
         $data['title'] = 'History';
-        $data['history']=$this->model('User')->tampilHistory();
+        $data['history']=$this->model($_SESSION['level'])->tampilHistory();
 		$this->topBarName();
         $this->view('templates/sideMenuUser');
         $this->view('User_View/history/index', $data);
@@ -111,7 +111,7 @@ class User_Side extends Controller {
     }
 
     public function Akun(){
-        $data=$this->model('User')->tampilProfile();	 
+        $data=$this->model($_SESSION['level'])->tampilProfile();	 
 
 
 		$this->topBarName();
@@ -120,7 +120,7 @@ class User_Side extends Controller {
 		$this->view('templates/bottom');
     }
     public function formEditAkun(){
-        $data=$this->model('User')->tampilProfile();	 
+        $data=$this->model($_SESSION['level'])->tampilProfile();	 
 
 		$this->topBarName();
 		$this->view('templates/sideMenuUser');
@@ -130,7 +130,7 @@ class User_Side extends Controller {
 
     public function editAkun(){
         
-        if ($this->model('User')->editProfile($_POST)){
+        if ($this->model($_SESSION['level'])->editProfile($_POST)){
             Flasher::setMessage('Berhasil','Diubah','success');
             header('Location: ' . base_url . '/User_Side/Akun');
             exit;
@@ -142,7 +142,7 @@ class User_Side extends Controller {
     }
 
     public function hapusAkun() {
-        if ($this->model('User')->hapusAkun($_SESSION['user_id']) > 0){
+        if ($this->model($_SESSION['level'])->hapusAkun($_SESSION['user_id']) > 0){
             Flasher::setMessage('Berhasil','Akun dihapus','success');
             header('Location: ' . base_url);
             exit;
@@ -154,13 +154,13 @@ class User_Side extends Controller {
     }
 
     public function Logout() {
-        $this->model('User')->Logout();
+        $this->model($_SESSION['level'])->Logout();
     }
 
 
     // Controller Fungsi Fitur
     public function getNamaById(){
-        $data['nama'] = $this->model('User')->getNamaById($_SESSION['user_id']);
+        $data['nama'] = $this->model($_SESSION['level'])->getNamaById($_SESSION['user_id']);
         return $data['nama'];
         
     }
@@ -172,7 +172,7 @@ class User_Side extends Controller {
     }
 
     public function cariBarang(){
-        $data['barang']=$this->model('User')->cariBarang();
+        $data['barang']=$this->model($_SESSION['level'])->cariBarang();
 
 		$this->topBarName();
         $this->view('templates/sideMenuUser');
@@ -191,7 +191,7 @@ class User_Side extends Controller {
 
     public function tambahDataBarang() {
         
-        if($this->model('User')->tambahDataPeminjamanBarang($_POST) > 0) {
+        if($this->model($_SESSION['level'])->tambahDataPeminjamanBarang($_POST) > 0) {
             Flasher::setMessage('Berhasil','Ditambahkan','success');
             header('Location: ' . base_url . '/User_Side/Data_Barang');
             exit; 
@@ -204,7 +204,7 @@ class User_Side extends Controller {
     }
 
     public function Return($id){
-        if($this->model('User')->Return($id) > 0) {
+        if($this->model($_SESSION['level'])->Return($id) > 0) {
             Flasher::setMessage('Berhasil','Melakukan Return Request','success');
             header('Location: ' . base_url . '/User_Side/data_peminjaman');
             exit; 
@@ -216,7 +216,7 @@ class User_Side extends Controller {
     }
 
     public function Delete_Request($id){
-        if($this->model('User')->deleteRequest($id) > 0) {
+        if($this->model($_SESSION['level'])->deleteRequest($id) > 0) {
             Flasher::setMessage('Berhasil','Melakukan Delete Request','success');
             header('Location: ' . base_url . '/User_Side');
             exit; 

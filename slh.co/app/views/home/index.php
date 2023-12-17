@@ -45,7 +45,7 @@
             </div>
         </div>
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <a href="<?= base_url; ?>/Admin_Side/Data_Peminjaman" style="text-decoration: none; color:auto"><h1 class="">Request Info</h1> </a>
+            <a href="<?= base_url; ?>/Admin_Side/Data_Request" style="text-decoration: none; color:auto"><h1 class="">Request Info</h1> </a>
         </div>
         <div class="table-responsive small mt-3">
             <table class="table table-striped">
@@ -81,5 +81,4 @@
         </div>
     </main>
 </body>
-
 </html>
