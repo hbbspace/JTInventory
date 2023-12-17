@@ -68,7 +68,7 @@
                                 <p class="data-value"></p>
                             </div>
                             <div class="text-center mt-5">
-                            <a href="<?= base_url; ?>/Admin_Side/Data_Peminjaman" class="btn btn-warning btn-xs" style="margin-right: 25px;">Kembali</a>
+                            <a href="<?= base_url; ?>/Admin_Side/History" class="btn btn-warning btn-xs" style="margin-right: 25px;">Kembali</a>
                             </div>
                         </div>
                     </div>

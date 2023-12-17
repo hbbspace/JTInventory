@@ -61,9 +61,14 @@
                                     </div>
                                     <div class="data-row">
                                         <p class="data-label"><strong>Upload Bukti Pengembalian:</strong></p>
-                                        <p class="data-value"></p>
-                                    </div>
-                                </div>
+                                        <p class="data-value">
+                                            <!-- Elemen input untuk mengupload gambar -->
+                                            <input type="file" name="bukti" id="bukti" accept="image/*">
+                                        </p>
+                                        </div>
+                                        <!-- Elemen button untuk mengirim data -->
+                                        <button type="submit" class="btn btn-primary mt-3">Kirim</button>
+                                   </div>
                             </div>
                         </form>
                         <div class="text-center mt-5">

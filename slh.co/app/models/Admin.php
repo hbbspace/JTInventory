@@ -110,9 +110,9 @@ class Admin extends Aktor {
         return $result;
     }
 
-    public function tampilRincianBarang($idBarang){
+    public function tampilRincianBarangHistory($idBarang){
         $helper = new Helper();
-        $result = $helper->tampilDataBarangProgress($idBarang);
+        $result = $helper->tampilDataBarangHistory($idBarang);
         return $result;
     }
     

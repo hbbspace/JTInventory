@@ -563,6 +563,8 @@ class Helper {
         $query="DELETE FROM list_barang WHERE id_peminjaman=$id";
         $this->db->query($query);
         $this->db->execute();
+
+        //sing pingin tak dadekne trigger :
         $query="DELETE FROM peminjaman WHERE id_peminjaman=$id";
         $this->db->query($query);
         $this->db->execute();

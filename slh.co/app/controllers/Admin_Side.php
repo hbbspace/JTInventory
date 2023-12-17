@@ -194,6 +194,14 @@ class Admin_Side extends Controller {
 		$this->view('templates/bottom');
     }
 
+    public function Rincian_History($id){
+        $data['rincian']=$this->model('Admin')->tampilRincianBarangHistory($id);
+		$this->topBarName();
+		$this->view('templates/sideMenuAdmin');
+		$this->view('rincian_history/index', $data);
+		$this->view('templates/bottom');
+    }
+
     public function Accepted($id){
         $idBarang=$id;
         $status='peminjaman';
@@ -220,6 +228,7 @@ class Admin_Side extends Controller {
                 exit; 
             }
     }
+    
     public function AcceptedReturn($id){
         $idBarang=$id;
         $status='pengembalian';

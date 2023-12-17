@@ -1,48 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <style>
-        /* CSS to enable scrolling inside modal */
-        .modal-dialog-scrollable {
-            display: flex;
-            flex-direction: column;
-        }
-        .modal-dialog-scrollable .modal-content {
-            flex: 1;
-            overflow-y: auto;
-        }
-        .modal-body {
-            flex: 1;
-            overflow-y: auto;
-        }
-    
-        .data-container {
-            margin: 10px; 
-            padding: 10px; 
-        }
 
-        .data-row {
-            display: flex; 
-            align-items: center; 
-            margin-bottom: 5px; 
-        }
-
-        .data-label {
-            font-weight: bold; 
-            width: 200px; 
-        }
-
-        .data-value {
-            width: 300px; 
-        }
-
-</style>
-<link rel="stylesheet" href="assets/custom/dashboard.css">
-    
-</head>
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1>Data Request Peminjaman</h1>
+                    <h1>History</h1>
                 </div>
                 <div class="row">
                 <div class="col-lg-6">
@@ -74,7 +35,7 @@
                                         <td><?= $row['waktu'] ?></td>
                                         <td>
                                         <!-- buutton untuk menampilkan data peminjaman -->
-                                        <button type="button" class="btn btn-primary" onclick="window.location.href='<?= base_url; ?>/Admin_Side/Rincian_Request/<?= $row['id'] ?>'">
+                                        <button type="button" class="btn btn-primary" onclick="window.location.href='<?= base_url; ?>/Admin_Side/Rincian_History/<?= $row['id'] ?>'">
                                         Rincian
                                     </button>                                                              
                                     </td>

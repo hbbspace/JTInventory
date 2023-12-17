@@ -1,27 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <style>
-        /* CSS to enable scrolling inside modal */
-        .modal-dialog-scrollable {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .modal-dialog-scrollable .modal-content {
-            flex: 1;
-            overflow-y: auto;
-        }
-
-        .modal-body {
-            flex: 1;
-            overflow-y: auto;
-        }
-    </style>
-    <link rel="stylesheet" href="assets/custom/dashboard.css">
-</head>
-
 <body>
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
@@ -46,7 +25,7 @@
                             <th scope="col">Waktu</th>
                             <th scope="col">Jumlah </th>
                             <th scope="col">Status</th>
-                            <th scope="col">Rincian</th>
+                            <th scope="col">Keterangan</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -61,6 +40,7 @@
                                 <td><?= $row['waktu'] ?></td>
                                 <td><?= $row['jumlah'] ?></td>
                                 <td><?= $row['status'] ?></td>
+                                <td><?= $row['keterangan'] ?></td>
                                 <td>
                                     <button type="button" class="btn btn-primary" onclick="window.location.href='<?= base_url; ?>/User_Side/Rincian_Peminjaman/<?= $row['id'] ?>'">
                                         Rincian
