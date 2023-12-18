@@ -390,18 +390,18 @@ class Helper {
                 FROM peminjaman as p inner join list_barang as lb on p.id_peminjaman=lb.id_peminjaman inner join barang as b on b.id_barang=lb.id_barang
                 inner join user as u on p.user_id=u.user_id
                 INNER JOIN mahasiswa AS m ON m.nim = u.unicode
-                WHERE p.status='done' OR p.status='progress' and p.id_peminjaman='$idBarang'";
+                WHERE p.status='done' OR p.status='failed' and p.id_peminjaman='$idBarang'";
             else{
-                $query="SELECT p.id_peminjaman as id,p.keterangan as keterangan,p.time as waktu,d.nama_dosen as nama, b.nama_barang as nama_barang,b.id_barang as id_barang ,lb.qty as jumlah, p.tgl_pinjam as tanggal_pinjam, p.tgl_kembali as tanggal_kembali, p.status as status
+                $query="SELECT p.id_peminjaman as id, p.keterangan as keterangan, p.time as waktu, d.nama_dosen as nama, b.nama_barang as nama_barang, b.id_barang as id_barang , lb.qty as jumlah, p.tgl_pinjam as tanggal_pinjam, p.tgl_kembali as tanggal_kembali, p.status as status
                 FROM peminjaman as p inner join list_barang as lb on p.id_peminjaman=lb.id_peminjaman inner join barang as b on b.id_barang=lb.id_barang
                 inner join user as u on p.user_id=u.user_id
                 INNER JOIN dosen AS d ON d.nidn = u.unicode
-                WHERE p.status='done' OR p.status='progress' and p.id_peminjaman='$idBarang'";
+                WHERE p.status='done' OR p.status='failed' and p.id_peminjaman='$idBarang'";
             }
         }else {
         $id=$_SESSION['user_id'];
         $query="SELECT p.id_peminjaman as id,p.keterangan as keterangan,p.time as waktu,b.nama_barang as nama_barang,b.id_barang as id_barang ,lb.qty as jumlah, p.tgl_pinjam as tanggal_pinjam, p.tgl_kembali as tanggal_kembali, p.status as status
-        FROM peminjaman as p inner join list_barang as lb on p.id_peminjaman=lb.id_peminjaman inner join barang as b on b.id_barang=lb.id_barang WHERE p.user_id='$id' and p.status='done' OR p.status='progress' and p.id_peminjaman='$idBarang'";
+        FROM peminjaman as p inner join list_barang as lb on p.id_peminjaman=lb.id_peminjaman inner join barang as b on b.id_barang=lb.id_barang WHERE p.user_id='$id' and p.status='done' OR p.status='failed' and p.id_peminjaman='$idBarang'";
         }
         $this->db->query($query);
         return $this->db->resultSet();
@@ -542,13 +542,13 @@ class Helper {
 
     public function hapusUser($id) {
         $cekPeminjaman = "SELECT id_peminjaman FROM peminjaman AS p INNER JOIN user AS u ON u.user_id = p.user_id 
-                        WHERE p.status = progres OR p.status = return";
+                        WHERE (p.status = 'progres' OR p.status = 'return') AND u.user_id = $id";
         $this->db->query($cekPeminjaman);
         if ($this->db->single() > 0) {
             return 0;
         } else {
             $query = "DELETE FROM user WHERE user_id = $id";
-            $query2 = "DELETE FROM user WHERE user_id = $id";
+            //$query2 = "DELETE FROM user WHERE user_id = $id";
 
             $this->db->query($query);
             $this->db->execute();

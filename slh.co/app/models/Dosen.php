@@ -1,5 +1,6 @@
 <?php
 
+require_once 'User.php';
 class Dosen extends User{
 
     protected $nip;
@@ -11,7 +12,7 @@ class Dosen extends User{
         $helper = new Helper();
         $result = $helper->ambilDataChild($_SESSION['unicode']);
 
-        $this->nip = $result['nip'];
+        $this->nip = $result['nidn'];
         $this->namaDosen = $result['nama_dosen'];
         $this->jenisKelamin = $result['jk'];
     }

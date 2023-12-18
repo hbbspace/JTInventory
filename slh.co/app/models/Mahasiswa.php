@@ -1,4 +1,6 @@
 <?php
+
+require_once 'User.php';
 class Mahasiswa extends User {
 
     protected $nip;
@@ -10,9 +12,13 @@ class Mahasiswa extends User {
         $helper = new Helper();
         $result = $helper->ambilDataChild($_SESSION['unicode']);
 
-        $this->nip = $result['nip'];
+        $this->nip = $result['nim'];
         $this->namaMhs = $result['nama_mhs'];
         $this->jenisKelamin = $result['jk'];
+    }
+
+    public function uploadKTM() {
+        
     }
 }
 ?>

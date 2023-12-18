@@ -1,5 +1,6 @@
 <?php
 
+require_once 'Admin.php';
 class Teknisi extends Admin {
 	protected $nip;
 	protected $namaTeknisi;

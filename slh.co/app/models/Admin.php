@@ -1,7 +1,7 @@
 <?php
 
 require_once 'Aktor.php';
-class Admin extends Aktor {
+abstract class Admin extends Aktor {
 
     public function __construct(){
         parent::__construct();
@@ -56,6 +56,12 @@ class Admin extends Aktor {
     public function editProfile($data){
         $helper = new Helper();
         $result = $helper->editProfile($data);
+        return $result;
+    }
+
+    public function hapusAkun($data){
+        $helper = new Helper();
+        $result = $helper->hapusUser($data);
         return $result;
     }
 

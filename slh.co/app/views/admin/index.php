@@ -34,7 +34,7 @@
                         <?php
                         // Mengambil dan menampilkan data admin
                         $no = 1;
-                        foreach ($data['admin'] as $row) :
+                        foreach ($data['Teknisi'] as $row) :
                         ?>
                             <tr>
                                 <th scope="row"><?= $no++ ?></th>

@@ -14,11 +14,11 @@ class Login extends Controller {
         if($row > 0 ) {
 
             if($row['level'] == 'Teknisi') {
-                $row = $this->model('Admin')->login();
+                $row = $this->model('Teknisi')->login();
             } else if ($row['level'] == 'Dosen') {
-                $row = $this->model('User')->login();
+                $row = $this->model('Dosen')->login();
             } else {
-                $row = $this->model('User')->login();
+                $row = $this->model('Mahasiswa')->login();
             }
 
             $_SESSION['username'] = $row['username'];
