@@ -45,15 +45,15 @@
                                 <div class="data-row">
                                     <div class="data-row">
                                         <p class="data-label"><strong>Tanggal Peminjaman:</strong></p>
-                                        <p class="data-value"><?=$data['rincian']['tanggal_pinjam']?></p>
+                                        <p class="data-value"><?=$row['tanggal_pinjam']?></p>
                                     </div>
                                     <div class="data-row">
                                         <p class="data-label"><strong>Tanggal Pengembalian:</strong></p>
-                                        <p class="data-value"><?=$data['rincian']['tanggal_kembali']?></p>
+                                        <p class="data-value"><?=$row['tanggal_kembali']?></p>
                                     </div>
                                     <div class="data-row">
                                         <p class="data-label"><strong>Keterangan:</strong></p>
-                                        <p class="data-value"><?=$data['rincian']['keterangan']?></p>
+                                        <p class="data-value"><?=$row['keterangan']?></p>
                                     </div>
                                     <div class="data-row">
                                         <p class="data-label"><strong>Upload KTM:</strong></p>
@@ -67,7 +67,7 @@
                             </div>
                         </form>
                         <div class="text-center mt-5">
-                            <a href="<?= base_url; ?>/User_Side" class="btn btn-warning btn-xs">kembali</a>
+                            <a href="<?= base_url; ?>/User_Side/History" class="btn btn-warning btn-xs">Kembali</a>
                         </div>
                     </div>
                 </div>
