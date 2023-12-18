@@ -57,17 +57,17 @@
                                     </div>
                                     <div class="data-row">
                                         <p class="data-label"><strong>Upload KTM:</strong></p>
-                                        <p class="data-value"></p>
+                                        <p class="data-value">
+                                            <img src="<?= base_url ?>/img/<?= $row['nama_file'] ?>" width="300px"alt="Foto KTM">
+                                        </p>
                                     </div>
                                 </div>
                             </div>
                         </form>
                         <div class="text-center mt-5">
-    <a href="<?= base_url; ?>/User_Side" class="btn btn-warning btn-xs">kembali</a>
-</div>
-
+                            <a href="<?= base_url; ?>/User_Side" class="btn btn-warning btn-xs">Kembali</a>
+                        </div>
                     </div>
-                        
                 </div>
                 </div>
             </main>

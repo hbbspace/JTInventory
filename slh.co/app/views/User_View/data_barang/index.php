@@ -49,7 +49,7 @@
                     Flasher::Message();
                     ?>
                 </div>
-                <form action="<?= base_url; ?>/User_Side/tambahDataBarang" method="post" id="pinjamForm">
+                <form action="<?= base_url; ?>/User_Side/tambahDataBarang" method="post" id="pinjamForm" enctype="multipart/form-data">
                     <div class="table-responsive small" id="dataTable">
                         <!-- Menampilkan data admin dalam tabel -->
                         <table class="table table-striped">

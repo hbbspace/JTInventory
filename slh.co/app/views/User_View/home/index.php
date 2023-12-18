@@ -63,9 +63,7 @@
                                         <button type="button" class="btn btn-primary" onclick="window.location.href='<?= base_url; ?>/User_Side/Rincian_Request/<?= $row['id'] ?>'">
                                             Rincian
                                         </button>
-                                        <button type="button" class="btn btn-danger" onclick="window.location.href='<?= base_url; ?>/User_Side/Delete_Request/<?= $row['id'] ?>'">
-                                            Hapus
-                                        </button>
+                                        <a href="<?= base_url;?>/User_Side/Delete_Request/<?=$row['id'] ?>" class="btn btn-danger btn-xs" onclick="return confirm('Hapus Data Request?');">Hapus</a>
                                     </td>
                                 </tr>
                             <?php

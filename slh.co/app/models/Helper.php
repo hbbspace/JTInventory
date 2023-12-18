@@ -199,6 +199,7 @@ class Helper {
         $this->db->query($query);
         return $this->db->single();
     }
+
     public function editProfile($data) {
         $id = $_SESSION['user_id'];
         $unicode = $_SESSION['unicode'];
@@ -317,13 +318,13 @@ class Helper {
             $this->db->query($query);
             $levelTampilan=$this->db->single();
             if($levelTampilan['level']=='Mahasiswa')
-                $query="SELECT p.id_peminjaman as id,p.keterangan as keterangan,p.time as waktu,m.nama_mhs as nama, b.nama_barang as nama_barang,b.id_barang as id_barang ,lb.qty as jumlah, p.tgl_pinjam as tanggal_pinjam, p.tgl_kembali as tanggal_kembali, p.status as status
+                $query="SELECT p.id_peminjaman as id,p.keterangan as keterangan,p.time as waktu,m.nama_mhs as nama, b.nama_barang as nama_barang,b.id_barang as id_barang ,lb.qty as jumlah, p.tgl_pinjam as tanggal_pinjam, p.tgl_kembali as tanggal_kembali, p.nama_file AS nama_file, p.status as status
                 FROM peminjaman as p inner join list_barang as lb on p.id_peminjaman=lb.id_peminjaman inner join barang as b on b.id_barang=lb.id_barang
                 inner join user as u on p.user_id=u.user_id
                 INNER JOIN mahasiswa AS m ON m.nim = u.unicode
                 WHERE p.status='request' and p.id_peminjaman='$idBarang'";
             else if($levelTampilan['level']=='Dosen'){
-                $query="SELECT p.id_peminjaman as id,p.keterangan as keterangan,p.time as waktu,d.nama_dosen as nama, b.nama_barang as nama_barang,b.id_barang as id_barang ,lb.qty as jumlah, p.tgl_pinjam as tanggal_pinjam, p.tgl_kembali as tanggal_kembali, p.status as status
+                $query="SELECT p.id_peminjaman as id,p.keterangan as keterangan,p.time as waktu,d.nama_dosen as nama, b.nama_barang as nama_barang,b.id_barang as id_barang ,lb.qty as jumlah, p.tgl_pinjam as tanggal_pinjam, p.tgl_kembali as tanggal_kembali, p.nama_file AS nama_file, p.status as status
                 FROM peminjaman as p inner join list_barang as lb on p.id_peminjaman=lb.id_peminjaman inner join barang as b on b.id_barang=lb.id_barang
                 inner join user as u on p.user_id=u.user_id
                 INNER JOIN dosen AS d ON d.nidn = u.unicode
@@ -331,7 +332,7 @@ class Helper {
             }
         }else {
         $id=$_SESSION['user_id'];
-        $query="SELECT p.id_peminjaman as id,p.keterangan as keterangan,p.time as waktu,b.nama_barang as nama_barang,b.id_barang as id_barang ,lb.qty as jumlah, p.tgl_pinjam as tanggal_pinjam, p.tgl_kembali as tanggal_kembali, p.status as status
+        $query="SELECT p.id_peminjaman as id,p.keterangan as keterangan,p.time as waktu,b.nama_barang as nama_barang,b.id_barang as id_barang ,lb.qty as jumlah, p.tgl_pinjam as tanggal_pinjam, p.tgl_kembali as tanggal_kembali, p.nama_file AS nama_file, p.status as status
         FROM peminjaman as p inner join list_barang as lb on p.id_peminjaman=lb.id_peminjaman inner join barang as b on b.id_barang=lb.id_barang WHERE p.user_id='$id' and p.status='request' and p.id_peminjaman='$idBarang'";
         }
         $this->db->query($query);
@@ -423,18 +424,62 @@ class Helper {
     public function tambahDataPeminjamanBarang($barang){
         $id=$_SESSION['user_id'];
         if (isset($barang['tanggal_pinjam']) && isset($barang['tanggal_kembali']) && isset($barang['check'])) {
-            // Ambil array barang yang dicentang
+            // Ambil array barang yang dicentanG
             $check = $barang['check'];
             // Ambil array jumlah pinjam yang sesuai
             $jumlah_pinjam = $barang['jumlah_pinjam'];
-            // return($check[$i]);
-            // Buat query peminjaman
-            $queryPeminjaman = "INSERT INTO peminjaman (user_id, tgl_pinjam, tgl_kembali, status) VALUES (:user_id, :tgl_pinjam, :tgl_kembali, 'request')";
-            $this->db->query($queryPeminjaman);
-            $this->db->bind(':user_id', $id);
-            $this->db->bind(':tgl_pinjam', $barang['tanggal_pinjam']);
-            $this->db->bind(':tgl_kembali', $barang['tanggal_kembali']);
-            $this->db->execute();
+
+            // Ambil id terakhir
+            // $ambilId = "SELECT id_peminjaman FROM peminjaman ORDER BY id_peminjaman DESC LIMIT 1";
+            // $this->db->query($ambilId);
+            // $id = $this->db->single();
+            // $newPeminjaman = ($id['id_peminjaman'] + 1);
+
+            if (isset($_FILES['foto_ktm'])) {
+                $target_dir = $_SERVER['DOCUMENT_ROOT'] . "/dasarWeb/JTInventory/slh.co/public/img/";
+                $file_size = $_FILES['foto_ktm']['size'];
+                $file_tmp = $_FILES['foto_ktm']['tmp_name'];
+                $file_extension = strtolower(pathinfo($_FILES['foto_ktm']['name'], PATHINFO_EXTENSION));
+
+                // Generate nama file unik
+                $filename = "file_" . time() . "." . $file_extension;
+                $target_file = $target_dir . $filename;
+
+                $allowed_extensions = array("jpg", "jpeg", "png");
+                if(!in_array($file_extension, $allowed_extensions)) {
+                    echo "Extensi file yang diizinkan adalah jpg, jpeg dan png";
+                    Flasher::setMessage('gagal','Ditambahkan','danger');
+                    exit;
+                } else if($file_size > 2097152){
+                    echo "Maksimum file yang diizinkan adalah 2MB";
+                    Flasher::setMessage('gagal','Ditambahkan','danger');
+                    exit;
+                } else {
+                    move_uploaded_file($file_tmp, $target_file);
+                    Flasher::setMessage('Berhasil','Ditambahkan','success');
+                }
+
+                // Buat query peminjaman
+                $queryPeminjaman = "INSERT INTO peminjaman (user_id, tgl_pinjam, tgl_kembali, nama_file, status) VALUES (:user_id, :tgl_pinjam, :tgl_kembali, :nama_file, 'request')";
+                $this->db->query($queryPeminjaman);
+                //$this->db->bind(':id_peminjaman', $newPeminjaman);
+                $this->db->bind(':user_id', $id);
+                $this->db->bind(':tgl_pinjam', $barang['tanggal_pinjam']);
+                $this->db->bind(':tgl_kembali', $barang['tanggal_kembali']);
+                $this->db->bind(':nama_file', $filename);
+                $this->db->execute();
+
+            } else {
+                // Buat query peminjaman
+                $queryPeminjaman = "INSERT INTO peminjaman (user_id, tgl_pinjam, tgl_kembali, status) VALUES (:user_id, :tgl_pinjam, :tgl_kembali, 'request')";
+                $this->db->query($queryPeminjaman);
+                //$this->db->bind(':id_peminjaman', $newPeminjaman);
+                $this->db->bind(':user_id', $id);
+                $this->db->bind(':tgl_pinjam', $barang['tanggal_pinjam']);
+                $this->db->bind(':tgl_kembali', $barang['tanggal_kembali']);
+                $this->db->execute();
+            }
+
                 // Ambil id peminjaman yang baru dibuat
             $query = "SELECT id_peminjaman AS id FROM peminjaman WHERE user_id = $id AND status='request' ORDER BY time DESC LIMIT 1;"; 
             $this->db->query($query);
@@ -454,7 +499,6 @@ class Helper {
         } else {
             return 0;
         }
-     
     }
 
 
@@ -588,14 +632,39 @@ class Helper {
     }
 
     public function deleteRequest($id){
-        $query="DELETE FROM list_barang WHERE id_peminjaman=$id";
+        $query="SELECT nama_file FROM peminjaman where id_peminjaman = $id";
         $this->db->query($query);
-        $this->db->execute();
+        $filename = $this->db->single();
 
-        //sing pingin tak dadekne trigger :
-        $query="DELETE FROM peminjaman WHERE id_peminjaman=$id";
-        $this->db->query($query);
-        $this->db->execute();
-        return 1;
+        $target_dir = $_SERVER['DOCUMENT_ROOT'] . "/dasarWeb/JTInventory/slh.co/public/img/";
+
+        $target_file = $target_dir . $filename['nama_file'];
+
+        // Check if the file exists before attempting to delete it
+        if (file_exists($target_file)) {
+            // Attempt to delete the file
+            if (unlink($target_file)) {
+                // File deletion success
+                $query="DELETE FROM list_barang WHERE id_peminjaman=$id";
+                $this->db->query($query);
+                $this->db->execute();
+
+                //sing pingin tak dadekne trigger :
+                $query="DELETE FROM peminjaman WHERE id_peminjaman=$id";
+                $this->db->query($query);
+                $this->db->execute();
+                return 1;
+            } else {
+                // File deletion failure                
+                header('Location: ' . base_url . '/User_Side/History/');
+                return 0;
+                exit;
+            }
+        } else {
+            // File doesn't exist            
+            header('Location: ' . base_url . '/User_Side/Akun/');
+            return 0;
+            exit;
+        }
     }
 }

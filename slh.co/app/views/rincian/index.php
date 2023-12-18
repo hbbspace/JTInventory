@@ -61,7 +61,9 @@
                             </form>
                             <div class="data-row">
                                 <p class="data-label"><strong>Upload KTM:</strong></p>
-                                <p class="data-value"></p>
+                                <p class="data-value">
+                                    <img src="<?= base_url ?>/img/<?= $row['nama_file'] ?>" width="300px"alt="Foto KTM">
+                                </p>
                             </div>
                         </div>
                     </div>

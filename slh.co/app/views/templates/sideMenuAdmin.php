@@ -55,7 +55,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link d-flex align-items-center gap-3 " href="<?= base_url; ?>/Admin_Side/Logout">
+                                <a class="nav-link d-flex align-items-center gap-3 " href="<?= base_url; ?>/Admin_Side/Logout" onclick="return confirm('Yakin Logout?');">
                                     Logout
                                 </a>
                             </li>

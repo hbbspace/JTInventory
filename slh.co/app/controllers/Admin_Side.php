@@ -180,7 +180,6 @@ class Admin_Side extends Controller {
 
     public function Rincian_Request($id){
         $data['rincian']=$this->model($_SESSION['level'])->tampilRincianRequestBarang($id);
-        // var_dump($data['rincian']);
 		$this->topBarName();
 		$this->view('templates/sideMenuAdmin');
 		$this->view('rincian/index', $data);
@@ -253,7 +252,7 @@ class Admin_Side extends Controller {
     }
 
     public function RejectedReturn($id){
-            if($this->model($_SESSION['level'])->RejectedReturn($id) > 0) {
+            if($this->model($_SESSION['level'])->RejectReturn($id) > 0) {
                 Flasher::setMessage('Berhasil','Melakukan Reject','success');
                 header('Location: ' . base_url . '/Admin_Side/Data_Request');
                 exit; 
