@@ -192,15 +192,23 @@ class Helper {
         $unicode = $_SESSION['unicode'];
         $password = $data['password'];
         $level = $_SESSION['level'];
-        $salt = bin2hex(random_bytes(16));
-        $combined_password = $salt . $password;
-        $hashed_password = password_hash($combined_password, PASSWORD_BCRYPT);
-        $var = $hashed_password;
-        $query = "UPDATE user SET email = :email, username = :username, password = '$var', salt = '$salt' WHERE user_id = $id";
-        $this->db->query($query);
-        $this->db->bind('username', $data['username']);
-        $this->db->bind('email', $data['email']);
-        $this->db->execute();
+        if($password!=null){
+            $salt = bin2hex(random_bytes(16));
+            $combined_password = $salt . $password;
+            $hashed_password = password_hash($combined_password, PASSWORD_BCRYPT);
+            $var = $hashed_password;
+            $query = "UPDATE user SET email = :email, username = :username, password = '$var', salt = '$salt' WHERE user_id = $id";
+            $this->db->query($query);
+            $this->db->bind('username', $data['username']);
+            $this->db->bind('email', $data['email']);
+            $this->db->execute();
+        }else{
+            $query = "UPDATE user SET email = :email, username = :username WHERE user_id = $id";
+            $this->db->query($query);
+            $this->db->bind('username', $data['username']);
+            $this->db->bind('email', $data['email']);
+            $this->db->execute();
+        }
         if ($level == 'Teknisi') {
             $query2 = "UPDATE teknisi SET nama_teknisi = :nama_teknisi, jk = :jenis_kelamin WHERE nip = $unicode";
             $this->db->query($query2);
