@@ -4,11 +4,14 @@
                     <h1>Rincian Peminjaman</h1>
                 </div>
                 <div class="row">
+                        <?php
+                        // Menampilkan pesan flash jika ada
+                        Flasher::Message();
+                        ?>
                 <div class="col-lg-16">
                     </div>
                     <div class="table-responsive small" id="dataTable">
                         <!-- Menampilkan data admin dalam tabel -->
-                        <form>
                             <div class="modal-body">
                                 <div class="data-container">
                                     <div class="data-row">
@@ -70,10 +73,18 @@
                                         <button type="submit" class="btn btn-primary mt-3">Kirim</button>
                                    </div>
                             </div>
-                        </form>
+                        
                         <div class="text-center mt-5">
                             <a href="<?= base_url; ?>/User_Side/Data_Peinjaman" class="btn btn-warning btn-xs" style="margin-right: 25px;">Kembali</a>
-                            <a href="<?= base_url; ?>/User_Side/Return/<?=$row['id']?>" class="btn btn-primary btn-xs">Return</a>
+                            <?php 
+                            $today = date("Y-m-d");
+                            if ($_SESSION['level'] == 'Mahasiswa' && $today > $row['tanggal_kembali']) : ?>
+                                <a href="<?= base_url; ?>/User_Side/Telat/<?=$row['id']?>" class="btn btn-primary btn-xs">Return</a>            
+                            <?php 
+                            else : ?>
+                                <a href="<?= base_url; ?>/User_Side/Return/<?=$row['id']?>" class="btn btn-primary btn-xs">Return</a>
+                            <?php 
+                            endif; ?>
                             </div>
                        </div>
                         

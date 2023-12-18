@@ -129,7 +129,6 @@ class User_Side extends Controller {
     }
 
     public function editAkun(){
-        
         if ($this->model($_SESSION['level'])->editProfile($_POST)){
             Flasher::setMessage('Berhasil','Diubah','success');
             header('Location: ' . base_url . '/User_Side/Akun');
@@ -213,6 +212,19 @@ class User_Side extends Controller {
             header('Location: ' . base_url . '/User_Side/data_peminjaman');  exit; 
         
         }  
+    }
+
+    public function Telat($id){
+        if($this->model($_SESSION['level'])->cekKeterlambatan($id) > 0) {
+            Flasher::setMessage('Anda Telat','Melakukan Pengembalian, Silahkan ke Admin','danger');
+            header('Location: ' . base_url . '/User_Side/data_pengembalian');
+            exit; 
+        }else{
+            Flasher::setMessage('Anda Telat','Melakukan Pengembalian, Silahkan ke Admin','danger');
+            header('Location: ' . base_url . '/User_Side/data_pengembalian');
+            exit; 
+
+        }
     }
 
     public function Delete_Request($id){

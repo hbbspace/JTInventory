@@ -146,6 +146,11 @@ abstract class User extends Aktor {
         $result = $helper->deleteRequest($id);
         return $result;        
     }
-
+    
+    public function cekKeterlambatan($id){
+        $helper = new Helper();
+        $result = $helper->Telat($id);
+        return $result;        
+    }
     
 }

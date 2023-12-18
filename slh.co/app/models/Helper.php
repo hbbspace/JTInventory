@@ -300,7 +300,7 @@ class Helper {
     }
 
     public function totalBarangDipinjam(){
-        $query="SELECT sum(qty) as jumlahPinjam FROM list_barang";
+        $query="SELECT sum(qty) as jumlahPinjam FROM list_barang as lb INNER JOIN peminjaman as p on p.id_peminjaman=lb.id_peminjaman WHERE p.status='progress';";
         $this->db->query($query);
         return $this->db->single();
     }
@@ -530,7 +530,15 @@ class Helper {
         $this->db->execute();
         return $this->db->rowCount();
     }
-
+    
+    public function Telat($id){
+        $query="UPDATE peminjaman
+        SET keterangan = 'System : Anda Harus Membayar Denda ke Admin' , status='return'
+        WHERE id_peminjaman=$id;";
+        $this->db->query($query);
+        $this->db->execute();
+        return 1;
+    }
 
 
     public function gantiPassword($data) {
