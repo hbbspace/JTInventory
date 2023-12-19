@@ -1,7 +1,6 @@
 <style>
     .data-label, .data-value {
         color: #38ABF2;
-        
     }
 </style>
 
