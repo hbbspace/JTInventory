@@ -14,7 +14,17 @@
             flex: 1;
             overflow-y: auto;
         }
+<<<<<<< Updated upstream
         </style>
+=======
+
+        .peminjaman-kotak {
+            width: 60px;
+            
+        }
+
+    </style>
+>>>>>>> Stashed changes
     <link rel="stylesheet" href="assets/custom/dashboard.css">
 </head>
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
@@ -49,9 +59,15 @@
                                 <tr>
                                     <th scope="col">No</th>
                                     <th scope="col">Kode Barang</th>
+<<<<<<< Updated upstream
                                     <th scope="col">Nama Barang </th>
                                     <th scope="col">Maintener</th>
                                     <th scope="col">Total Barang</th>
+=======
+                                    <th scope="col">Nama Barang</th>
+                                    <th scope="col">Total Barang Tersedia</th>
+                                    <th scope="col">Jumlah Peminjaman</th>
+>>>>>>> Stashed changes
                                 </tr>
                             </thead>
                             <tbody>
@@ -67,8 +83,18 @@
                                         <td><?= $row['maintener'] ?></td>
                                         <td><?= $row['qty'] ?></td>
                                         <td>
+<<<<<<< Updated upstream
                                             <!-- Tombol untuk mengedit dan menghapus data barang -->
                                             <input type="checkbox" name="stok[]" value="<?= $row['id_barang'] ?>" <?php echo ($row['qty'] > 0) ? '' : 'checked'; ?>>
+=======
+                                            <!-- Kolom input untuk memasukkan jumlah yang dipinjam -->
+                                            <input class="peminjaman-kotak" type="number" name="jumlah_pinjam[]" value="1" min="1" max="<?= $row['qty'] ?>" disabled>
+                                        </td>
+                                        <td>
+                                            <!-- Input checkbox dengan atribut name yang berisi array -->
+
+                                            <input type="checkbox" name="check[]" value="<?= $row['id_barang'] ?>" onchange="toggleJumlahPinjam(this)">
+>>>>>>> Stashed changes
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
