@@ -59,23 +59,20 @@
                                         <p class="data-value"><?=$row['keterangan']?></p>
                                     </div>
                                     <div class="data-row">
-                                        <p class="data-label"><strong>Upload KTM:</strong></p>
-                                        <p class="data-value"></p>
-                                    </div>
-                                    <div class="data-row">
-                                        <p class="data-label"><strong>Upload Bukti Pengembalian:</strong></p>
-                                        <p class="data-value">
-                                            <!-- Elemen input untuk mengupload gambar -->
-                                            <input type="file" name="bukti" id="bukti" accept="image/*">
-                                        </p>
-                                        </div>
-                                        <!-- Elemen button untuk mengirim data -->
-                                        <button type="submit" class="btn btn-primary mt-3">Kirim</button>
-                                   </div>
+                                            <?php if ($_SESSION['level'] == 'Mahasiswa') : ?>
+                                                <?php if ($row['nama_file'] != null) : ?>
+                                                    <p class="data-label"><strong>Upload KTM:</strong></p>
+                                                    <img src="<?= base_url ?>/img/<?= $row['nama_file'] ?>" width="300px" alt="Foto KTM">
+                                                <?php else : ?>
+                                                    <p class="data-label"><strong>Upload KTM:</strong></p>
+                                                    <p>-</p>
+                                                <?php endif; ?>
+                                            <?php endif; ?>
+                                    </div> </div>
                             </div>
                         
                         <div class="text-center mt-5">
-                            <a href="<?= base_url; ?>/User_Side/Data_Peinjaman" class="btn btn-warning btn-xs" style="margin-right: 25px;">Kembali</a>
+                            <a href="<?= base_url; ?>/User_Side/Data_Peminjaman" class="btn btn-warning btn-xs" style="margin-right: 25px;">Kembali</a>
                             <?php 
                             $today = date("Y-m-d");
                             if ($_SESSION['level'] == 'Mahasiswa' && $today > $row['tanggal_kembali']) : ?>

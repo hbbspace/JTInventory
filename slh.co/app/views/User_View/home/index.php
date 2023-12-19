@@ -21,7 +21,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">Total Barang dipinjam</h5>
-                                <p class="card-text">0</p>
+                                <p class="card-text"><?=$data['dipinjam']['jumlah']?></p>
                             </div>
                         </div>
                     </div>
@@ -41,7 +41,8 @@
                             <tr>
                                 <th scope="col">No</th>
                                 <th scope="col">id peminjaman</th>
-                                <th scope="col">jumlah</th>
+                                <th scope="col">Jumlah</th>
+                                <th scope="col">Keterangan</th>
                                 <th scope="col">Status</th>
                             </tr>
                         </thead>
@@ -57,6 +58,7 @@
                                     <th scope="row"><?= $no++ ?></th>
                                     <td><?= $row['id'] ?></td>
                                     <td><?= $row['jumlah'] ?></td>
+                                    <td><?= $row['keterangan'] ?></td>
                                     <td><?= $row['status'] ?></td>
                                     <td>
                                         <!-- Tombol untuk menampilkan data peminjaman -->

@@ -14,6 +14,7 @@ class User_Side extends Controller {
     public function index() {
         $data['jumlahBarang']=$this->model($_SESSION['level'])->hitungTotalBarang();
         $data['request']=$this->model($_SESSION['level'])->tampilRequestBarang(); 
+        $data['dipinjam']=$this->model($_SESSION['level'])->hitungBarangDipinjamForUser(); 
         $data['nama']=$this->getNamaById();
         //var_dump($data['nama']);
         $this->view('templates/topUser', $data);
@@ -23,8 +24,9 @@ class User_Side extends Controller {
     }
 
     public function Rincian_Request($id){
+        $status='request';
         $data['request']=$this->model($_SESSION['level'])->tampilRequestBarang();
-        $data['rincian']=$this->model($_SESSION['level'])->tampilRincianRequestBarang($id);
+        $data['rincian']=$this->model($_SESSION['level'])->tampilRincianRequestBarang($id,$status);
         $data['nama']=$this->getNamaById();
 		$this->topBarName();
 		$this->view('templates/sideMenuUser');
@@ -33,8 +35,9 @@ class User_Side extends Controller {
     }
     
     public function Rincian_Return($id){
+        $status='return';
         $data['request']=$this->model($_SESSION['level'])->tampilRequestBarang();
-        $data['rincian']=$this->model($_SESSION['level'])->tampilRincianReturnBarang($id);
+        $data['rincian']=$this->model($_SESSION['level'])->tampilRincianReturnBarang($id,$status);
         $data['nama']=$this->getNamaById();
 		$this->topBarName();
 		$this->view('templates/sideMenuUser');
@@ -42,7 +45,8 @@ class User_Side extends Controller {
 		$this->view('templates/bottom');
     }
     public function Rincian_Peminjaman($id){
-        $data['rincian']=$this->model($_SESSION['level'])->tampilRincianProgressBarang($id);
+        $status='progress';
+        $data['rincian']=$this->model($_SESSION['level'])->tampilRincianProgressBarang($id,$status);
         $data['nama']=$this->getNamaById();
 		$this->topBarName();
 		$this->view('templates/sideMenuUser');

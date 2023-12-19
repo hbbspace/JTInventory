@@ -14,7 +14,7 @@
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sign-in/">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
-    <link rel="shortcut icon" href="/dasarWeb/JTInventory/slh.co/public/assets/img/favicons/favicon.ico">
+    <link rel="shortcut icon" href="/dasarWeb/JTInventory/slh.co/public/assets/img/favicons/Icon.png">
 
     <link href="/dasarWeb/JTInventory/slh.co/public/assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -238,8 +238,8 @@
                 <input type="text" class="form-control rounded-4" id="floatingInput" name="password" placeholder="Password" required>
                 <label for="floatingInput">Password Baru</label>
             </div>
-                <button class="btn btn-primary w-100 py-2 rounded-4" type="submit" name="register">Ganti Password</button>
-                <p class="login-inform">Sudah punya akun ? <a href="<?= base_url; ?>" class="login">Login</a></p>
+                <button class="btn btn-primary w-100 py-2 rounded-4 mt-3" type="submit" name="register">Ganti Password</button>
+                <p class="login-inform ms-10">Sudah punya akun ? <a href="<?= base_url; ?>" class="login">Login</a></p>
                 
                 <p class="mt-5 mb-3 text-body-secondary">&copy; 2023</p>
             </div>

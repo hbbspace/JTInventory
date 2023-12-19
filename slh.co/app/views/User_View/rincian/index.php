@@ -8,7 +8,7 @@
                     </div>
                     <div class="table-responsive small" id="dataTable">
                         <!-- Menampilkan data admin dalam tabel -->
-                        <form>
+
                             <div class="modal-body">
                                 <div class="data-container">
                                     <div class="data-row">
@@ -42,28 +42,33 @@
                                     </tbody>
                                 </table>
                                 <div class="data-container">
-                                <div class="data-row">
                                     <div class="data-row">
-                                        <p class="data-label"><strong>Tanggal Peminjaman:</strong></p>
-                                        <p class="data-value"><?=$row['tanggal_pinjam']?></p>
-                                    </div>
-                                    <div class="data-row">
-                                        <p class="data-label"><strong>Tanggal Pengembalian:</strong></p>
-                                        <p class="data-value"><?=$row['tanggal_kembali']?></p>
-                                    </div>
-                                    <div class="data-row">
-                                        <p class="data-label"><strong>Keterangan:</strong></p>
-                                        <p class="data-value"><?=$row['keterangan']?></p>
-                                    </div>
-                                    <div class="data-row">
-                                        <p class="data-label"><strong>Upload KTM:</strong></p>
-                                        <p class="data-value">
-                                            <img src="<?= base_url ?>/img/<?= $row['nama_file'] ?>" width="300px"alt="Foto KTM">
-                                        </p>
+                                        <div class="data-row">
+                                            <p class="data-label"><strong>Tanggal Peminjaman:</strong></p>
+                                            <p class="data-value"><?=$row['tanggal_pinjam']?></p>
+                                        </div>
+                                        <div class="data-row">
+                                            <p class="data-label"><strong>Tanggal Pengembalian:</strong></p>
+                                            <p class="data-value"><?=$row['tanggal_kembali']?></p>
+                                        </div>
+                                        <div class="data-row">
+                                            <p class="data-label"><strong>Keterangan:</strong></p>
+                                            <p class="data-value"><?=$row['keterangan']?></p>
+                                        </div>
+                                        <div class="data-row">
+                                            <?php if ($_SESSION['level'] == 'Mahasiswa') : ?>
+                                                <?php if ($row['nama_file'] != null) : ?>
+                                                    <p class="data-label"><strong>Upload KTM:</strong></p>
+                                                    <img src="<?= base_url ?>/img/<?= $row['nama_file'] ?>" width="300px" alt="Foto KTM">
+                                                <?php else : ?>
+                                                    <p class="data-label"><strong>Upload KTM:</strong></p>
+                                                    <p>-</p>
+                                                <?php endif; ?>
+                                            <?php endif; ?>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </form>
                         <div class="text-center mt-5">
                             <a href="<?= base_url; ?>/User_Side" class="btn btn-warning btn-xs">Kembali</a>
                         </div>

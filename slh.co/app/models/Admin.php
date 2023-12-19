@@ -110,9 +110,9 @@ abstract class Admin extends Aktor {
         return $result;
     }
 
-    public function tampilRincianRequestBarang($idBarang){
+    public function tampilRincianRequestBarang($idBarang,$status){
         $helper = new Helper();
-        $result = $helper->tampilDataBarangRequest($idBarang);
+        $result = $helper->tampilDataBarang($idBarang,$status);
         return $result;
     }
 
@@ -122,9 +122,9 @@ abstract class Admin extends Aktor {
         return $result;
     }
     
-    public function tampilDataBarangProgress($idBarang){
+    public function tampilDataBarangProgress($idBarang,$status){
         $helper = new Helper();
-        $result = $helper->tampilDataBarangProgress($idBarang);
+        $result = $helper->tampilDataBarang($idBarang,$status);
         return $result;
     }
     
@@ -158,9 +158,9 @@ abstract class Admin extends Aktor {
         return $result;
     }
 
-    public function tampilRincianBarangReturn($id){
+    public function tampilRincianBarangReturn($id,$status){
         $helper = new Helper();
-        $result = $helper->tampilDataBarangReturn($id);
+        $result = $helper->tampilDataBarang($id,$status);
         return $result;
     }
 

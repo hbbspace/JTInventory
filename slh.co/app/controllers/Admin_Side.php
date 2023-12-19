@@ -147,12 +147,16 @@ class Admin_Side extends Controller {
     }
 
     public function hapusBarang($id_barang) {
-        if($this->model($_SESSION['level'])->hapusDataBarang($id_barang) > 0) {
+        if($this->model($_SESSION['level'])->hapusDataBarang($id_barang) == 1) {
             Flasher::setMessage('Berhasil','Dihapus','success');
             header('Location: ' . base_url . '/Admin_Side/Data_Barang');
             exit; 
+        }else if ($this->model($_SESSION['level'])->hapusDataBarang($id_barang) == 2){
+            Flasher::setMessage('Gagal','Menghapus Barang Karena Data Barang Sedang Digunakan','danger');
+            header('Location: ' . base_url . '/Admin_Side/Data_Barang');
+            exit; 
         }else{
-            Flasher::setMessage('Gagal','Dihapus','danger');
+            Flasher::setMessage('Gagal','Menghapus Barang Karena Data Tidak Valid','danger');
             header('Location: ' . base_url . '/Admin_Side/Data_Barang');
             exit; 
         }
@@ -179,7 +183,8 @@ class Admin_Side extends Controller {
     }
 
     public function Rincian_Request($id){
-        $data['rincian']=$this->model($_SESSION['level'])->tampilRincianRequestBarang($id);
+        $status='request';
+        $data['rincian']=$this->model($_SESSION['level'])->tampilRincianRequestBarang($id,$status);
 		$this->topBarName();
 		$this->view('templates/sideMenuAdmin');
 		$this->view('rincian/index', $data);
@@ -187,7 +192,8 @@ class Admin_Side extends Controller {
     }
 
     public function Rincian_Peminjaman($id){
-        $data['rincian']=$this->model($_SESSION['level'])->tampilDataBarangProgress($id);
+        $status='progress';
+        $data['rincian']=$this->model($_SESSION['level'])->tampilDataBarangProgress($id,$status);
 		$this->topBarName();
 		$this->view('templates/sideMenuAdmin');
 		$this->view('data_peminjaman_rincian/index', $data);
@@ -195,7 +201,8 @@ class Admin_Side extends Controller {
     }
 
     public function Rincian_Pengembalian($id){
-        $data['rincian']=$this->model($_SESSION['level'])->tampilRincianBarangReturn($id);
+        $status='return';
+        $data['rincian']=$this->model($_SESSION['level'])->tampilRincianBarangReturn($id,$status);
 		$this->topBarName();
 		$this->view('templates/sideMenuAdmin');
 		$this->view('data_pengembalian_rincian/index', $data);

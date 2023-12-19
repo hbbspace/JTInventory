@@ -56,13 +56,16 @@
                                         <p class="data-value"><?=$row['keterangan']?></p>
                                     </div>
                                     <div class="data-row">
-                                        <p class="data-label"><strong>Upload KTM:</strong></p>
-                                        <p class="data-value"></p>
-                                    </div>
-                                    <div class="data-row">
-                                        <p class="data-label"><strong>Upload Bukti Pengembalian:</strong></p>
-                                        <p class="data-value"></p>
-                                    </div>
+                                            <?php if ($_SESSION['level'] == 'Mahasiswa') : ?>
+                                                <?php if ($row['nama_file'] != null) : ?>
+                                                    <p class="data-label"><strong>Upload KTM:</strong></p>
+                                                    <img src="<?= base_url ?>/img/<?= $row['nama_file'] ?>" width="300px" alt="Foto KTM">
+                                                <?php else : ?>
+                                                    <p class="data-label"><strong>Upload KTM:</strong></p>
+                                                    <p>-</p>
+                                                <?php endif; ?>
+                                            <?php endif; ?>
+                                        </div>
                                 </div>
                             </div>
                         </form>

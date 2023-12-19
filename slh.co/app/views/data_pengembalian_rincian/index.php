@@ -46,10 +46,6 @@
                             <p class="data-label"><strong>Tanggal Pengembalian:</strong></p>
                             <p class="data-value"><?= $row['tanggal_kembali'] ?></p>
                         </div>
-                        <div class="data-row">
-                            <p class="data-label"><strong>Upload KTM:</strong></p>
-                            <p class="data-value">statis</p>
-                        </div>
                         <form action="<?= base_url ?>/Admin_Side/tambahDataKeterangan" method="post">
                             <div class="data-row">
                                 <p class="data-label"><strong>Keterangan:</strong></p>
@@ -59,9 +55,14 @@
                             </div>
                         </form>
                         <div class="data-row">
-                            <p class="data-label"><strong>Upload KTM:</strong></p>
-                            <p class="data-value"></p>
-                        </div>
+                            <?php 
+                            if ($row['nama_file'] !=null) : ?>
+                                <p class="data-label"><strong>Upload KTM:</strong></p>
+                                <p class="data-value">
+                                    <img src="<?= base_url ?>/img/<?= $row['nama_file'] ?>" width="300px"alt="Foto KTM">
+                                </p>                                                    
+                                    <?php endif; ?>
+                            </div>
                     </div>
                 </div>
                 <?php

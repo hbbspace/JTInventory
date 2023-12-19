@@ -14,7 +14,7 @@
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sign-in/">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
-    <link rel="shortcut icon" href="assets/img/favicons/favicon.ico">
+    <link rel="shortcut icon" href="/dasarWeb/JTInventory/slh.co/public/assets/img/favicons/Icon.png">
 
     <link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
 

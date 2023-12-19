@@ -47,10 +47,6 @@
                                 <p class="data-label"><strong>Tanggal Pengembalian:</strong></p>
                                 <p class="data-value"><?= $row['tanggal_kembali'] ?></p>
                             </div>
-                            <div class="data-row">
-                                <p class="data-label"><strong>Keterangan:</strong></p>
-                                <p class="data-value"><?= $row['keterangan'] ?></p>
-                            </div>
                             <?php
                             // Menampilkan pesan flash jika ada
                             Flasher::Message();
@@ -64,8 +60,13 @@
                                 </div>
                             </form>
                             <div class="data-row">
+                            <?php 
+                            if ($row['nama_file'] !=null) : ?>
                                 <p class="data-label"><strong>Upload KTM:</strong></p>
-                                <p class="data-value"></p>
+                                <p class="data-value">
+                                    <img src="<?= base_url ?>/img/<?= $row['nama_file'] ?>" width="300px"alt="Foto KTM">
+                                </p>                                                    
+                                    <?php endif; ?>
                             </div>
                             <div class="text-center mt-5">
                             <a href="<?= base_url; ?>/Admin_Side/Data_Peminjaman" class="btn btn-warning btn-xs" style="margin-right: 25px;">Kembali</a>

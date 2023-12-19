@@ -23,7 +23,7 @@
                             <th scope="col">Nama Peminjam</th>
                             <th scope="col">Status</th>
                             <th scope="col">Waktu Transaksi</th>
-                            <th scope="col"> </th>
+                            <th scope="col">Keterangan</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -38,6 +38,7 @@
                                 <td><?= $row['nama'] ?></td>
                                 <td><?= $row['status'] ?></td>
                                 <td><?= $row['waktu'] ?></td>
+                                <td><?= $row['keterangan'] ?></td>
                                 <td>
                                     <!-- button untuk menampilkan data peminjaman -->
                                     <button type="button" class="btn btn-primary" onclick="window.location.href='<?= base_url; ?>/Admin_Side/Rincian_Peminjaman/<?= $row['id'] ?>'">

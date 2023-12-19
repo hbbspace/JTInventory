@@ -60,10 +60,13 @@
                                 </div>
                             </form>
                             <div class="data-row">
+                            <?php 
+                            if ($row['nama_file'] !=null) : ?>
                                 <p class="data-label"><strong>Upload KTM:</strong></p>
                                 <p class="data-value">
                                     <img src="<?= base_url ?>/img/<?= $row['nama_file'] ?>" width="300px"alt="Foto KTM">
-                                </p>
+                                </p>                                                    
+                                    <?php endif; ?>
                             </div>
                         </div>
                     </div>

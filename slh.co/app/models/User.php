@@ -92,21 +92,21 @@ abstract class User extends Aktor {
         return $result;
     }
 
-    public function tampilRincianRequestBarang($idBarang){
+    public function tampilRincianRequestBarang($idBarang,$status){
         $helper = new Helper();
-        $result = $helper->tampilDataBarangRequest($idBarang);
+        $result = $helper->tampilDataBarang($idBarang,$status);
         return $result;
     }
 
-    public function tampilRincianProgressBarang($idBarang){
+    public function tampilRincianProgressBarang($idBarang,$status){
         $helper = new Helper();
-        $result = $helper->tampilDataBarangProgress($idBarang);
+        $result = $helper->tampilDataBarang($idBarang,$status);
         return $result;
     }
 
-    public function tampilRincianReturnBarang($idBarang){
+    public function tampilRincianReturnBarang($idBarang,$status){
         $helper = new Helper();
-        $result = $helper->tampilDataBarangReturn($idBarang);
+        $result = $helper->tampilDataBarang($idBarang,$status);
         return $result;
     }
 
@@ -128,7 +128,13 @@ abstract class User extends Aktor {
         $result = $helper->Return($id);
         return $result;
     }
-
+    
+    public function hitungBarangDipinjamForUser(){
+        $helper = new Helper();
+        $result = $helper->hitungBarangDipinjamForUser();
+        return $result;
+    }
+    
     public function tambahDataAdmin($data) {
         $password=$data['password'];
         $salt = bin2hex(random_bytes(16));
