@@ -102,7 +102,7 @@
         }
 
         .card {
-            background-color: #87C4FF;
+            background-color: #9AC5F4;
         }
         .sidebar {
         position: fixed sticky;

@@ -20,7 +20,7 @@
 
     <style>
         .border-section {
-           border: 3px solid #712cf9;
+           border: 3px solid #77CFF2;
            padding: 35px;
            border-radius: 5px;
         }

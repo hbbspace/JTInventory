@@ -13,7 +13,8 @@
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">Total Seluruh Barang</h5>
-                                <p class="card-text"><?=$data['jumlahBarang']['nilai']?><p>
+                                <hr class="hr-card"></hr>
+                                <p class="card-text"><?=$data['jumlahBarang']['nilai']?> Barang<p>
                             </div>
                         </div>
                     </div>
@@ -21,6 +22,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">Total Barang dipinjam</h5>
+                                <hr class="hr-card"></hr>
                                 <p class="card-text">0</p>
                             </div>
                         </div>
@@ -72,4 +74,13 @@
             </main>
         </div>
     </div>
+
+    <style>
+        /* .card {
+            background-color: #A5F1E9;
+            color: white;
+        } */
+    </style>
+
+
 

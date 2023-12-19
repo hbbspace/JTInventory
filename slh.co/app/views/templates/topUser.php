@@ -95,15 +95,30 @@
             margin-right: 20px;
         }
 
-        p {
-            display: inline-block;
-            margin: 10px;
-            color: white;
+        .card {
+            background-color: #9AC5F4;
+            color: #132233;
+            font-family: Sans-serif;
+            height: 130px
         }
 
-        .card {
-            background-color: #87C4FF;
+        .hr-card {
+            border-width: 2px;
         }
+
+        .card-title {
+            font-weight: bold;
+        }
+
+        .card-text {
+            font-size: 20px
+        }
+
+        .card:hover {
+            transition: 0.2s;
+            opacity: 0.8
+        }
+
         .sidebar {
         position: fixed sticky;
         }
@@ -119,6 +134,10 @@
 
         .bi{
            margin-bottom: 10px;
+        }
+
+        .body {
+            background-color: red;
         }
 
 
