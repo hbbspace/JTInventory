@@ -146,6 +146,23 @@ class Admin_Side extends Controller {
         }
     }
 
+    public function getEditBarang() {
+        $data = json_decode(file_get_contents("php://input"), true);
+        echo json_encode($this->model($_SESSION['level'])->getBarangById($data['id_barang']));	 
+    }
+
+    public function editBarang() {
+        if($this->model($_SESSION['level'])->editDataBarang($_POST) > 0) {
+            Flasher::setMessage('Berhasil','Diubah','success');
+            header('Location: ' . base_url . '/Admin_Side/Data_Barang');
+            exit; 
+        }else{
+            Flasher::setMessage('Gagal','Diubah','danger');
+            header('Location: ' . base_url . '/Admin_Side/Data_Barang');
+            exit; 
+        }
+    }
+
     public function hapusBarang($id_barang) {
         if($this->model($_SESSION['level'])->hapusDataBarang($id_barang) == 1) {
             Flasher::setMessage('Berhasil','Dihapus','success');

@@ -74,6 +74,12 @@ abstract class Admin extends Aktor {
         return parent::getNamaById($id);
     }
 
+    public function getBarangById($id_barang) {
+        $helper = new Helper();
+        $result = $helper->getBarangById($id_barang);
+        return $result;
+    }
+
     public function hitungTotalBarang(){
         $helper = new Helper();
         $result = $helper->hitungTotalBarang();
@@ -101,6 +107,12 @@ abstract class Admin extends Aktor {
     public function tambahDataBarang($data) {
         $helper = new Helper();
         $result = $helper->tambahDataBarang($data);
+        return $result;
+    }
+
+    public function editDataBarang($data) {
+        $helper = new Helper();
+        $result = $helper->editDataBarang($data);
         return $result;
     }
 

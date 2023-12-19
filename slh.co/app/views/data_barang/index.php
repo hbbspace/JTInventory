@@ -69,7 +69,10 @@
                                         <td><?= $row['qty'] ?></td>
                                         <td>
                                             <!-- Tombol untuk mengedit dan menghapus data barang -->
-                                            <a href="<?= $row['id_barang'] ?>" class="btn btn-warning btn-xs"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit</a>
+                                            <button type="button" class="btn tombolModalUbah" style="background-color: #ffca2c; color: black;" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo" data-id="<?= $row['id_barang'] ?>">
+                                                <i class="fa fa-pencil-square"></i>Edit
+                                            </button>
+                                            <!-- <a href="<?= base_url;?>/Admin_Side/editBarang/<?=$row['id_barang'] ?>" class="btn btn-warning btn-xs"><i class="fa fa-pencil-square tombolModalUbah" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#exampleModal" data-id="<?= $row['id_barang'] ?>"></i> Edit</a> -->
                                             <a href="<?= base_url;?>/Admin_Side/hapusBarang/<?=$row['id_barang'] ?>" class="btn btn-danger btn-xs" onclick="return confirm('Hapus Data Barang?');"><i class="fa fa-trash-o" aria-hidden="true"></i>Hapus</a>
                                         </td>
                                     </tr>
@@ -80,7 +83,7 @@
                         <div class="col-lg-2">
                             <!-- Tombol untuk membuka modal "Tambah Barang" -->
                             <button type="button" class="btn" style="background-color: #87C4FF;" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">
-                                <i class="fa fa-plus"></i>Tambah Barang
+                                <i class="fa fa-plus tombolModalTambah"></i>Tambah Barang
                             </button>
                         </div>
                         </div>
@@ -90,27 +93,29 @@
                         <div class="modal-dialog modal-dialog-scrollable" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Data Barang</h1>
+                                    <h1 class="modal-title fs-5" id="exampleModalTambahLabel">Tambah Data Barang</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
-                                <form action="<?= base_url; ?>/Admin_Side/tambahBarang" method="post">
+                                <form action="<?= base_url; ?>/Admin_Side/tambahBarang" method="post" id="formModal">
+
                                     <div class="modal-body">
-                                        <div class="mb-3">
-                                            <label for="recipient-name" class="col-form-label">Nama Barang:</label>
-                                            <input type="text" name="nama_barang" class="form-control" id="recipient-name">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="form-control" class="col-form-label">Kode Barang:</label>
-                                            <input class="form-control" name="id_barang" id="form-control"></input>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="recipient-name" class="col-form-label">Maintener:</label>
-                                            <input type="text" name="maintener" class="form-control" id="recipient-name">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="message-text" class="col-form-label">Total Barang:</label>
-                                            <input class="form-control" name="qty" id="message-text"></input>
-                                        </div>
+                                            <!-- <input type="hidden" name="id_barang" id="id_barang"> -->
+                                            <div class="form-group mb-3">
+                                                <label for="nama_barang" class="col-form-label">Nama Barang:</label>
+                                                <input type="text" class="form-control"name="nama_barang"  id="nama_barang">
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                <label for="id_barang" class="col-form-label">Kode Barang:</label>
+                                                <input type="text" class="form-control" name="id_barang" id="id_barang">
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                <label for="maintener" class="col-form-label">Maintener:</label>
+                                                <input type="text" class="form-control" name="maintener" id="maintener">
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                <label for="qty" class="col-form-label">Total Barang:</label>
+                                                <input type="number" class="form-control" name="qty" id="qty">
+                                            </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i> Close</button>
@@ -124,3 +129,51 @@
             </main>
         </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.tombolModalTambah').on('click', function() {
+                $('#exampleModalTambahLabel').html('Tambah Data Barang');
+                $('.modal-footer button[type=submit').html('Tambah Data');
+                $('.modal-body form').attr('action', '<?= base_url; ?>/Admin_side/tambahBarang');
+
+                $('#nama_barang').val('');
+                $('#id_barang').val('');
+                $('#maintener').val('');
+                $('#qty').val('');
+            });
+
+            $('.tombolModalUbah').on('click', function() {
+                const id = $(this).data('id');
+
+                if (id) {
+                    // ... Ajax call with valid ID
+
+                    $('#exampleModalTambahLabel').html('Ubah Data Barang');
+                    $('.modal-footer button[type=submit').html('Ubah Data');
+                    $('form').attr('action', '<?= base_url; ?>/Admin_side/editBarang');
+
+                    $.ajax({
+                        url: '<?= base_url; ?>/Admin_Side/getEditBarang',
+                        method: 'post',
+                        contentType: 'application/json',
+                        data: JSON.stringify({
+                            id_barang: id
+                        }),
+                        success: function(response) {
+                            const data = JSON.parse(response);
+                            $('#nama_barang').val(data.nama_barang);
+                            $('#id_barang').val(data.id_barang);
+                            $('#maintener').val(data.maintener);
+                            $('#qty').val(data.qty);
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('Gagal mengambil data:', error);
+                        }
+                    });
+                } else {
+                    console.error('ID barang tidak valid');
+                }
+            });
+        });
+    </script>

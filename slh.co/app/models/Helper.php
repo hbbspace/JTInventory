@@ -273,6 +273,12 @@ class Helper {
         return $this->db->single();
     }
 
+    public function getBarangById($id_barang) {
+        $this->db->query('SELECT * FROM barang WHERE id_barang = :id_barang');
+        $this->db->bind('id_barang', $id_barang);
+        return $this->db->single();
+    }
+
     public function cariBarang(){
         $keyword=$_POST['keyword'];
         $query="SELECT * FROM barang where nama_barang LIKE :keyword";
@@ -296,6 +302,21 @@ class Helper {
         } else {
             return 0;
         }
+
+        return $this->db->rowCount();
+    }
+
+    public function editDataBarang($data) {
+        $query = "UPDATE barang SET nama_barang = :nama_barang, maintener = :maintener, qty = :qty WHERE id_barang = :id_barang";
+
+        $this->db->query($query);
+        $this->db->bind('nama_barang', $data['nama_barang']);
+        $this->db->bind('id_barang', $data['id_barang']);
+        $this->db->bind('maintener', $data['maintener']);
+        $this->db->bind('qty', $data['qty']);
+
+        $this->db->execute();
+
 
         return $this->db->rowCount();
     }
