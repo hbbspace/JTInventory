@@ -136,7 +136,7 @@ class Helper {
         
         // Membuat query SQL
         $query="SELECT SUM(lb.qty) as jumlah FROM list_barang as lb INNER JOIN peminjaman as p on p.id_peminjaman=lb.id_peminjaman 
-        WHERE p.status = 'progress' and p.user_id=$id";
+        WHERE (p.status = 'progress' or p.status='return') and p.user_id=$id";
         
         // Menjalankan query SQL
         $this->db->query($query);
@@ -178,12 +178,12 @@ class Helper {
 
     public function tampilHistory(){
         if($_SESSION['level'] == 'Teknisi') {
-            $query="SELECT m.nama_mhs AS nama, p.time AS waktu, u.level AS status, p.id_peminjaman AS id, p.keterangan AS keterangan, u.level as level FROM peminjaman AS p
+            $query="SELECT m.nama_mhs AS nama, p.time AS waktu, u.level AS level, p.id_peminjaman AS id, p.keterangan AS keterangan, p.status AS status FROM peminjaman AS p
             INNER JOIN user AS u ON u.user_id = p.user_id
             INNER JOIN mahasiswa AS m ON m.nim = u.unicode
             WHERE p.status = 'done' OR p.status ='failed'
             UNION
-            SELECT d.nama_dosen AS nama, p.time AS waktu, u.level AS status, p.id_peminjaman AS id, p.keterangan AS keterangan, u.level as leve FROM peminjaman AS p
+            SELECT d.nama_dosen AS nama, p.time AS waktu, u.level AS level, p.id_peminjaman AS id, p.keterangan AS keterangan, p.status AS status FROM peminjaman AS p
             INNER JOIN user AS u ON u.user_id = p.user_id
             INNER JOIN dosen AS d ON d.nidn = u.unicode
             WHERE p.status = 'done' OR p.status ='failed';";
@@ -344,7 +344,7 @@ class Helper {
     }
 
     public function totalBarangDipinjam(){
-        $query="SELECT sum(qty) as jumlahPinjam FROM list_barang as lb INNER JOIN peminjaman as p on p.id_peminjaman=lb.id_peminjaman WHERE p.status='progress';";
+        $query="SELECT sum(qty) as jumlahPinjam FROM list_barang as lb INNER JOIN peminjaman as p on p.id_peminjaman = lb.id_peminjaman WHERE p.status='progress' or p.status='return';";
         $this->db->query($query);
         return $this->db->single();
     }
@@ -420,10 +420,10 @@ class Helper {
             $jumlah_pinjam = $barang['jumlah_pinjam'];
 
             // Ambil id terakhir
-            // $ambilId = "SELECT id_peminjaman FROM peminjaman ORDER BY id_peminjaman DESC LIMIT 1";
-            // $this->db->query($ambilId);
-            // $id = $this->db->single();
-            // $newPeminjaman = ($id['id_peminjaman'] + 1);
+            $ambilId = "SELECT id_peminjaman FROM peminjaman ORDER BY id_peminjaman DESC LIMIT 1";
+            $this->db->query($ambilId);
+            $idPeminjaman = $this->db->single();
+            $newPeminjaman = ($idPeminjaman['id_peminjaman'] + 1);
 
             if (isset($_FILES['foto_ktm'])) {
                 $target_dir = $_SERVER['DOCUMENT_ROOT'] . "/dasarWeb/JTInventory/slh.co/public/img/";
@@ -450,9 +450,10 @@ class Helper {
                 }
 
                 // Buat query peminjaman
-                $queryPeminjaman = "INSERT INTO peminjaman (user_id, tgl_pinjam, tgl_kembali, nama_file, status) VALUES (:user_id, :tgl_pinjam, :tgl_kembali, :nama_file, 'request')";
+                $queryPeminjaman = "INSERT INTO peminjaman (id_peminjaman, user_id, tgl_pinjam, tgl_kembali, nama_file, status) 
+                                    VALUES (:id_peminjaman, :user_id, :tgl_pinjam, :tgl_kembali, :nama_file, 'request')";
                 $this->db->query($queryPeminjaman);
-                //$this->db->bind(':id_peminjaman', $newPeminjaman);
+                $this->db->bind(':id_peminjaman', $newPeminjaman);
                 $this->db->bind(':user_id', $id);
                 $this->db->bind(':tgl_pinjam', $barang['tanggal_pinjam']);
                 $this->db->bind(':tgl_kembali', $barang['tanggal_kembali']);
@@ -461,9 +462,9 @@ class Helper {
 
             } else {
                 // Buat query peminjaman
-                $queryPeminjaman = "INSERT INTO peminjaman (user_id, tgl_pinjam, tgl_kembali, status) VALUES (:user_id, :tgl_pinjam, :tgl_kembali, 'request')";
+                $queryPeminjaman = "INSERT INTO peminjaman (id_peminjaman, user_id, tgl_pinjam, tgl_kembali, status) VALUES (:id_peminjaman, :user_id, :tgl_pinjam, :tgl_kembali, 'request')";
                 $this->db->query($queryPeminjaman);
-                //$this->db->bind(':id_peminjaman', $newPeminjaman);
+                $this->db->bind(':id_peminjaman', $newPeminjaman);
                 $this->db->bind(':user_id', $id);
                 $this->db->bind(':tgl_pinjam', $barang['tanggal_pinjam']);
                 $this->db->bind(':tgl_kembali', $barang['tanggal_kembali']);
@@ -493,17 +494,21 @@ class Helper {
 
 
     public function AcceptedRequest($id)  {
-        $query="UPDATE peminjaman
-        SET status = 'progress'
-        WHERE id_peminjaman=$id;";
+        $query = "UPDATE peminjaman
+                  SET time = NOW(), status = 'progress'
+                  WHERE id_peminjaman = :id";
+    
         $this->db->query($query);
+        $this->db->bind(':id', $id);
         $this->db->execute();
+    
         return $this->db->rowCount();
-    }  
+    }
+     
 
     public function AcceptedReturn($id )  {
         $query="UPDATE peminjaman
-        SET status = 'done'
+        SET time = NOW(), status = 'done'
         WHERE id_peminjaman=$id;";
         $this->db->query($query);
         $this->db->execute();
@@ -512,7 +517,7 @@ class Helper {
     
     public function RejectRequest($id )  {
         $query="UPDATE peminjaman
-        SET status = 'failed'
+        SET time = NOW(), status = 'failed'
         WHERE id_peminjaman=$id;";
         $this->db->query($query);
         $this->db->execute();
@@ -521,7 +526,7 @@ class Helper {
 
     public function RejectReturn($id)  {
         $query="UPDATE peminjaman
-        SET status = 'progress'
+        SET time = NOW(), status = 'progress'
         WHERE id_peminjaman=$id;";
         $this->db->query($query);
         $this->db->execute();
@@ -558,7 +563,7 @@ class Helper {
 
     public function Return($id){
         $query="UPDATE peminjaman
-        SET status = 'return'
+        SET time = NOW(), status = 'return'
         WHERE id_peminjaman=$id;";
         $this->db->query($query);
         $this->db->execute();
@@ -567,7 +572,7 @@ class Helper {
     
     public function Telat($id){
         $query="UPDATE peminjaman
-        SET keterangan = 'System : Anda Harus Membayar Denda ke Admin' , status='return'
+        SET time = NOW(), keterangan = 'System : Anda Harus Membayar Denda ke Admin' , status='return'
         WHERE id_peminjaman=$id;";
         $this->db->query($query);
         $this->db->execute();
@@ -595,19 +600,52 @@ class Helper {
     }
 
     public function hapusUser($id) {
-        $cekPeminjaman = "SELECT id_peminjaman FROM peminjaman AS p INNER JOIN user AS u ON u.user_id = p.user_id 
-                        WHERE (p.status = 'progres' OR p.status = 'return') AND u.user_id = $id";
-        $this->db->query($cekPeminjaman);
-        if ($this->db->single() > 0) {
+        $cekPeminjamanQuery = "SELECT id_peminjaman FROM peminjaman WHERE user_id = :id AND (status = 'progress' OR status = 'return')";
+        $this->db->query($cekPeminjamanQuery);
+        $this->db->bind(':id', $id);
+    
+        if ($this->db->single() !== false) {
             return 0;
         } else {
-            $query = "DELETE FROM user WHERE user_id = $id";
-            //$query2 = "DELETE FROM user WHERE user_id = $id";
-
-            $this->db->query($query);
+            $cekPeminjamanQuery = "SELECT id_peminjaman FROM peminjaman WHERE user_id = :id AND (status = 'request' OR status = 'done' OR status = 'failed')";
+            $this->db->query($cekPeminjamanQuery);
+            $this->db->bind(':id', $id);
+    
+            if ($this->db->single() !== false) {
+                $query = "SELECT id_peminjaman, nama_file FROM peminjaman WHERE user_id = :id";
+                $this->db->query($query);
+                $this->db->bind(':id', $id);
+                $idPeminjamanSet = $this->db->resultSet();
+    
+                foreach ($idPeminjamanSet as $idPeminjaman) {
+                    $deleteListBarangQuery = "DELETE FROM list_barang WHERE id_peminjaman = :id_peminjaman";
+                    $this->db->query($deleteListBarangQuery);
+                    $this->db->bind(':id_peminjaman', $idPeminjaman['id_peminjaman']);
+                    $this->db->execute();
+    
+                    $target_dir = $_SERVER['DOCUMENT_ROOT'] . "/dasarWeb/JTInventory/slh.co/public/img/";
+                    $target_file = $target_dir . $idPeminjaman['nama_file'];
+    
+                    if (file_exists($target_file)) {
+                        if (unlink($target_file)) {
+                            $deletePeminjamanQuery = "DELETE FROM peminjaman WHERE id_peminjaman = :id_peminjaman";
+                            $this->db->query($deletePeminjamanQuery);
+                            $this->db->bind(':id_peminjaman', $idPeminjaman['id_peminjaman']);
+                            $this->db->execute();
+                        }
+                    }
+                }
+            }
+    
+            $deleteUserQuery = "DELETE FROM user WHERE user_id = :id";
+            $this->db->query($deleteUserQuery);
+            $this->db->bind(':id', $id);
             $this->db->execute();
+            return 1;
         }
     }
+    
+    
 
     public function tambahDataKeterangan($keterangan){
         $keteranganval=$keterangan['keterangan'];

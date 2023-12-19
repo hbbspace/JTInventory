@@ -17,8 +17,10 @@ class Mahasiswa extends User {
         $this->jenisKelamin = $result['jk'];
     }
 
-    public function uploadKTM() {
-        
+    public function uploadKTM($data) {
+        $helper = new Helper();
+        $result = $helper->tambahDataPeminjamanBarang($data);
+        return $result;
     }
 }
 ?>

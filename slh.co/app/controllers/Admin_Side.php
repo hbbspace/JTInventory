@@ -17,6 +17,7 @@ class Admin_Side extends Controller {
         $data['nama']=$this->getNamaById();		 
         $data['jumlahBarang']=$this->model($_SESSION['level'])->hitungTotalBarang();
 		$data['jumlahBarangDipinjam']=$this->model($_SESSION['level'])->totalBarangDipinjam();
+        $data['presentase'] = ($data['jumlahBarangDipinjam']['jumlahPinjam']/$data['jumlahBarang']['nilai'])*100;
         $data['jumlahUser']=$this->model($_SESSION['level'])->hitungTotalUser();
 		$data['peminjaman']=$this->model($_SESSION['level'])->tampilSemuaRequest();
 

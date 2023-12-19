@@ -61,16 +61,16 @@
                     <div class="card-body">
                         <h5 class="card-title">Jumlah Pengguna</h5>
                         <hr class="card-line">
-                        <p class="card-text"><?=$data['jumlahUser']['jumlahUser']?></p>
+                        <p class="card-text"><?=$data['jumlahUser']['jumlahUser']?> Pengguna</p>
                     </div>
                 </div>
             </div>
             <div class="col-sm-3">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Presentase Peminjaman</h5>
+                        <h5 class="card-title">Presentase Barang dipinjam</h5>
                         <hr class="card-line">
-                        <p class="card-text"><?=number_format($data['jumlahBarangDipinjam']['jumlahPinjam']/$data['jumlahBarang']['nilai']*100, 3)?>%</p>
+                        <p class="card-text"><?=(integer)$data['presentase']?>%</p>
                     </div>
                 </div>
             </div>

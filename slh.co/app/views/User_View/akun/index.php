@@ -65,8 +65,8 @@
                         </table>
                     </div>
                     <div style="text-align:center">
-                        <a href="<?= base_url ?>/User_Side/formEditAkun" class="btn btn-warning btn-xs"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit</a>
-                        <a href="<?= base_url ?>/User_Side/hapusAkun" class="btn btn-danger btn-xs"><i class="fa fa-pencil-square" aria-hidden="true"></i> Hapus</a>
+                        <a href="<?= base_url ?>/User_Side/formEditAkun" class="btn btn-warning btn-xs"> Edit</a>
+                        <a href="<?= base_url ?>/User_Side/hapusAkun" class="btn btn-danger btn-xs" onclick="return confirm('Anda yakin ingin hapus akun?');"> Hapus</a>
                     </div>
                     
                     <!-- <div class="card-body" style="text-align: center;">

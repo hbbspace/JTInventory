@@ -151,7 +151,7 @@ class User_Side extends Controller {
             exit;
         } else{
             Flasher::setMessage('Gagal','Akun tidak dihapus','danger');
-            header('Location: ' . base_url . '/Admin_Side/Akun');
+            header('Location: ' . base_url . '/User_Side/Akun');
             exit; 
         }
     }
@@ -183,17 +183,7 @@ class User_Side extends Controller {
         $this->view('templates/bottom');
     }
 
-    // public function editAkun(){
-    //     $data=$this->model('Admin')->editProfile();	 
-
-	// 	$this->topBarName();
-	// 	$this->view('templates/sideMenuUser');
-	// 	$this->view('edit_akun/index', $data);
-	// 	$this->view('templates/bottom');
-    // }
-
-    public function tambahDataBarang() {
-        
+    public function tambahPeminjaman() {
         if($this->model($_SESSION['level'])->tambahDataPeminjamanBarang($_POST) > 0) {
             Flasher::setMessage('Berhasil','Ditambahkan','success');
             header('Location: ' . base_url . '/User_Side/Data_Barang');

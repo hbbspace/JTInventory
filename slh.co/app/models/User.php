@@ -1,7 +1,8 @@
 <?php
 
 require_once 'Aktor.php';
-abstract class User extends Aktor {
+require_once 'Create_Delete.php';
+abstract class User extends Aktor implements Create_Delete{
 
     public function __construct(){
         parent::__construct();
@@ -117,7 +118,6 @@ abstract class User extends Aktor {
     }
 
     public function tambahDataPeminjamanBarang($data){
-        // var_dump($data);
         $helper = new Helper();
         $result = $helper->tambahDataPeminjamanBarang($data);
         return $result;
@@ -157,6 +157,15 @@ abstract class User extends Aktor {
         $helper = new Helper();
         $result = $helper->Telat($id);
         return $result;        
+    }
+
+    // Implements Interface
+    public function tambah($data){
+        $this->Register($data);
+    }
+
+    public function hapus($data) {
+        $this->hapusAkun($data);
     }
     
 }
