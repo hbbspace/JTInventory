@@ -39,36 +39,17 @@
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">Total Seluruh Barang</h5>
-<<<<<<< Updated upstream
-                                <p class="card-text"><?=$data['jumlahBarang']['nilai']?><p>
-=======
-<<<<<<< Updated upstream
-                                <hr class="hr-card"></hr>
-                                <p class="card-text"><?=$data['jumlahBarang']['nilai']?> Barang<p>
-=======
                                 <hr class="card-line">
                                 <p class="card-text"><?=$data['jumlahBarang']['nilai']?><p>
->>>>>>> Stashed changes
->>>>>>> Stashed changes
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="card">
                             <div class="card-body">
-<<<<<<< Updated upstream
-                                <h5 class="card-title">Total Barang dipinjam</h5>
-<<<<<<< Updated upstream
-                                <p class="card-text"><?=$data['dipinjam']['jumlah']?></p>
-=======
-                                <hr class="hr-card"></hr>
-                                <p class="card-text">0</p>
-=======
                                 <h5 class="card-title">Total Barang Dipinjam</h5>
                                 <hr class="card-line">
                                 <p class="card-text"><?=$data['dipinjam']['jumlah']?></p>
->>>>>>> Stashed changes
->>>>>>> Stashed changes
                             </div>
                         </div>
                     </div>
@@ -87,19 +68,9 @@
                         <thead>
                             <tr>
                                 <th scope="col">No</th>
-<<<<<<< Updated upstream
-                                <th scope="col">id peminjaman</th>
-<<<<<<< Updated upstream
-                                <th scope="col">Jumlah</th>
-                                <th scope="col">Keterangan</th>
-=======
-                                <th scope="col">jumlah</th>
-=======
                                 <th scope="col">ID peminjaman</th>
                                 <th scope="col">Jumlah</th>
                                 <th scope="col">Keterangan</th>
->>>>>>> Stashed changes
->>>>>>> Stashed changes
                                 <th scope="col">Status</th>
                             </tr>
                         </thead>
