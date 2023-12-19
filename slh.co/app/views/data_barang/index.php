@@ -23,7 +23,8 @@
                     <div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="Cari Barang" aria-label="Recipient's username" aria-describedby="basic-addon2" name="keyword">
                     <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="submit" id="tombolCari">                    <svg class="bi">
+                        <button class="btn btn-outline-secondary" type="submit" id="tombolCari">
+                        <svg class="bi">
                         <use xlink:href="#search" />
                     </svg></button>
                     </div>
