@@ -178,12 +178,12 @@ class Helper {
 
     public function tampilHistory(){
         if($_SESSION['level'] == 'Teknisi') {
-            $query="SELECT m.nama_mhs AS nama, p.time AS waktu, u.level AS status, p.id_peminjaman AS id, p.keterangan AS keterangan FROM peminjaman AS p
+            $query="SELECT m.nama_mhs AS nama, p.time AS waktu, u.level AS status, p.id_peminjaman AS id, p.keterangan AS keterangan, u.level as level FROM peminjaman AS p
             INNER JOIN user AS u ON u.user_id = p.user_id
             INNER JOIN mahasiswa AS m ON m.nim = u.unicode
             WHERE p.status = 'done' OR p.status ='failed'
             UNION
-            SELECT d.nama_dosen AS nama, p.time AS waktu, u.level AS status, p.id_peminjaman AS id, p.keterangan AS keterangan FROM peminjaman AS p
+            SELECT d.nama_dosen AS nama, p.time AS waktu, u.level AS status, p.id_peminjaman AS id, p.keterangan AS keterangan, u.level as leve FROM peminjaman AS p
             INNER JOIN user AS u ON u.user_id = p.user_id
             INNER JOIN dosen AS d ON d.nidn = u.unicode
             WHERE p.status = 'done' OR p.status ='failed';";
@@ -368,13 +368,13 @@ class Helper {
             $this->db->query($query);
             $levelTampilan=$this->db->single();
             if($levelTampilan['level']=='Mahasiswa')
-                $query="SELECT p.id_peminjaman as id,p.keterangan as keterangan,p.time as waktu,m.nama_mhs as nama, b.nama_barang as nama_barang,b.id_barang as id_barang ,lb.qty as jumlah, p.tgl_pinjam as tanggal_pinjam, p.tgl_kembali as tanggal_kembali, p.status as status
+                $query="SELECT p.id_peminjaman as id,p.keterangan as keterangan,p.time as waktu,m.nama_mhs as nama, b.nama_barang as nama_barang,b.id_barang as id_barang ,lb.qty as jumlah, p.tgl_pinjam as tanggal_pinjam, p.tgl_kembali as tanggal_kembali, p.status as status, p.Nama_File as nama_file
                 FROM peminjaman as p inner join list_barang as lb on p.id_peminjaman=lb.id_peminjaman inner join barang as b on b.id_barang=lb.id_barang
                 inner join user as u on p.user_id=u.user_id
                 INNER JOIN mahasiswa AS m ON m.nim = u.unicode
                 WHERE p.status='done' OR p.status='failed' and p.id_peminjaman='$idBarang'";
             else{
-                $query="SELECT p.id_peminjaman as id, p.keterangan as keterangan, p.time as waktu, d.nama_dosen as nama, b.nama_barang as nama_barang, b.id_barang as id_barang , lb.qty as jumlah, p.tgl_pinjam as tanggal_pinjam, p.tgl_kembali as tanggal_kembali, p.status as status
+                $query="SELECT p.id_peminjaman as id, p.keterangan as keterangan, p.time as waktu, d.nama_dosen as nama, b.nama_barang as nama_barang, b.id_barang as id_barang , lb.qty as jumlah, p.tgl_pinjam as tanggal_pinjam, p.tgl_kembali as tanggal_kembali, p.status as status, p.Nama_File as nama_file
                 FROM peminjaman as p inner join list_barang as lb on p.id_peminjaman=lb.id_peminjaman inner join barang as b on b.id_barang=lb.id_barang
                 inner join user as u on p.user_id=u.user_id
                 INNER JOIN dosen AS d ON d.nidn = u.unicode
@@ -382,7 +382,7 @@ class Helper {
             }
         }else {
         $id=$_SESSION['user_id'];
-        $query="SELECT p.id_peminjaman as id,p.keterangan as keterangan,p.time as waktu,b.nama_barang as nama_barang,b.id_barang as id_barang ,lb.qty as jumlah, p.tgl_pinjam as tanggal_pinjam, p.tgl_kembali as tanggal_kembali, p.status as status
+        $query="SELECT p.id_peminjaman as id,p.keterangan as keterangan,p.time as waktu,b.nama_barang as nama_barang,b.id_barang as id_barang ,lb.qty as jumlah, p.tgl_pinjam as tanggal_pinjam, p.tgl_kembali as tanggal_kembali, p.status as status,p.Nama_File as nama_file
         FROM peminjaman as p inner join list_barang as lb on p.id_peminjaman=lb.id_peminjaman inner join barang as b on b.id_barang=lb.id_barang WHERE p.user_id='$id' and p.status='done' OR p.status='failed' and p.id_peminjaman='$idBarang'";
         }
         $this->db->query($query);

@@ -18,9 +18,10 @@
                                 <tr>
                                     <th scope="col">No</th>
                                     <th scope="col">Nama Peminjam</th>
-                                    <th scope="col">Status</th>
+                                    <th scope="col">Level</th>
                                     <th scope="col">Waktu Transaksi</th>
-                                    <th scope="col"> </th>
+                                    <th scope="col">Status</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -31,8 +32,9 @@
                                     <tr>
                                         <th scope="row"><?= $no++ ?></th>
                                         <td><?= $row['nama'] ?></td>
-                                        <td><?= $row['status'] ?></td>
+                                        <td><?= $row['level'] ?></td>
                                         <td><?= $row['waktu'] ?></td>
+                                        <td><?= $row['status'] ?></td>
                                         <td>
                                         <!-- buutton untuk menampilkan data peminjaman -->
                                         <button type="button" class="btn btn-primary" onclick="window.location.href='<?= base_url; ?>/Admin_Side/Rincian_History/<?= $row['id'] ?>'">
