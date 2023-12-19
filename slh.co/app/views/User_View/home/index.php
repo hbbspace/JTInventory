@@ -4,24 +4,71 @@
 <link rel="stylesheet" href="assets/custom/dashboard.css">
     
 </head>
+
+<style>
+    .card {
+        background-color: #77CFF2;
+        height : 125px;
+    }
+
+    .card-title {
+        font-size: 20px;
+        font-weight: bold;
+        padding-left: 1px;
+        color: #200E3A;
+    }
+    
+    .card-text {
+        font-size: 18px;
+        color: #200E3A;
+    }
+    
+    .card-line {
+        height: 2px;
+        background-color: #fff;
+        margin-bottom: 8px;
+        background-color: #200E3A;
+    }
+</style>
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1>Selamat Datang  <?=$_SESSION['level'] ." ". $data['nama']['nama']?></h1>
+                    <h1>Selamat Datang  <?=$_SESSION['level'] ." ". $data['nama']['nama']?> !</h1>
                 </div>
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">Total Seluruh Barang</h5>
+<<<<<<< Updated upstream
                                 <p class="card-text"><?=$data['jumlahBarang']['nilai']?><p>
+=======
+<<<<<<< Updated upstream
+                                <hr class="hr-card"></hr>
+                                <p class="card-text"><?=$data['jumlahBarang']['nilai']?> Barang<p>
+=======
+                                <hr class="card-line">
+                                <p class="card-text"><?=$data['jumlahBarang']['nilai']?><p>
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="card">
                             <div class="card-body">
+<<<<<<< Updated upstream
                                 <h5 class="card-title">Total Barang dipinjam</h5>
+<<<<<<< Updated upstream
                                 <p class="card-text"><?=$data['dipinjam']['jumlah']?></p>
+=======
+                                <hr class="hr-card"></hr>
+                                <p class="card-text">0</p>
+=======
+                                <h5 class="card-title">Total Barang Dipinjam</h5>
+                                <hr class="card-line">
+                                <p class="card-text"><?=$data['dipinjam']['jumlah']?></p>
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
                             </div>
                         </div>
                     </div>
@@ -40,9 +87,19 @@
                         <thead>
                             <tr>
                                 <th scope="col">No</th>
+<<<<<<< Updated upstream
                                 <th scope="col">id peminjaman</th>
+<<<<<<< Updated upstream
                                 <th scope="col">Jumlah</th>
                                 <th scope="col">Keterangan</th>
+=======
+                                <th scope="col">jumlah</th>
+=======
+                                <th scope="col">ID peminjaman</th>
+                                <th scope="col">Jumlah</th>
+                                <th scope="col">Keterangan</th>
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
                                 <th scope="col">Status</th>
                             </tr>
                         </thead>

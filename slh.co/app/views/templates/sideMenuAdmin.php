@@ -1,6 +1,11 @@
 <head>
     <style>
 
+        .nav {
+            position: fixed;
+            flex-direction: column;
+        }
+
     </style>
 </head>
 <body>
@@ -13,7 +18,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu" aria-label="Close"></button>
                     </div>
                     <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
-                        <ul class="nav flex-column">
+                        <ul class="nav">
                             <li class="nav-item">
                                 <a class="nav-link d-flex align-items-center gap-3" aria-current="page" href="<?= base_url; ?>/Admin_Side">
                                     Dashboard
