@@ -59,6 +59,7 @@
                                     <th scope="col">Nama Peminjam</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Waktu Transaksi</th>
+                                    <th scope="col">Keterangan</th>
                                     <th scope="col"> </th>
                                 </tr>
                             </thead>
@@ -70,8 +71,9 @@
                                     <tr>
                                         <th scope="row"><?= $no++ ?></th>
                                         <td><?= $row['nama'] ?></td>
-                                        <td><?= $row['status'] ?></td>
-                                        <td><?= $row['waktu'] ?></td>
+                                <td><?= $row['status'] ?></td>
+                                <td><?= $row['waktu'] ?></td>
+                                <td><?= $row['keterangan'] ?></td>
                                         <td>
                                         <!-- buutton untuk menampilkan data peminjaman -->
                                         <button type="button" class="btn btn-primary" onclick="window.location.href='<?= base_url; ?>/Admin_Side/Rincian_Pengembalian/<?= $row['id'] ?>'">

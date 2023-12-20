@@ -42,6 +42,7 @@
                                     <th scope="col">Waktu</th>
                                     <th scope="col">Jumlah </th>
                                     <th scope="col">Status</th>
+                                    <th scope="col">Keterangan</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -56,6 +57,7 @@
                                         <td><?= $row['waktu'] ?></td>
                                         <td><?= $row['jumlah'] ?></td>
                                         <td><?= $row['status'] ?></td>
+                                        <td><?= $row['keterangan'] ?></td>
                                         <td>
                                         <button type="button" class="btn btn-primary" onclick="window.location.href='<?= base_url; ?>/User_Side/Rincian_Return/<?= $row['id'] ?>'">
                                             Rincian

@@ -25,7 +25,6 @@ class Admin_Side extends Controller {
 		$this->view('templates/sideMenuAdmin');
 		$this->view('home/index', $data);
 		$this->view('templates/bottom');
-
     }
 
     // Controller Fungsi Inti
@@ -236,8 +235,6 @@ class Admin_Side extends Controller {
     }
 
     public function Accepted($id){
-        $idBarang=$id;
-        $status='peminjaman';
         // var_dump($this->model($_SESSION['level'])->UpdateStok($idBarang));
             if($this->model($_SESSION['level'])->AcceptedRequest($id) > 0) {
                 Flasher::setMessage('Berhasil','Melakukan Accepted','success');

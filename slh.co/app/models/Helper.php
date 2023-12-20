@@ -289,8 +289,8 @@ class Helper {
 
     public function tambahDataBarang($data) {
         if ($data['nama_barang'] != null && $data['id_barang'] != null && $data['maintener'] != null && $data['qty'] != null) {
-            $query = "INSERT INTO barang VALUES (:id_barang, :nama_barang, :maintener, :qty)";
-
+            //$query = "INSERT INTO barang VALUES (:id_barang, :nama_barang, :maintener, :qty)";
+            $query = "call AddBarang(:id_barang, :nama_barang, :maintener, :qty )";
             $this->db->query($query);
             $this->db->bind('nama_barang', $data['nama_barang']);
             $this->db->bind('id_barang', $data['id_barang']);
@@ -338,7 +338,7 @@ class Helper {
     }
     
     public function hitungTotalBarang(){
-        $query="SELECT sum(qty) as nilai FROM barang";
+        $query="SELECT JumlahBarang() as nilai";
         $this->db->query($query);
         return $this->db->single();
     }
@@ -496,10 +496,9 @@ class Helper {
     public function AcceptedRequest($id)  {
         $query = "UPDATE peminjaman
                   SET time = NOW(), status = 'progress'
-                  WHERE id_peminjaman = :id";
-    
+                  WHERE id_peminjaman = $id";
+        // $query = "call AcceptReq(@id := {$id})";
         $this->db->query($query);
-        $this->db->bind(':id', $id);
         $this->db->execute();
     
         return $this->db->rowCount();
@@ -507,27 +506,30 @@ class Helper {
      
 
     public function AcceptedReturn($id )  {
-        $query="UPDATE peminjaman
-        SET time = NOW(), status = 'done'
-        WHERE id_peminjaman=$id;";
+        // $query="UPDATE peminjaman
+        // SET time = NOW(), status = 'done'
+        // WHERE id_peminjaman=$id;";
+        $query = "call AcceptReturn(@id := {$id})";
         $this->db->query($query);
         $this->db->execute();
         return $this->db->rowCount();
     }
     
     public function RejectRequest($id )  {
-        $query="UPDATE peminjaman
-        SET time = NOW(), status = 'failed'
-        WHERE id_peminjaman=$id;";
+        // $query="UPDATE peminjaman
+        // SET time = NOW(), status = 'failed'
+        // WHERE id_peminjaman=$id;";
+        $query = "call RejectReq(@id := {$id})";
         $this->db->query($query);
         $this->db->execute();
         return $this->db->rowCount();
     }
 
     public function RejectReturn($id)  {
-        $query="UPDATE peminjaman
-        SET time = NOW(), status = 'progress'
-        WHERE id_peminjaman=$id;";
+        // $query="UPDATE peminjaman
+        // SET time = NOW(), status = 'progress'
+        // WHERE id_peminjaman=$id;";
+        $query = "call RejectReturn(@id := {$id})";
         $this->db->query($query);
         $this->db->execute();
         return $this->db->rowCount();
@@ -645,8 +647,6 @@ class Helper {
         }
     }
     
-    
-
     public function tambahDataKeterangan($keterangan){
         $keteranganval=$keterangan['keterangan'];
         $idPeminjaman=$keterangan['row_id'];
