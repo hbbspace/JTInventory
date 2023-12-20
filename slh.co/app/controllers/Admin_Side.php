@@ -239,7 +239,7 @@ class Admin_Side extends Controller {
         $idBarang=$id;
         $status='peminjaman';
         // var_dump($this->model($_SESSION['level'])->UpdateStok($idBarang));
-            if($this->model($_SESSION['level'])->AcceptedRequest($id) > 0&&$this->model($_SESSION['level'])->UpdateStok($idBarang,$status)>0) {
+            if($this->model($_SESSION['level'])->AcceptedRequest($id) > 0) {
                 Flasher::setMessage('Berhasil','Melakukan Accepted','success');
                 header('Location: ' . base_url . '/Admin_Side/Data_Request');
                 exit; 
@@ -265,7 +265,7 @@ class Admin_Side extends Controller {
     public function AcceptedReturn($id){
         $idBarang=$id;
         $status='pengembalian';
-        if($this->model($_SESSION['level'])->AcceptedReturn($id) > 0 && $this->model($_SESSION['level'])->UpdateStok($idBarang,$status)) {
+        if($this->model($_SESSION['level'])->AcceptedReturn($id) > 0) {
                 Flasher::setMessage('Berhasil','Melakukan Accepted','success');
                 header('Location: ' . base_url . '/Admin_Side/Data_Request');
                 exit; 
