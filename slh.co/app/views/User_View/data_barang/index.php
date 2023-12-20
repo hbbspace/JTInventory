@@ -97,7 +97,7 @@
                             </tbody>
 
                         </table>
-                        <div class="position-relative d-flex align-items-end justify-content-center" style="height: 50px;">
+                        <div class="position-relative d-flex align-items-end justify-content-center" style="height: 50px; margin-bottom: 20px;">
                             <div class="col-lg-2">
                                 <!-- Tombol untuk membuka modal "Tambah Barang" -->
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#pinjamModal" data-bs-whatever="@mdo">
