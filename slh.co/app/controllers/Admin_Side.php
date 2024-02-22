@@ -236,7 +236,8 @@ class Admin_Side extends Controller {
 
     public function Accepted($id){
         // var_dump($this->model($_SESSION['level'])->UpdateStok($idBarang));
-            if($this->model($_SESSION['level'])->AcceptedRequest($id) > 0) {
+        $status='peminjaman';
+            if($this->model($_SESSION['level'])->AcceptedRequest($id) > 0&& $this->model($_SESSION['level'])->UpdateStok($id,$status)>0) {
                 Flasher::setMessage('Berhasil','Melakukan Accepted','success');
                 header('Location: ' . base_url . '/Admin_Side/Data_Request');
                 exit; 

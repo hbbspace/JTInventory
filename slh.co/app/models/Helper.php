@@ -338,7 +338,7 @@ class Helper {
     }
     
     public function hitungTotalBarang(){
-        $query="SELECT JumlahBarang() as nilai";
+        $query="SELECT sum(qty) as nilai FROM barang";
         $this->db->query($query);
         return $this->db->single();
     }
@@ -506,10 +506,10 @@ class Helper {
      
 
     public function AcceptedReturn($id )  {
-        // $query="UPDATE peminjaman
-        // SET time = NOW(), status = 'done'
-        // WHERE id_peminjaman=$id;";
-        $query = "call AcceptReturn(@id := {$id})";
+        $query="UPDATE peminjaman
+        SET time = NOW(), status = 'done'
+        WHERE id_peminjaman=$id;";
+        // $query = "call AcceptReturn(@id := {$id})";
         $this->db->query($query);
         $this->db->execute();
         return $this->db->rowCount();
